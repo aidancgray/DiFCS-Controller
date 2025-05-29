@@ -27,7 +27,13 @@ void main()
 //!      control_task();            //output control
       serial_task();             //serial port 
       command_handler_task();    //execute commands
+//!      signed int32 x_sin = (signed int32)adcVals[0].sinCounts;
+//!      signed int32 x_cos = (signed int32)adcVals[0].cosCounts;
       
+//!      signed int32 y_sin = (signed int32)adcVals[1].sinCounts;
+//!      signed int32 y_cos = (signed int32)adcVals[1].cosCounts;
+      
+//!      fprintf(SERIAL, "x_sin=%Ld ; x_cos=%Ld ; y_sin=%Ld ; y_cos=%Ld\n",x_sin,x_cos,y_sin,y_cos);
       delay_ms(500);
    }
 }

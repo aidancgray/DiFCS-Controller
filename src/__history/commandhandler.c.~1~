@@ -3,7 +3,7 @@
 #include <commandHandler.h>
 
 /* LIST OF DIAGNOSTIC COMMAND KEYWORDS AND THEIR FUNCTIONS */
-struct command cmd_list[] = {
+struct command cmd_list[NUM_COMMANDS] = {
    {"gr",       &getRev},
    {"gs",       &getSN},
    {"gChMap",   &getOPchMap},
@@ -21,8 +21,7 @@ struct command cmd_list[] = {
    {"sMCal",    &setMonitorCalParam},
    {"gMon",     &getMonitorValue},
    {"gPIDdata", &getPIDdata},
-   {"gIPdata",  &getIPdata},
-   {"\0", &invalidCmd}
+   {"gIPdata",  &getIPdata}
 };
 
 /* LIST OF RESPONSE MESSAGES */
@@ -286,11 +285,6 @@ int8 getPIDdata(unsigned int8 rec){
 int8 getIPdata(unsigned int8 rec){
    
    return SUCCESS;
-}
-
-int8 invalidCmd(unsigned int8 rec){
-
-   return INV_CMD;
 }
 
 /*****************************************************************************/

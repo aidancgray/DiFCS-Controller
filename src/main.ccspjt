@@ -575,36 +575,38 @@ D32_E=67
 D32_D=164
 D32_L20=[71024]Project Closed.
 D33=27-05-2025
-D33_L=10
-D33_L1=[56159]Project Opened.
-D33_L2=[56232]Project Closed.
-D33_L3=[56232]Project Opened.
-D33_L4=[56297]Project Closed.
-D33_L5=[56297]Project Opened.
-D33_L6=[56299]Project Closed.
-D33_L7=[56299]Project Opened.
-D33_L8=[56323]Project Closed.
-D33_L9=[56329]Project Opened.
-D33_L10=[56402]Project Closed.
+D33_L=12
+D33_L1=[55259]Project Opened.
+D33_L2=[55261]Project Closed.
+D33_L3=[55263]Project Opened.
+D33_L4=[56133]Project Closed.
+D33_L5=[57078]Project Opened.
+D33_L6=[57252]Project Opened.
+D33_L7=[57384]Project Closed.
+D33_L8=[57393]Project Opened.
+D33_L9=[61042]Started Editing.
+D33_L10=[61351]Stopped Editing.
+D33_L11=[63047]Started Editing.
+D33_L12=[63475]Stopped Editing.
 
 [Opened Files]
-1=main.h
+1=main.c
 t1=1
-2=main.c
+2=main.h
 t2=1
-3=monitor.h
-t3=194
+3=parameters.h
+t3=1
 Count=8
-4=cmdBuffer.h
-t4=27
-5=parameters.h
-t5=61
-6=commandHandler.h
-t6=37
-7=commandhandler.c
-t7=37
-8=serialport.h
-t8=67
+4=monitor.h
+t4=1
+5=serialport.h
+t5=1
+6=cmdBuffer.h
+t6=1
+7=commandHandler.h
+t7=1
+8=commandhandler.c
+t8=1
 9=ADS1220.h
 t9=113
 10=eventTimer.h
@@ -625,7 +627,7 @@ t16=256
 Type=4
 
 [defines]
-buildcount=142
+buildcount=144
 
 [Documentation]
 1=P:\MIRMOS\electrical\Detector Dither Electronics\DitherCtrl\Firmware\difics v2\main.ccspjt
@@ -635,21 +637,21 @@ buildcount=142
 Count=1
 
 [ExtraIncludes]
-Count=15
-1=main=p:\mirmos\electrical\detector dither electronics\ditherctrl\firmware\difics v2\main.h
-2=main=p:\mirmos\electrical\detector dither electronics\ditherctrl\firmware\difics v2\main.h
-3=main=p:\mirmos\electrical\detector dither electronics\ditherctrl\firmware\difics v2\ads1220.h
-4=main=p:\mirmos\electrical\detector dither electronics\ditherctrl\firmware\difics v2\cmdbuffer.h
-5=main=p:\mirmos\electrical\detector dither electronics\ditherctrl\firmware\difics v2\commandhandler.h
-6=main=p:\mirmos\electrical\detector dither electronics\ditherctrl\firmware\difics v2\control.h
-7=main=p:\mirmos\electrical\detector dither electronics\ditherctrl\firmware\difics v2\eventtimer.h
-8=main=p:\mirmos\electrical\detector dither electronics\ditherctrl\firmware\difics v2\io.h
-9=main=p:\mirmos\electrical\detector dither electronics\ditherctrl\firmware\difics v2\monitor.h
-10=main=p:\mirmos\electrical\detector dither electronics\ditherctrl\firmware\difics v2\parameters.h
-11=main=p:\mirmos\electrical\detector dither electronics\ditherctrl\firmware\difics v2\pid.h
-12=main=p:\mirmos\electrical\detector dither electronics\ditherctrl\firmware\difics v2\serialport.h
-13=main=p:\mirmos\electrical\detector dither electronics\ditherctrl\firmware\difics v2\timeouts.h
-14=main=p:\mirmos\electrical\detector dither electronics\ditherctrl\firmware\difics v2\commandhandler.c
+Count=0
+1=main=p:\mirmos\electrical\detector dither electronics\ditherctrl\firmware\difics v2\main.c
+2=main=p:\mirmos\electrical\detector dither electronics\ditherctrl\firmware\difics v2\main.c
+3=main=p:\mirmos\electrical\detector dither electronics\ditherctrl\firmware\difics v2\main.c
+4=main=p:\mirmos\electrical\detector dither electronics\ditherctrl\firmware\difics v2\main.c
+5=main=p:\mirmos\electrical\detector dither electronics\ditherctrl\firmware\difics v2\main.c
+6=main=p:\mirmos\electrical\detector dither electronics\ditherctrl\firmware\difics v2\main.c
+7=main=p:\mirmos\electrical\detector dither electronics\ditherctrl\firmware\difics v2\main.c
+8=main=p:\mirmos\electrical\detector dither electronics\ditherctrl\firmware\difics v2\commandhandler.c
+9=main=p:\mirmos\electrical\detector dither electronics\ditherctrl\firmware\difics v2\main.c
+10=main=p:\mirmos\electrical\detector dither electronics\ditherctrl\firmware\difics v2\main.c
+11=main=p:\mirmos\electrical\detector dither electronics\ditherctrl\firmware\difics v2\main.c
+12=main=p:\mirmos\electrical\detector dither electronics\ditherctrl\firmware\difics v2\main.c
+13=main=p:\mirmos\electrical\detector dither electronics\ditherctrl\firmware\difics v2\main.c
+14=main=p:\mirmos\electrical\detector dither electronics\ditherctrl\firmware\difics v2\main.c
 15=main=p:\mirmos\electrical\detector dither electronics\ditherctrl\firmware\difics v2\main.c
 
 [debugperif]
