@@ -1,5 +1,5 @@
 ÀÄmain
-   ÃÄMAIN  0/838  Ram=1
+   ÃÄMAIN  0/854  Ram=1
    ³  ÃÄ@cinit1  (Inline)  Ram=0
    ³  ÃÄ@cinit2  (Inline)  Ram=0
    ³  ÃÄIO_init  0/68  Ram=0
@@ -111,8 +111,8 @@
    ³  ³     ³  ÃÄ@FLT  0/122  Ram=10
    ³  ³     ³  ÃÄ@FLT  0/122  Ram=10
    ³  ³     ³  ÃÄ@DIVFF  0/350  Ram=14
-   ³  ³     ³  ÃÄ@goto9667  0/34  Ram=0
-   ³  ³     ³  ÃÄatan  0/1326  Ram=21
+   ³  ³     ³  ÃÄ@goto62578  0/34  Ram=0
+   ³  ³     ³  ÃÄatan  0/1328  Ram=21
    ³  ³     ³  ³  ÃÄ@FLT  0/122  Ram=10
    ³  ³     ³  ³  ÃÄ@FLT  0/122  Ram=10
    ³  ³     ³  ³  ÃÄ@DIVFF  0/350  Ram=14
@@ -137,13 +137,13 @@
    ³  ³     ³  ³  ÃÄ@MULFF  0/246  Ram=11
    ³  ³     ³  ³  ÃÄ@DIVFF  0/350  Ram=14
    ³  ³     ³  ³  ÀÄ@ADDFF  0/632  Ram=16
-   ³  ³     ³  ÃÄatan  0/1326  Ram=21
+   ³  ³     ³  ÃÄatan  0/1328  Ram=21
    ³  ³     ³  ³  ÀÄ*
    ³  ³     ³  ÃÄ@ADDFF  0/632  Ram=16
-   ³  ³     ³  ÃÄatan  0/1326  Ram=21
+   ³  ³     ³  ÃÄatan  0/1328  Ram=21
    ³  ³     ³  ³  ÀÄ*
    ³  ³     ³  ÃÄ@ADDFF  0/632  Ram=16
-   ³  ³     ³  ÀÄatan  0/1326  Ram=21
+   ³  ³     ³  ÀÄatan  0/1328  Ram=21
    ³  ³     ³     ÀÄ*
    ³  ³     ÃÄ@MULFF  0/246  Ram=11
    ³  ³     ÃÄ@ITOF  0/54  Ram=2
@@ -158,7 +158,7 @@
    ³  ³     ³  ³  ÃÄ@FLT  0/122  Ram=10
    ³  ³     ³  ³  ÃÄ@DIVFF  0/350  Ram=14
    ³  ³     ³  ³  ÃÄceil  0/30  Ram=4
-   ³  ³     ³  ³  ³  ÀÄCEIL_FLOOR  0/880  Ram=23
+   ³  ³     ³  ³  ³  ÀÄCEIL_FLOOR  0/880  Ram=20
    ³  ³     ³  ³  ³     ÃÄ@FLT  0/122  Ram=10
    ³  ³     ³  ³  ³     ÃÄ@FLT  0/122  Ram=10
    ³  ³     ³  ³  ³     ÃÄ@SFTOI  0/60  Ram=4
@@ -184,7 +184,7 @@
    ³  ³     ³  ³  ³     ÀÄ@FLT  0/122  Ram=10
    ³  ³     ³  ³  ÃÄ@DIVFF  0/350  Ram=14
    ³  ³     ³  ³  ÃÄfloor  0/28  Ram=4
-   ³  ³     ³  ³  ³  ÀÄCEIL_FLOOR  0/880  Ram=23
+   ³  ³     ³  ³  ³  ÀÄCEIL_FLOOR  0/880  Ram=20
    ³  ³     ³  ³  ³     ÀÄ*
    ³  ³     ³  ³  ÃÄ@MULFF  0/246  Ram=11
    ³  ³     ³  ³  ÀÄ@ADDFF  0/632  Ram=16
@@ -192,7 +192,7 @@
    ³  ³     ³  ÃÄfmod  0/358  Ram=16
    ³  ³     ³  ³  ÀÄ*
    ³  ³     ³  ÃÄ@FLT  0/122  Ram=10
-   ³  ³     ³  ÃÄlog  0/916  Ram=25
+   ³  ³     ³  ÃÄlog  0/912  Ram=25
    ³  ³     ³  ³  ÃÄ@FLT  0/122  Ram=10
    ³  ³     ³  ³  ÃÄ@ADDFF  0/632  Ram=16
    ³  ³     ³  ³  ÃÄ@ADDFF  0/632  Ram=16
@@ -211,7 +211,7 @@
    ³  ³     ³  ³  ÃÄ@MULFF  0/246  Ram=11
    ³  ³     ³  ³  ÀÄ@ADDFF  0/632  Ram=16
    ³  ³     ³  ÃÄ@MULFF  0/246  Ram=11
-   ³  ³     ³  ÃÄexp  0/1046  Ram=22
+   ³  ³     ³  ÃÄexp  0/1040  Ram=22
    ³  ³     ³  ³  ÃÄ@MULFF  0/246  Ram=11
    ³  ³     ³  ³  ÃÄ@SFTOI  0/60  Ram=4
    ³  ³     ³  ³  ÃÄ@FLT  0/122  Ram=10
@@ -232,10 +232,10 @@
    ³  ³     ³  ³  ÃÄ@ADDFF  0/632  Ram=16
    ³  ³     ³  ³  ÃÄ@MULFF  0/246  Ram=11
    ³  ³     ³  ³  ÀÄ@DIVFF  0/350  Ram=14
-   ³  ³     ³  ÃÄlog  0/916  Ram=25
+   ³  ³     ³  ÃÄlog  0/912  Ram=25
    ³  ³     ³  ³  ÀÄ*
    ³  ³     ³  ÃÄ@MULFF  0/246  Ram=11
-   ³  ³     ³  ÃÄexp  0/1046  Ram=22
+   ³  ³     ³  ÃÄexp  0/1040  Ram=22
    ³  ³     ³  ³  ÀÄ*
    ³  ³     ³  ÃÄ@FLT  0/122  Ram=10
    ³  ³     ³  ÃÄfmod  0/358  Ram=16
@@ -243,10 +243,10 @@
    ³  ³     ³  ÃÄ@FLT  0/122  Ram=10
    ³  ³     ³  ÃÄ@FLT  0/122  Ram=10
    ³  ³     ³  ÃÄ@FLT  0/122  Ram=10
-   ³  ³     ³  ÃÄlog  0/916  Ram=25
+   ³  ³     ³  ÃÄlog  0/912  Ram=25
    ³  ³     ³  ³  ÀÄ*
    ³  ³     ³  ÃÄ@MULFF  0/246  Ram=11
-   ³  ³     ³  ÀÄexp  0/1046  Ram=22
+   ³  ³     ³  ÀÄexp  0/1040  Ram=22
    ³  ³     ³     ÀÄ*
    ³  ³     ÃÄ@MULFF  0/246  Ram=11
    ³  ³     ÃÄpow  0/766  Ram=12
@@ -304,10 +304,11 @@
    ³  ÃÄcommand_handler_task  0/228  Ram=5
    ³  ³  ÃÄgetNextSERReadIndex  0/90  Ram=2
    ³  ³  ³  ÀÄ@MUL1616  0/34  Ram=5
-   ³  ³  ÃÄcommand_parser  0/346  Ram=13
+   ³  ³  ÃÄcommand_parser  0/390  Ram=12
    ³  ³  ³  ÃÄ@MUL1616  0/34  Ram=5
    ³  ³  ³  ÃÄ@MUL1616  0/34  Ram=5
    ³  ³  ³  ÃÄhex_to_int  0/58  Ram=2
+   ³  ³  ³  ÃÄstrlen  0/56  Ram=5
    ³  ³  ³  ÃÄstrcmp  0/120  Ram=5
    ³  ³  ³  ÃÄgetRev  0/68  Ram=3
    ³  ³  ³  ³  ÃÄstrlen  0/56  Ram=5
@@ -548,7 +549,8 @@
    ³  ³  ³  ÃÄsetMonitorCalParam  0/6  Ram=1
    ³  ³  ³  ÃÄgetMonitorValue  0/6  Ram=1
    ³  ³  ³  ÃÄgetPIDdata  0/6  Ram=1
-   ³  ³  ³  ÀÄgetIPdata  0/6  Ram=1
+   ³  ³  ³  ÃÄgetIPdata  0/6  Ram=1
+   ³  ³  ³  ÀÄinvalidCmd  0/6  Ram=1
    ³  ³  ÃÄstrlen  0/56  Ram=5
    ³  ³  ÃÄ@PSTRINGR_1585  0/40  Ram=2
    ³  ³  ³  ÀÄ@SPRINTF  0/32  Ram=1

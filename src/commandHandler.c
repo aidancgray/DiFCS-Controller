@@ -346,18 +346,19 @@ void echo_cmd(unsigned int8 rec){
 int8 command_parser(unsigned int8 rec){
    char *cmd_adr = SERcmd[rec].p[0];
    char *cmd_str = SERcmd[rec].p[1];
-   int8 _devID = input_a();
+//!   int8 devID = input_a();
    int8 devID = 0;
+   int8 i = 0;
    
    if (hwID == cmd_adr[0]){
       if (hex_to_int(cmd_adr[1]) == (devID & 0x0F)){
-         for (int i=0; i < NUM_COMMANDS; i++)
-         {
+         while (0 != strlen(cmd_list[i].cmd_name)){
             if (0 == strcmp(cmd_str, cmd_list[i].cmd_name))
             {
                int8 return_code = cmd_list[i].cmd_func(rec);
                return return_code;
             }
+            i++;
          }
          return INV_CMD; // INVALID_CMD
       } else return 254; // NOT THIS ADDRESS
