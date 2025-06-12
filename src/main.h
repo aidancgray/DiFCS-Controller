@@ -7,6 +7,7 @@
 
 #use delay(internal=64000000)
 #define baudRate 128000
+#define numChannels 2
 
 #define version  "20250522" // SW Version
 #define serialID "0000"     // Unique Serial ID

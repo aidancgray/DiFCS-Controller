@@ -41,7 +41,7 @@ int8 getOPchMap(unsigned int8);            // gChMap,   {1|2}
 int8 setOPchMap(unsigned int8);            // sChMap,   {1|2}, {X|Y}
 
 int8 getIPchMode(unsigned int8);           // gChMode,  {1|2}
-int8 setIPchMode(unsigned int8);           // sChMode,  {1|2}, {VOLTAGE|MAGSENS}
+int8 setIPchMode(unsigned int8);           // sChMode,  {1|2}, {MANUAL|MAGSNS}
    
 int8 getPIDvals(unsigned int8);            // gPID,     {1|2}, {P|I|D}
 int8 setPIDvals(unsigned int8);            // sPID,     {1|2}, {P|I|D}, <float>
@@ -59,7 +59,10 @@ int8 getMonitorValue(unsigned int8);       // gMon,     {N15|200|5V6|5VA|3V6X|3V
 
 int8 getPIDdata(unsigned int8);            // gPIDdata, {1|2}
 
-int8 getIPdata(unsigned int8);             // gIPdata,  {1|2}, {raw|volts|position|all}
+int8 getIPdata(unsigned int8);             // gIPdata,  {1|2}, {raw|calib|pos}
+   
+int8 getManOPvals(unsigned int8);         // gManOP,    {1|2}  
+int8 setManOPvals(unsigned int8);         // gManOP,    {1|2}, <float>  
 
 int8 invalidCmd(unsigned int8);
 

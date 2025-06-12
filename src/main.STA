@@ -1,37 +1,40 @@
 
-ROM used:   27372/65536 (42%)
-            27372/65536 (42%) including unused fragments
+ROM used:   29068/65536 (44%)
+            29068/65536 (44%) including unused fragments
 
-            3.4 Average locations per line
-            22.5 Average locations per statement
+            3.5 Average locations per line
+            28.4 Average locations per statement
 
-RAM used:   1472/3615 (41%) at main() level
-            1581/3615 (44%) worst case
+RAM used:   1474/3615 (41%) at main() level
+            1583/3615 (44%) worst case
 
 Stack used: 7 worst case (4 in main + 3 for interrupts)
 Stack size: 31
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-   34    13   1  main.c
-   16     0   0  main.h
+   34    15   1  main.c
+   17     0   0  main.h
  2071     0   0  ..\..\..\..\..\..\Program Files (x86)\PICC\Devices\18F46Q10.h
    84     0   0  io.h
-  374     0   0  parameters.h
+  373     0   0  parameters.h
    32     0   0  ..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\stddef.h
- 1354   359  30  ..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\stdlib.h
-  435   129  11  ..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\string.h
+ 1354   359  35  ..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\stdlib.h
+  435   129  13  ..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\string.h
    28     0   0  ..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\ctype.h
-  239   102   8  monitor.h
-  270    51   4  ADS1220.h
- 2228   258  21  ..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\math.h
+  239   102  10  monitor.h
+  270    51   5  ADS1220.h
+ 2228     0   0  ..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\math.h
+  113    26   3  control.h
+   39     0   0  ..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\stdbool.h
   139    56   5  serialport.h
   155    23   2  cmdBuffer.h
+   31    10   1  pid.h
    59    24   2  eventTimer.h
-  381   201  17  commandHandler.c
-   79     0   0  commandHandler.h
+  433   229  22  commandHandler.c
+   82     0   0  commandHandler.h
 ----- -----
- 7978  1216 Total
+ 8216  1024 Total
 
 Page ROM  %  RAM    Vol Diff  Functions:
 ---- --- --- ---    --- ----  ----------
@@ -47,7 +50,7 @@ Page ROM  %  RAM    Vol Diff  Functions:
 0    632   1   16             @ADDFF
 0    350   1   14             @DIVFF
 0    608   1   19   1549 12.4  strtof
-0    868   2   52   2308 12.4  strtoul
+0    868   1   52   2308 12.4  strtoul
 0     14   0    0             @GOTOPTR
 0     34   0    5             @MUL1616
 0    102   0    9    216  5.5  ee_save_reg
@@ -71,50 +74,54 @@ Page ROM  %  RAM    Vol Diff  Functions:
 0     28   0    4     43  2.1  floor
 0     30   0    4     44  1.9  ceil
 0    358   1   16    259  6.9  fmod
-0   1040   2   22   1071  8.0  exp
+0   1042   2   22   1071  8.0  exp
 0     80   0    2             @SITOF
-0    912   2   25    979 10.0  log
+0    914   2   25    979 10.0  log
 0    766   1   12    581  7.5  pow
-0   1328   2   21   1082  6.9  atan
+0   1324   2   21   1082  6.9  atan
 0    644   1   20   1100  9.0  atan2
-0     34   0    0             @goto62578
+0     34   0    0             @goto61701
 0   1302   2    4   1961  6.9  internal_monitor_task
-0   2484   5   35   1627  5.2  sensor_process_data
+0   2484   4   35   1627  5.2  sensor_process_data
 0     56   0    4             @DTOF
 0     62   0    0    282  5.5  sensor_monitor_interrupt_task
 0    224   0    9    658  6.0  sensor_monitor_task
 0     68   0    5   1214  7.4  setup_external_ADCs
-0    110   0    0    306  1.9  monitor_init
+0    110   0    0    320  2.8  monitor_init
+0    320   1    7    588  5.6  set_nanoDAC_outputs
+0     54   0    5    177  1.8  @READBITA
+0     42   0    6    177  1.8  @SPI_XFER_2_24
+0     50   0    0    172  3.9  control_task
+0     36   0    0    129  0.9  control_init
 0    378   1    6    526  4.9  resetSERcmd
 0     90   0    2    168  5.6  getNextSERReadIndex
 0     18   0    0     68  1.3  setNextSERWriteIndex
-0     40   0    1             @PUTCHAR_BIU_1
-0     30   0    0             @GETCH_BIU_1
+0     40   0    1    177  1.8  @PUTCHAR_BIU_1
+0     30   0    0    140  3.9  @GETCH_BIU_1
 0     78   0    4    140  3.9  RX_isr
 0     52   0    1    162  4.4  getchFromBuffer
 0   1272   2    5   1712  8.3  serial_task
-0     32   0    1             @SPRINTF
-0     36   0    2             @PSTRINGR_1576
-0     34   0    1    105  2.5  serial_init
+0     32   0    1    177  1.8  @SPRINTF
+0     36   0    2    107  2.3  @PSTRINGR_1591
+0     34   0    1    107  2.3  serial_init
 0     58   0    0    143  2.2  event_timer_init
 0    212   0    0    400  4.6  TIMER1_isr
 0     68   0    3     83  2.5  getRev
-0     10   0    0             @const1682
-0     32   0    2             @PSTRINGC_1585
+0     10   0    0     83  2.5  @const1709
+0     32   0    2     83  2.5  @PSTRINGC_1600
 0     68   0    3     83  2.5  getSN
-0      6   0    0             @const1685
-0    360   1    4    525  6.7  getOPchMap
-0     54   0    5             @READBITA
+0      6   0    0    525  6.7  @const1712
+0    364   1    4    525  6.7  getOPchMap
 0    432   1    5    619  6.9  setOPchMap
-0     66   0    6             @WRITEBITA
-0    358   1    4    497  6.7  getIPchMode
-0     10   0    0             @const1699
-0     10   0    0             @const1700
-0    546   1   26    769  7.0  setIPchMode
+0     66   0    6    619  6.9  @WRITEBITA
+0    362   1    4    497  6.7  getIPchMode
+0     10   0    0    497  6.7  @const1723
+0     10   0    0    769  7.0  @const1724
+0    538   1   24    769  7.0  setIPchMode
 0    730   1   11    964  7.3  getPIDvals
-0     68   0    5             @FTOSD
-0    148   0   13             @DIV3232
-0    434   1   13             @PRINTF_L32D_1585FPFPF
+0     68   0    5   1056  6.9  @FTOSD
+0    202   0   13    333  6.1  @DIV3232
+0    434   1   13    520  5.9  @PRINTF_L32D_1600FPFPF
 0    778   1   11   1056  6.9  setPIDvals
 0    310   1    8    333  6.1  getSetPoint
 0    488   1    8    520  5.9  setSetPoint
@@ -125,35 +132,36 @@ Page ROM  %  RAM    Vol Diff  Functions:
 0      6   0    1     25  1.6  setMonitorCalParam
 0      6   0    1     25  1.6  getMonitorValue
 0      6   0    1     25  1.6  getPIDdata
-0      6   0    1     25  1.6  getIPdata
+0    900   2   32   1277  7.6  getIPdata
+0    256   0    9     25  1.6  @PRINTF_LD_1600
 0      6   0    1     25  1.6  invalidCmd
 0    194   0    5    518  7.4  arg_is_float
 0     80   0    2    165  4.4  is_valid_channel
 0     58   0    2    189  4.9  hex_to_int
 0    390   1   12    687  8.3  command_parser
 0    228   0    5    256  4.0  command_handler_task
-0     40   0    2             @PSTRINGR_1585
-0    854   2    1    177  1.8  MAIN
- Inline         0    177  1.8  @cinit1
+0     40   0    2    177  1.8  @PSTRINGR_1600
+0    898   2    1    210  1.8  MAIN
+ Inline         0             @cinit1
 
 Program metrics:
-    Functions               69
-    Statements              1216
-    Comments                1663
-    Volume (V)              67985
-    Difficulty (D)          342.8
-    Effort to implement (E) 23305304
-    Time to implement (T)   359 hours, 39 minutes
-    Est Delivered Bugs (B)  27
-    Cyclomatic Complexity   170
-    Maintainability (MI)    137
+    Functions               88
+    Statements              1024
+    Comments                1509
+    Volume (V)              85895
+    Difficulty (D)          429.1
+    Effort to implement (E) 36856205
+    Time to implement (T)   568 hours, 46 minutes
+    Est Delivered Bugs (B)  37
+    Cyclomatic Complexity   204
+    Maintainability (MI)    101
 
  Segment     Used  Free
 -----------  ----  ----
 00000-00004     6  0  
 00006-00006     0  2  
 00008-000BA   180  0  
-000BC-0FFFE  27186  38162  
+000BC-0FFFE  28882  36466  
 
 
 

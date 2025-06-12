@@ -105,8 +105,8 @@ int8 setIPchMode(unsigned int8 rec){
    /*** ARG CHECKS ********************/
    int8 arg1;
    char *arg2;
-   char *s_voltage = "VOLTAGE";
-   char *s_magsens = "MAGSENS";
+   char *s_manual = "MANUAL";
+   char *s_magsns = "MAGSNS";
    
    if (!is_valid_channel(SERcmd[rec].p[2])) return INV_PARAM;
    else arg1 = strtoul(SERcmd[rec].p[2],'\0',10);
@@ -115,8 +115,8 @@ int8 setIPchMode(unsigned int8 rec){
    else arg2 = SERcmd[rec].p[3];
    
    /*** SET INPUT MAP *****************/
-   if      (0 == strcmp(s_voltage, arg2)) chMode[arg1-1] = VOLTAGE;
-   else if (0 == strcmp(s_magsens, arg2)) chMode[arg1-1] = MAGSENS;
+   if      (0 == strcmp(s_manual, arg2)) chMode[arg1-1] = MANUAL;
+   else if (0 == strcmp(s_magsns, arg2)) chMode[arg1-1] = MAGSNS;
    else return INV_PARAM;
    
    return SUCCESS;
@@ -284,12 +284,64 @@ int8 getPIDdata(unsigned int8 rec){
 }
 
 int8 getIPdata(unsigned int8 rec){
+   /*** ARG CHECKS ********************/
+   int8  arg1;
+   char *arg2;
+   char *s_raw = "raw";
+   char *s_calibrated = "calib";
+   char *s_position = "pos";
+   
+   if (!is_valid_channel(SERcmd[rec].p[2])) return INV_PARAM;
+   else arg1 = strtoul(SERcmd[rec].p[2],'\0',10);
+   
+   /*** GET INPUT DATA ****************/
+   if      (0 == strcmp(s_raw, arg2)) {
+      sprintf(retData+strlen(retData), "%Ld,", adcVals[arg1-1].sinRaw);
+      sprintf(retData+strlen(retData), "%Ld,", adcVals[arg1-1].cosRaw);
+   }
+   else if (0 == strcmp(s_calibrated, arg2)) {
+      sprintf(retData+strlen(retData), "%Ld,", adcVals[arg1-1].sinCounts);
+      sprintf(retData+strlen(retData), "%Ld,", adcVals[arg1-1].cosCounts);
+   }
+   else if (0 == strcmp(s_position, arg2)) {
+      sprintf(retData+strlen(retData), "%f,", adcVals[arg1-1].pReal);
+   }
+   else return INV_PARAM;
+   
+   return SUCCESS;
+}
+
+int8 getManOPvals(unsigned int8 rec){
+   /*** ARG CHECKS ********************/
+   int8 arg1;
+   
+   if (!is_valid_channel(SERcmd[rec].p[2])) return INV_PARAM;
+   else arg1 = strtoul(SERcmd[rec].p[2],'\0',10);
+   
+   /*** GET MANUAL OUTPUT VALUE ***************/ 
+   sprintf(retData+strlen(retData), "%f,", manualOutputValues[arg1-1]);
+   
+   return SUCCESS;
+}
+
+int8 setManOPvals(unsigned int8 rec){
+   /*** ARG CHECKS ********************/
+   int8 arg1;
+   float arg2;
+   
+   if (!is_valid_channel(SERcmd[rec].p[2])) return INV_PARAM;
+   else arg1 = strtoul(SERcmd[rec].p[2],'\0',10);
+   
+   if (!arg_is_float(strtod(SERcmd[rec].p[3], '\0'))) return INV_PARAM;
+   else arg2 = SERcmd[rec].p[3];
+   
+   /*** SET MANUAL OUTPUT VALUE ***************/
+   manualOutputValues[arg1-1] = arg2;
    
    return SUCCESS;
 }
 
 int8 invalidCmd(unsigned int8 rec){
-
    return INV_CMD;
 }
 

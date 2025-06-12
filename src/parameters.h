@@ -17,7 +17,7 @@
 #include <stdlib.h>
 
 typedef enum channelMap {chX, chY}; // Piezo channels
-typedef enum channelMode {VOLTAGE, MAGSENS}; // Voltage or Magnetic Sensor Control
+typedef enum channelMode {MANUAL, MAGSNS}; // Voltage or Magnetic Sensor Control
 //!typedef enum sensorType {kmxp1000, kmxp2000}; // Magsensors
 
 /*****************************************************************************/
@@ -82,7 +82,7 @@ channelMap chMap[2] = {chX, chY};
 /*****************************************************************************/
 #define channel_mode_ee_addr 144
 #define channel_mode_length 2  // length in bytes
-channelMode chMode[2] = {MAGSENS, MAGSENS};
+channelMode chMode[2] = {MANUAL, MANUAL};
 
 /*****************************************************************************/
 /* ADC Calibration Constants                                                 */
@@ -162,7 +162,6 @@ char paramsValid = isValid;
 /* VOLATILE PARAMETERS                                                       */
 /*****************************************************************************/
 /*****************************************************************************/
-
 struct mv
 {
    float vN15; // internal voltages
