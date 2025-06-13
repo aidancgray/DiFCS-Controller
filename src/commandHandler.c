@@ -22,6 +22,8 @@ struct command cmd_list[] = {
    {"gMon",     &getMonitorValue},
    {"gPIDdata", &getPIDdata},
    {"gIPdata",  &getIPdata},
+   {"gManOP",   &getManOPvals},
+   {"sManOP",   &setManOPvals},
    {"\0", &invalidCmd}
 };
 
@@ -76,7 +78,7 @@ int8 setOPchMap(unsigned int8 rec){
    else arg1 = strtoul(SERcmd[rec].p[2],'\0',10);
    
    if (1 != strlen(SERcmd[rec].p[3])) return INV_PARAM;
-   else arg2 = SERcmd[rec].p[3];
+   else arg2 = SERcmd[rec].p[3][0];
    
    /*** SET CHANNEL MAP ***************/
    if      ('X' == arg2) chMap[arg1-1] = chX;
@@ -94,8 +96,8 @@ int8 getIPchMode(unsigned int8 rec){
    else arg1 = strtoul(SERcmd[rec].p[2],'\0',10);
    
    /*** GET INPUT MAP *****************/
-   if      (0 == chMode[arg1-1]) sprintf(retData+strlen(retData), "VOLTAGE,");
-   else if (1 == chMode[arg1-1]) sprintf(retData+strlen(retData), "MAGSENS,");
+   if      (0 == chMode[arg1-1]) sprintf(retData+strlen(retData), "MANUAL,");
+   else if (1 == chMode[arg1-1]) sprintf(retData+strlen(retData), "MAGSNS,");
    else return INV_PARAM;
    
    return SUCCESS;
@@ -248,7 +250,7 @@ int8 setSensorCalParam(unsigned int8 rec){
    if (1 != strlen(SERcmd[rec].p[3])) return INV_PARAM;
    else arg2 = SERcmd[rec].p[3][0];
    
-   if (!arg_is_float(strtod(SERcmd[rec].p[3], '\0'))) return INV_PARAM;
+   if (!arg_is_float(strtod(SERcmd[rec].p[4], '\0'))) return INV_PARAM;
    else arg3 = strtod(SERcmd[rec].p[4], '\0');
    
    /*** SET SENSOR CAL PARAM **********/
@@ -332,8 +334,8 @@ int8 setManOPvals(unsigned int8 rec){
    if (!is_valid_channel(SERcmd[rec].p[2])) return INV_PARAM;
    else arg1 = strtoul(SERcmd[rec].p[2],'\0',10);
    
-   if (!arg_is_float(strtod(SERcmd[rec].p[3], '\0'))) return INV_PARAM;
-   else arg2 = SERcmd[rec].p[3];
+   if (!arg_is_float(SERcmd[rec].p[3])) return INV_PARAM;
+   else arg2 = strtod(SERcmd[rec].p[3], '\0');
    
    /*** SET MANUAL OUTPUT VALUE ***************/
    manualOutputValues[arg1-1] = arg2;

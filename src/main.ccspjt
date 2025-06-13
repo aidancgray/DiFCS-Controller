@@ -17,7 +17,7 @@ Type=4
 forcecoff=0
 
 [ProjectLog]
-Days=36
+Days=37
 D1=11-03-2025
 D1_L=2
 D1_L1=[76140]Project Opened.
@@ -619,6 +619,24 @@ D36_L13=[57412]Started Editing.
 D36_L14=[58220]Stopped Editing.
 D36_L15=[58373]Started Editing.
 D36_L16=[58966]Stopped Editing.
+D37=13-06-2025
+D37_L=16
+D37_L1=[49661]Project Opened.
+D37_L2=[49877]Started Debugging.
+D37_L3=[52507]Stopped Debugging.
+D37_L4=[52726]Started Debugging.
+D37_L5=[53347]Stopped Debugging.
+D37_L6=[53347]Started Editing.
+D37_L7=[53734]Stopped Editing.
+D37_L8=[55344]Started Editing.
+D37_L9=[56069]Stopped Editing.
+D37_L10=[56074]Started Editing.
+D37_L11=[56522]Stopped Editing.
+D37_L12=[56522]Started Debugging.
+D37_L13=[57607]Stopped Debugging.
+D37_L14=[57659]Started Debugging.
+D37_L15=[60338]Stopped Debugging.
+D37_L16=[60967]Started Debugging.
 
 [Opened Files]
 1=main.c
@@ -626,18 +644,18 @@ t1=1
 2=main.h
 t2=1
 3=parameters.h
-t3=108
-Count=13
-4=monitor.h
-t4=1
-5=serialport.h
-t5=1
-6=cmdBuffer.h
-t6=33
-7=commandHandler.h
-t7=33
+t3=1
+Count=7
+4=commandHandler.h
+t4=37
+5=commandhandler.c
+t5=85
+6=control.h
+t6=1
+7=io.h
+t7=1
 8=commandhandler.c
-t8=317
+t8=49
 9=eventTimer.h
 t9=1
 10=control.h
@@ -658,7 +676,7 @@ t16=256
 Type=4
 
 [defines]
-buildcount=151
+buildcount=169
 
 [Documentation]
 1=P:\MIRMOS\electrical\Detector Dither Electronics\DitherCtrl\Firmware\difics v2\main.ccspjt
@@ -690,12 +708,15 @@ selected=Analog to Digital Converter
 
 [debugbreak]
 count=0
-f1=C:\Users\Aidan\Documents\CCS C Projects\DitherCtrl\Firmware\difics v2\commandhandler.c
-l1=50
-a.1=18246
-f2=C:\Users\Aidan\Documents\CCS C Projects\DitherCtrl\Firmware\difics v2\commandhandler.c
-l2=380
-a.2=29228
+f1=C:\Users\Aidan\Documents\GitHub\DiFCS-Controller\src\commandhandler.c
+l1=81
+a.1=18854
+f2=C:\Users\Aidan\Documents\GitHub\DiFCS-Controller\src\commandhandler.c
+l2=84
+a.2=18920
+f3=C:\Users\Aidan\Documents\GitHub\DiFCS-Controller\src\commandhandler.c
+l3=85
+a.3=18952
 
 [debugwatch]
 e1=SERcmd

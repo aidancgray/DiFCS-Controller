@@ -2,7 +2,7 @@
 #define IO
 
 #use FIXED_IO( A_outputs=PIN_A5,PIN_A4 )
-#use FIXED_IO( B_outputs=PIN_B3,PIN_B1,PIN_B0 )
+#use FIXED_IO( B_outputs=PIN_B5,PIN_B4,PIN_B3,PIN_B1,PIN_B0 )
 #use FIXED_IO( C_outputs=PIN_C6,PIN_C5,PIN_C3,PIN_C2 )
 #use FIXED_IO( D_outputs=PIN_D7,PIN_D6,PIN_D5 )
 #use FIXED_IO( E_outputs=PIN_E2,PIN_E1,PIN_E0 )
@@ -19,8 +19,8 @@
 #define SCLK_B       PIN_B1
 #define MISO_B       PIN_B2
 #define MOSI_B       PIN_B3
-#define _LE          PIN_B4
-#define CLR          PIN_B5
+#define INV_HVX      PIN_B4
+#define INV_HVY      PIN_B5
 
 #define MON_200V     PIN_C0
 #define MON_3V6X     PIN_C1

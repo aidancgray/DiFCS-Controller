@@ -62,7 +62,7 @@ int8 getPIDdata(unsigned int8);            // gPIDdata, {1|2}
 int8 getIPdata(unsigned int8);             // gIPdata,  {1|2}, {raw|calib|pos}
    
 int8 getManOPvals(unsigned int8);         // gManOP,    {1|2}  
-int8 setManOPvals(unsigned int8);         // gManOP,    {1|2}, <float>  
+int8 setManOPvals(unsigned int8);         // sManOP,    {1|2}, <float>  
 
 int8 invalidCmd(unsigned int8);
 
