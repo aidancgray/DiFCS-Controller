@@ -1,10 +1,9 @@
-D G "line_turnaround_char" 14 13 "0xFF"
-D G "__PCH__" 14 128 ""5.109""
-D G "__DEVICE__" 14 128 "4610"
-D G "__DATE__" 14 128 ""12-Jun-25""
-D G "__TIME__" 14 128 ""16:17:56""
-D G "_UNICODE" 14 128 ""?""
-D G "__EVAL" 14 128 ""?"" "Standard Header file for the PIC18F46Q10 device ////////////////"
+D G "__PCH__" 0 35 ""5.109""
+D G "__DEVICE__" 0 35 "4610"
+D G "__DATE__" 0 35 ""13-Jun-25""
+D G "__TIME__" 0 35 ""13:22:59""
+D G "_UNICODE" 0 35 ""?""
+D G "__EVAL" 0 35 ""?"" "Standard Header file for the PIC18F46Q10 device ////////////////"
 c L "set_tris_a" 2 3 25 "FUNCTION"
 F N "set_tris_a" 2 70 ""
 V L "value" 2 70 "int8" `56 
@@ -3560,13 +3559,13 @@ F N "sensor_monitor_interrupt_task" 9 129 ""
 F G "sensor_monitor_interrupt_task" 9 130 "void()" `1537 
 C L "sensor_monitor_task" 9 11 2 "FUNCTION"
 F N "sensor_monitor_task" 9 154 ""
-F G "sensor_monitor_task" 9 155 "void(int32 )" `1538 
+F G "sensor_monitor_task" 9 155 "void()" `1538 
 V L "sinRaw" 9 158 "int32" `1539 
 V L "cosRaw" 9 159 "int32" `1540 
 V L "ch" 9 160 "int8" `1541 
 C L "setup_external_ADCs" 9 11 1 "FUNCTION"
 F N "setup_external_ADCs" 9 187 ""
-F G "setup_external_ADCs" 9 188 "void(int16 )" `1542 
+F G "setup_external_ADCs" 9 188 "void()" `1542 
 V L "rc0" 9 189 "int8" `1543 
 V L "rc1" 9 190 "int8" `1544 
 V L "rc2" 9 191 "int8" `1545 

@@ -80,7 +80,7 @@ Page ROM  %  RAM    Vol Diff  Functions:
 0    766   1   12    581  7.5  pow
 0   1324   2   21   1082  6.9  atan
 0    644   1   20   1100  9.0  atan2
-0     34   0    0             @goto61701
+0     34   0    0             @goto7968
 0   1302   2    4   1961  6.9  internal_monitor_task
 0   2484   4   35   1627  5.2  sensor_process_data
 0     56   0    4             @DTOF

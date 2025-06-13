@@ -602,7 +602,7 @@ D35_L2=[50173]Stopped Editing.
 D35_L3=[54856]Started Editing.
 D35_L4=[55411]Stopped Editing.
 D36=12-06-2025
-D36_L=15
+D36_L=16
 D36_L1=[51583]Started Editing.
 D36_L2=[52010]Stopped Editing.
 D36_L3=[52563]Started Editing.
@@ -618,6 +618,7 @@ D36_L12=[57285]Stopped Editing.
 D36_L13=[57412]Started Editing.
 D36_L14=[58220]Stopped Editing.
 D36_L15=[58373]Started Editing.
+D36_L16=[58966]Stopped Editing.
 
 [Opened Files]
 1=main.c
@@ -625,7 +626,7 @@ t1=1
 2=main.h
 t2=1
 3=parameters.h
-t3=120
+t3=108
 Count=13
 4=monitor.h
 t4=1
@@ -634,13 +635,13 @@ t5=1
 6=cmdBuffer.h
 t6=33
 7=commandHandler.h
-t7=45
+t7=33
 8=commandhandler.c
-t8=45
+t8=317
 9=eventTimer.h
 t9=1
 10=control.h
-t10=50
+t10=54
 11=io.h
 t11=19
 12=pid.h
@@ -657,7 +658,7 @@ t16=256
 Type=4
 
 [defines]
-buildcount=150
+buildcount=151
 
 [Documentation]
 1=P:\MIRMOS\electrical\Detector Dither Electronics\DitherCtrl\Firmware\difics v2\main.ccspjt
