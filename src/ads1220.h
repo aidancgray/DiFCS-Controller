@@ -13,6 +13,7 @@
 #pin_select SDI2=PIN_B2
 #pin_select SDO2=PIN_B3
 #use spi(MASTER, SPI2, BAUD=1000000, MODE=1, STREAM=SPI_mon)
+//!setup_spi2(SPI_MASTER | SPI_SCK_IDLE_LOW | SPI_XMIT_H_TO_L | SPI_CLK_DIV_64);
 
 /*****************************************************************************/
 
@@ -120,8 +121,8 @@ typedef enum {reg0 = 0x00,reg1 = 0x04 ,reg2 = 0x08, reg3 = 0x0C}adsReg;
 #define doutPin 0x20
 
 // REGISTER CONGIGURATIONS FOR THIS APP
-#define reg0config IPp1n2|g16|PGAenabled // 0x3A//
-#define reg1config DRn20|MDturbo|CMsingle|TSDisable|BCSoff //0x00
+#define reg0config IPp1n2|g16|PGAenabled // 0x38//
+#define reg1config DRn20|MDnormal|CMsingle|TSDisable|BCSoff //0x00
 #define reg2config REFinternal|FIR60|PSWopen|Ioff //0x30
 #define reg3config I1disabled|I2disabled|drdyPin //0x00
 
@@ -143,11 +144,11 @@ typedef enum {reg0 = 0x00,reg1 = 0x04 ,reg2 = 0x08, reg3 = 0x0C}adsReg;
 /* DESELECT ALL ADCs                                                         */
 /*****************************************************************************/
 void ads_deselect_all()
-{
+{   
    output_high(_CS0); // deselect all chip select pins
    output_high(_CS1);
    output_high(_CS2);
-   output_high(_CS3);
+   output_high(_CS3); 
 }
 
 /*****************************************************************************/
@@ -166,14 +167,12 @@ void ads_select_ch(int8 ch)
       break;   
       case 2:
          output_low(_CS2);
-      break;   
-      default: // select all
-         output_low(_CS0);
-         output_low(_CS1);
-         output_low(_CS2);
+      break;
+      case 3:
          output_low(_CS3);
-      break;             
+      break;              
    }
+   delay_us(20);
 }
 
 /*****************************************************************************/
@@ -188,26 +187,21 @@ void ads_select_block(int8 block)
          output_low(_CS0);
          output_low(_CS1);
       break; 
-      case 1:
+      case 1:         
          output_low(_CS2);
          output_low(_CS3);
-      break;   
-      default: // select all
-         output_low(_CS0);
-         output_low(_CS1);
-         output_low(_CS2);
-         output_low(_CS3);
-      break;             
+      break;         
    }
+   delay_us(20);
 }
 
 /*****************************************************************************/
-/* WRITE THE COMMAND BYTE                                                    */
+/* WRITE THE COMMAND BYTE TO AN ADC                                          */
 /*****************************************************************************/
 void ads_write_command(int8 ch, unsigned int8 command)
 {
    ads_select_ch(ch);
-   spi_xfer(SPI_mon, command);
+   spi_write2(command);
 }
 
 /*****************************************************************************/
@@ -216,41 +210,72 @@ void ads_write_command(int8 ch, unsigned int8 command)
 void ads_write_command_block(int8 block, unsigned int8 command)
 {
    ads_select_block(block);
-   spi_xfer(SPI_mon, command);
+   spi_write2(command);
 }
 
 /*****************************************************************************/
-/* WRITE REGISTER DATA                                                       */
+/* PREPARE TO READ FROM AN ADC                                               */
+/*****************************************************************************/
+void ads_read_command(int8 ch, unsigned int8 command)
+{
+   ads_select_ch(ch);
+   spi_read2(command);
+}
+
+/*****************************************************************************/
+/* WRITE TO THE CONFIGURATION REGISTERS                                      */
 /*****************************************************************************/
 void ads_write_reg(int8 ch, adsReg regID, int8 data)
 {
    unsigned int8 command = ADSwriteReg | regID | 0; // 0 is numbytes to write-1
    ads_write_command(ch, command);
-   spi_xfer(SPI_mon, data);
+   spi_write2(data);
    ads_deselect_all();
 }
 
 /*****************************************************************************/
-/* READ REGISTER REGISTER                                                    */
+/* READ FROM THE CONFIGURATION REGISTERS                                     */
 /*****************************************************************************/
 unsigned int8 ads_read_reg(int8 ch, adsReg regID)
 {
    unsigned int8 command = ADSreadReg | regID | 0;
-   ads_write_command(ch, command);
-   unsigned int8 data = spi_xfer(SPI_mon, 0, 8);
+   ads_read_command(ch, command);
+   unsigned int8 data = spi_read2(0);
    ads_deselect_all();
    return data;
 }
 
+
 /*****************************************************************************/
-/* READ DATA                                                                 */
+/* START BLOCK CONVERSION                                                    */
 /*****************************************************************************/
-unsigned int32 ads_read_data(int8 ch)
+void ads_start_conv_block(int8 block)
 {
-   ads_write_command(ch, ADSreadData);
-   unsigned int32 data = spi_xfer(SPI_mon, 0, 24);
+   ads_write_command_block(block, ADSstart);
+   delay_us(20);
    ads_deselect_all();
-   return data;
+}
+
+/*****************************************************************************/
+/* READ THE MOST RECENT CONVERSION                                           */
+/*****************************************************************************/
+signed int32 ads_read_data(int8 ch)
+{
+   union Data
+   {
+      unsigned int8 dBytes[4];
+      signed int32 dWord;
+   }data;
+   
+   ads_read_command(ch, ADSreadData);
+   data.dBytes[3] = 0;
+   data.dBytes[2] = spi_read2(0);
+   data.dBytes[1] = spi_read2(0);
+   data.dBytes[0] = spi_read2(0);
+   
+   ads_write_command(ch, ADSstart);
+   ads_deselect_all();
+   return data.dWord;
 }
 
 /*****************************************************************************/
@@ -260,7 +285,7 @@ unsigned int32 ads_read_data(int8 ch)
 void ADS1220init(int8 ch, rc0=reg0config, rc1=reg1config, rc2=reg2config, rc3=reg3config)
 {
    ads_write_command(ch, ADSreset);   //reset the device
-   delay_us(100);                    
+   delay_us(300);                    
    ads_write_reg(ch, reg0, rc0);   //send default configurations
    ads_write_reg(ch, reg1, rc1);
    ads_write_reg(ch, reg2, rc2);

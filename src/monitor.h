@@ -13,15 +13,10 @@
 #define sc sensorCal
 
 // adc settings for magnetoresistive sensors
-#define KMXP1000reg0config IPp1n2|g16|PGAenabled // 0x3A//
-#define KMXP1000reg1config DRn20|MDturbo|CMsingle|TSDisable|BCSoff //0x00
-#define KMXP1000reg2config REFinternal|FIR60|PSWopen|Ioff //0x30
-#define KMXP1000reg3config I1disabled|I2disabled|drdyPin //0x00
-
-#define KMXP2000reg0config IPp1n2|g16|PGAenabled // 0x3A//
-#define KMXP2000reg1config DRn20|MDturbo|CMsingle|TSDisable|BCSoff //0x00
-#define KMXP2000reg2config REFinternal|FIR60|PSWopen|Ioff //0x30
-#define KMXP2000reg3config I1disabled|I2disabled|drdyPin //0x00
+//!#define reg0cfg IPp1n2|g16|PGAenabled                   // 0x3A
+//!#define reg1cfg DRn20|MDturbo|CMsingle|TSDisable|BCSoff // 0x00
+//!#define reg2cfg REFinternal|FIR60|PSWopen|Ioff          // 0x30
+//!#define reg3cfg I1disabled|I2disabled|drdyPin           // 0x00
 
 #define vMonN15   6
 #define vMon200   16
@@ -35,8 +30,11 @@ struct sensorMonitorData
 {
    boolean dataReady;
    boolean adcBusy;
-   int8 channel; // DEFAULT: 0=chX | 1=chY
-} smData = {false, false, 0};
+} smData[2] = 
+{
+   {false, false},
+   {false, false}
+};
 
 /*****************************************************************************/
 /* INTERNAL MONITOR task - gets voltages                                     */
@@ -103,7 +101,7 @@ void internal_monitor_task()
 /*****************************************************************************/
 /* PROCESS ADC SENSOR DATA                                                   */
 /*****************************************************************************/
-void sensor_process_data(int8 ch, unsigned int32 sinRawCounts, unsigned int32 cosRawCounts)
+void sensor_process_data(int8 ch, signed int32 sinRawCounts, signed int32 cosRawCounts)
 {
    adcVals[ch].sinRaw = (float)sinRawCounts;
    adcVals[ch].cosRaw = (float)cosRawCounts;
@@ -128,21 +126,17 @@ void sensor_process_data(int8 ch, unsigned int32 sinRawCounts, unsigned int32 co
 /*****************************************************************************/
 void sensor_monitor_interrupt_task()
 {
-   if (!smData.adcBusy)
+   static int8 ch = 0;
+   
+   if (!smData[ch].adcBusy)
    {
-      smData.adcBusy = true;
-      switch (smData.channel)
-      {
-         case 0:
-            ads_write_command_block(1, ADSstart);
-         break;
-         
-         case 1:
-            ads_write_command_block(0, ADSstart);
-         break;
-      }
-      smData.adcBusy = false;
-      smData.dataReady = true;
+      smData[ch].adcBusy = true;
+      
+      ads_start_conv_block(ch);
+      ch = !ch;
+      
+      smData[!ch].dataReady = true;
+      smData[!ch].adcBusy = false;
    }
 }
 
@@ -153,32 +147,21 @@ void sensor_monitor_interrupt_task()
 /*****************************************************************************/
 void sensor_monitor_task()
 {
-   if (smData.dataReady)
-   {
-      unsigned int32 sinRaw=0;
-      unsigned int32 cosRaw=0;
-      int8 ch=0;
+   static int8 ch = 0;
+   signed int32 sinRaw = 0;
+   signed int32 cosRaw = 0;
+   
+   if ( (!smData[ch].adcBusy) && smData[ch].dataReady ){
+      smData[ch].adcBusy = true;
       
-      smData.adcBusy = true;
-      switch (smData.channel)
-      {
-         case 0:
-            ch = 0;
-            sinRaw = ads_read_data(0);
-            cosRaw = ads_read_data(1);
-            smData.channel = 1;
-         break;
-         
-         default:
-            ch = 1;
-            sinRaw = ads_read_data(2);
-            cosRaw = ads_read_data(3);
-            smData.channel = 0;
-         break;
-      }
-      smData.adcBusy = false;
-      smData.dataReady = false;
+      sinRaw = ads_read_data(ch*2);
+      cosRaw = ads_read_data(ch*2+1);      
+      
       sensor_process_data(ch, sinRaw, cosRaw);
+      ch = !ch;
+      
+      smData[!ch].dataReady = false;
+      smData[!ch].adcBusy = false;
    }
 }
 /*****************************************************************************/
@@ -193,30 +176,13 @@ void setup_external_ADCs()
    
    for(int ch = 0; ch < 4; ch++)
    {
-      switch (magPP)
-      {         
-         case 1:
-            rc0=KMXP1000reg0config;
-            rc1=KMXP1000reg1config;
-            rc2=KMXP1000reg2config;
-            rc3=KMXP1000reg3config;
-         break;
-         
-         case 2:
-            rc0=KMXP2000reg0config;
-            rc1=KMXP2000reg1config;
-            rc2=KMXP2000reg2config;
-            rc3=KMXP2000reg3config;
-         break;
-         
-         default:
-            rc0=reg0config;
-            rc1=reg1config;
-            rc2=reg2config;
-            rc3=reg3config;      
-         break;
-      }
+      rc0=reg0config;
+      rc1=reg1config;
+      rc2=reg2config;
+      rc3=reg3config;
+      
       ADS1220init(ch, rc0, rc1, rc2, rc3);
+      delay_ms(1);
    }   
 }
 

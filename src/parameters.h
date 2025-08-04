@@ -179,9 +179,9 @@ struct adcV
    float cosRaw;    // adc raw count data
    float sinCounts; // calibrated counts
    float cosCounts; // calibrated counts
-   float p0;               // position in units of pole-pitch
+   float p0;               // mid-pole position in microns
    int8  npoles;           // number of poles passed
-   float pReal;            // real position
+   float pReal;            // real position in microns
 }adcVals[2] = 
 {
    {0,0,0,0,0},

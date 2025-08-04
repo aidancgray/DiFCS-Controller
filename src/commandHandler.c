@@ -276,6 +276,51 @@ int8 setMonitorCalParam(unsigned int8 rec){
 }
 
 int8 getMonitorValue(unsigned int8 rec){
+   /*** ARG CHECKS ********************/
+   char *arg1;
+   char *s_N15 = "N15";
+   char *s_200 = "200";
+   char *s_5V6 = "5V6";
+   char *s_5VA = "5VA";
+   char *s_3V6X = "3V6X";
+   char *s_3V3A = "3V3A";
+   char *s_3V3D = "3V3D";
+   char *s_all = "all";
+   
+   arg1 = SERcmd[rec].p[2];
+   
+   /*** GET MONITOR VALUES ************/
+   if      (0 == strcmp(s_N15, arg1)) {
+      sprintf(retData+strlen(retData), "%Ld,", monitorVals.vN15);
+   }
+   else if (0 == strcmp(s_200, arg1)) {
+      sprintf(retData+strlen(retData), "%Ld,", monitorVals.v200);
+   }
+   else if (0 == strcmp(s_5V6, arg1)) {
+      sprintf(retData+strlen(retData), "%Ld,", monitorVals.v5V6);
+   }
+   else if (0 == strcmp(s_5VA, arg1)) {
+      sprintf(retData+strlen(retData), "%Ld,", monitorVals.v5VA);
+   }
+   else if (0 == strcmp(s_3V6X, arg1)) {
+      sprintf(retData+strlen(retData), "%Ld,", monitorVals.v3V6X);
+   }
+   else if (0 == strcmp(s_3V3A, arg1)) {
+      sprintf(retData+strlen(retData), "%Ld,", monitorVals.v3V3A);
+   }
+   else if (0 == strcmp(s_3V3D, arg1)) {
+      sprintf(retData+strlen(retData), "%Ld,", monitorVals.v3V3D);
+   }
+   else if (0 == strcmp(s_all, arg1)) {
+      sprintf(retData+strlen(retData), "%Ld,", monitorVals.vN15);
+      sprintf(retData+strlen(retData), "%Ld,", monitorVals.v200);
+      sprintf(retData+strlen(retData), "%Ld,", monitorVals.v5V6);
+      sprintf(retData+strlen(retData), "%Ld,", monitorVals.v5VA);
+      sprintf(retData+strlen(retData), "%Ld,", monitorVals.v3V6X);
+      sprintf(retData+strlen(retData), "%Ld,", monitorVals.v3V3A);
+      sprintf(retData+strlen(retData), "%Ld,", monitorVals.v3V3D);
+   }
+   else return INV_PARAM;
    
    return SUCCESS;
 }
@@ -291,21 +336,36 @@ int8 getIPdata(unsigned int8 rec){
    char *arg2;
    char *s_raw = "raw";
    char *s_calibrated = "calib";
-   char *s_position = "pos";
+   char *s_p0 = "p0";
+   char *s_poles = "poles";
+   char *s_real = "real";
    
    if (!is_valid_channel(SERcmd[rec].p[2])) return INV_PARAM;
    else arg1 = strtoul(SERcmd[rec].p[2],'\0',10);
    
+   arg2 = SERcmd[rec].p[3];
+   
    /*** GET INPUT DATA ****************/
    if      (0 == strcmp(s_raw, arg2)) {
-      sprintf(retData+strlen(retData), "%Ld,", adcVals[arg1-1].sinRaw);
-      sprintf(retData+strlen(retData), "%Ld,", adcVals[arg1-1].cosRaw);
+      sprintf(retData+strlen(retData), "%d,", arg1);
+      sprintf(retData+strlen(retData), "%Ld,", (signed int32)adcVals[arg1-1].sinRaw);
+      sprintf(retData+strlen(retData), "%Ld,", (signed int32)adcVals[arg1-1].cosRaw);
    }
    else if (0 == strcmp(s_calibrated, arg2)) {
-      sprintf(retData+strlen(retData), "%Ld,", adcVals[arg1-1].sinCounts);
-      sprintf(retData+strlen(retData), "%Ld,", adcVals[arg1-1].cosCounts);
+      sprintf(retData+strlen(retData), "%d,", arg1);
+      sprintf(retData+strlen(retData), "%Ld,", (signed int32)adcVals[arg1-1].sinCounts);
+      sprintf(retData+strlen(retData), "%Ld,", (signed int32)adcVals[arg1-1].cosCounts);
    }
-   else if (0 == strcmp(s_position, arg2)) {
+   else if (0 == strcmp(s_p0, arg2)) {
+      sprintf(retData+strlen(retData), "%d,", arg1);
+      sprintf(retData+strlen(retData), "%f,", adcVals[arg1-1].p0);
+   }
+   else if (0 == strcmp(s_poles, arg2)) {
+      sprintf(retData+strlen(retData), "%d,", arg1);
+      sprintf(retData+strlen(retData), "%d,", adcVals[arg1-1].npoles);
+   }
+   else if (0 == strcmp(s_real, arg2)) {
+      sprintf(retData+strlen(retData), "%d,", arg1);
       sprintf(retData+strlen(retData), "%f,", adcVals[arg1-1].pReal);
    }
    else return INV_PARAM;

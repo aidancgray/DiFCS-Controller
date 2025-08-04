@@ -59,10 +59,10 @@ int8 getMonitorValue(unsigned int8);       // gMon,     {N15|200|5V6|5VA|3V6X|3V
 
 int8 getPIDdata(unsigned int8);            // gPIDdata, {1|2}
 
-int8 getIPdata(unsigned int8);             // gIPdata,  {1|2}, {raw|calib|pos}
+int8 getIPdata(unsigned int8);             // gIPdata,  {1|2}, {raw|calib|p0|poles|real}
    
-int8 getManOPvals(unsigned int8);         // gManOP,    {1|2}  
-int8 setManOPvals(unsigned int8);         // sManOP,    {1|2}, <float>  
+int8 getManOPvals(unsigned int8);          // gManOP,   {1|2}  
+int8 setManOPvals(unsigned int8);          // sManOP,   {1|2}, <float>  
 
 int8 invalidCmd(unsigned int8);
 
