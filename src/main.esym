@@ -1,9 +1,9 @@
-D G "__PCH__" 0 53 ""5.109""
-D G "__DEVICE__" 0 53 "4610"
-D G "__DATE__" 0 53 ""1-Aug-25""
-D G "__TIME__" 0 53 ""18:08:02""
-D G "_UNICODE" 0 53 ""?""
-D G "__EVAL" 0 53 ""?"" "Standard Header file for the PIC18F46Q10 device ////////////////"
+D G "__PCH__" 0 57 ""5.109""
+D G "__DEVICE__" 0 57 "4610"
+D G "__DATE__" 0 57 ""26-Sep-25""
+D G "__TIME__" 0 57 ""18:40:05""
+D G "_UNICODE" 0 57 ""?""
+D G "__EVAL" 0 57 ""?"" "Standard Header file for the PIC18F46Q10 device ////////////////"
 c L "set_tris_a" 2 3 25 "FUNCTION"
 F N "set_tris_a" 2 70 ""
 V L "value" 2 70 "int8" `56 
@@ -2566,7 +2566,7 @@ D G "INT_CRC" 2 2067 "0x00C440"
 D G "INT_SCANNER" 2 2068 "0x00C480"
 D G "baudRate" 1 9 "128000"
 D G "numChannels" 1 10 "2"
-D G "version" 1 12 ""20250522"" "SW Version"
+D G "version" 1 12 ""20250812"" "SW Version"
 D G "serialID" 1 13 ""0000"" "Unique Serial ID"
 D G "magPP" 1 14 "1" "Magnetoresistive Sensor Pole Pitch in mm"
 D G "gainLvl" 1 15 "16" "1, 2, 4, 8, 16, 32, 64, 128"
@@ -3086,116 +3086,118 @@ V G "" 4 19 "" "Piezo channels"
 E G "MANUAL" 4 20 "0" `1269 
 E G "MAGSNS" 4 20 "1" `1270 
 V G "" 4 20 "" "Voltage or Magnetic Sensor Control"
-C L "ee_save_reg" 4 21 3 "FUNCTION"
-F N "ee_save_reg" 4 42 ""
-V L "reg" 4 42 "*int8" `1272 
-V L "eeLocation" 4 42 "int16" `1273 
-V L "length" 4 42 "int8" `1274 
-f G "ee_save_reg" 4 42 "void(*int8 reg,int16 eeLocation,int8 length)" `1271 
-F N "ee_load_reg" 4 43 ""
-V L "reg" 4 43 "*int8" `1276 
-V L "eeLocation" 4 43 "int16" `1277 
-V L "length" 4 43 "int8" `1278 
-f G "ee_load_reg" 4 43 "void(*int8 reg,int16 eeLocation,int8 length)" `1275 
-F N "params_save_to_ee" 4 44 ""
-f G "params_save_to_ee" 4 44 "void()" `1279 
-F N "params_load_from_ee" 4 45 ""
-f G "params_load_from_ee" 4 45 "void()" `1280 
-F N "params_init" 4 46 ""
-f G "params_init" 4 46 "void()" `1281 
-F N "params_invalidate" 4 47 ""
-f G "params_invalidate" 4 47 "void()" `1282  "PARAMETERS START HERE. All Params should have an EEPROM address that is   *"
-D G "pid_params_ee_addr" 4 59 "0"
-D G "pid_params_length" 4 60 "128" "length in bytes"
-C L "params_invalidate" 4 21 1 "FUNCTION"
-C L "params_invalidate" 4 21 1 "FUNCTION"
-C L "params_invalidate" 4 21 1 "FUNCTION"
-C L "params_invalidate" 4 21 1 "FUNCTION"
-C L "params_invalidate" 4 21 1 "FUNCTION"
-C L "params_invalidate" 4 21 1 "FUNCTION"
-C L "params_invalidate" 4 21 1 "FUNCTION"
-C L "params_invalidate" 4 21 1 "FUNCTION"
-V G "PID" 4 71 "{float kP,float kI,float kD,float SP,float PV,float PVold,float CV,float i}[2]" `1292  "Output Channel Map                                                        *"
-D G "channel_map_ee_addr" 4 76 "128"
-D G "channel_map_length" 4 77 "2" "length in bytes"
-V G "chMap" 4 78 "channelMap[2]" `1293 
-D G "channel_mode_ee_addr" 4 83 "144"
-D G "channel_mode_length" 4 84 "2" "length in bytes"
-V G "chMode" 4 85 "channelMode[2]" `1294 
-D G "adc_cal_params_ee_addr" 4 90 "160"
-D G "adc_cal_params_length" 4 91 "32" "length in bytes"
-V G "adcCal" 4 98 "{float sinOS,float cosOS,float sinGain,float cosGain}[2]" `1300 
-D G "sensor_cal_params_ee_addr" 4 106 "192"
-D G "sensor_cal_params_length" 4 107 "48" "length in bytes"
-V G "sensorCal" 4 116 "{float c0,float c1,float c2,float c3,float c4,float c5}[2]" `1308 
-D G "mon_cal_params_ee_addr" 4 126 "240"
-D G "mon_cal_params_length" 4 127 "56" "length in bytes"
-C L "params_invalidate" 4 21 1 "FUNCTION"
-V G "monCal" 4 138 "{float[2] vN15,float[2] v200,float[2] v5V6,float[2] v5VA,float[2] v3V6X,float[2] v3V3A,float[2] v3V3D}" `1317 
-D G "man_op_vals_ee_addr" 4 146 "304"
-D G "man_op_vals_length" 4 147 "8"
-V G "manualOutputValues" 4 148 "float[2]" `1318 
-D G "invalidate" 4 153 "0xFF"
-D G "isValid" 4 154 "0xAA"
-D G "params_valid_ee_addr" 4 155 "320"
-D G "params_valid_length" 4 156 "1" "length in bytes"
-V G "paramsValid" 4 157 "int8" `1319 
-C L "params_invalidate" 4 21 2 "FUNCTION"
-C L "params_invalidate" 4 21 1 "FUNCTION"
-V G "monitorVals" 4 174 "{float vN15,float v200,float v5V6,float v5VA,float v3V6X,float v3V3A,float v3V3D}" `1328 
-C L "params_invalidate" 4 21 1 "FUNCTION"
-C L "params_invalidate" 4 21 1 "FUNCTION"
-C L "params_invalidate" 4 21 1 "FUNCTION"
-C L "params_invalidate" 4 21 1 "FUNCTION"
-C L "params_invalidate" 4 21 1 "FUNCTION"
-C L "params_invalidate" 4 21 1 "FUNCTION"
-C L "params_invalidate" 4 21 1 "FUNCTION"
-V G "adcVals" 4 185 "{float sinRaw,float cosRaw,float sinCounts,float cosCounts,float p0,int8 npoles,float pReal}[2]" `1337 
-C L "params_invalidate" 4 21 1 "FUNCTION"
-V G "timeoutReg0" 4 192 "int32" `1338 
-C L "params_invalidate" 4 21 1 "FUNCTION"
-V G "timeoutReg1" 4 193 "int32" `1339 
-C L "params_invalidate" 4 21 1 "FUNCTION"
-V G "timeoutReg2" 4 194 "int32" `1340 
-V G "intTimeoutReg" 4 195 "int16" `1341 
-C L "params_invalidate" 4 21 5 "FUNCTION"
-F N "ee_save_reg" 4 238 ""
-V L "reg" 4 238 "*int8" `1272 
-V L "eeLocation" 4 238 "int16" `1273 
-V L "length" 4 238 "int8" `1345 
-F G "ee_save_reg" 4 275 "void(*int8 reg,int16 eeLocation,int8 length)" `1271 
-V L "i" 4 276 "int8" `1342 
-C L "ee_load_reg" 4 21 1 "FUNCTION"
-F N "ee_load_reg" 4 287 ""
-V L "reg" 4 287 "*int8" `1276 
-V L "eeLocation" 4 287 "int16" `1277 
-V L "length" 4 287 "int8" `1346 
-F G "ee_load_reg" 4 302 "void(*int8 reg,int16 eeLocation,int8 length)" `1275 
-V L "i" 4 303 "int8" `1343 
-C L "params_save_to_ee" 4 21 1 "FUNCTION"
-F N "params_save_to_ee" 4 314 ""
-F G "params_save_to_ee" 4 315 "void()" `1279 
-C L "params_load_from_ee" 4 21 1 "FUNCTION"
-F N "params_load_from_ee" 4 334 ""
-F G "params_load_from_ee" 4 335 "void()" `1280 
-C L "params_init" 4 21 1 "FUNCTION"
-F N "params_init" 4 348 ""
-F G "params_init" 4 349 "void()" `1281 
-C L "params_init" 4 21 1 "FUNCTION"
-C L "params_invalidate" 4 21 1 "FUNCTION"
-F N "params_invalidate" 4 366 ""
-F G "params_invalidate" 4 367 "void()" `1282 
+C L "ee_save_reg" 4 23 2 "FUNCTION"
+F N "ee_save_reg" 4 41 ""
+V L "reg" 4 41 "*int8" `1272 
+V L "eeLocation" 4 41 "int16" `1273 
+V L "length" 4 41 "int8" `1274 
+f G "ee_save_reg" 4 41 "void(*int8 reg,int16 eeLocation,int8 length)" `1271 
+F N "ee_load_reg" 4 42 ""
+V L "reg" 4 42 "*int8" `1276 
+V L "eeLocation" 4 42 "int16" `1277 
+V L "length" 4 42 "int8" `1278 
+f G "ee_load_reg" 4 42 "void(*int8 reg,int16 eeLocation,int8 length)" `1275 
+F N "params_save_to_ee" 4 43 ""
+f G "params_save_to_ee" 4 43 "void()" `1279 
+F N "params_load_from_ee" 4 44 ""
+f G "params_load_from_ee" 4 44 "void()" `1280 
+F N "params_init" 4 45 ""
+f G "params_init" 4 45 "void()" `1281 
+F N "params_invalidate" 4 46 ""
+f G "params_invalidate" 4 46 "void()" `1282  "PARAMETERS START HERE. All Params should have an EEPROM address that is   *"
+D G "pid_params_ee_addr" 4 58 "0"
+D G "pid_params_length" 4 59 "128" "length in bytes"
+C L "params_invalidate" 4 23 1 "FUNCTION"
+C L "params_invalidate" 4 23 1 "FUNCTION"
+C L "params_invalidate" 4 23 1 "FUNCTION"
+C L "params_invalidate" 4 23 1 "FUNCTION"
+C L "params_invalidate" 4 23 1 "FUNCTION"
+C L "params_invalidate" 4 23 1 "FUNCTION"
+C L "params_invalidate" 4 23 1 "FUNCTION"
+C L "params_invalidate" 4 23 1 "FUNCTION"
+V G "PID" 4 70 "{float kP,float kI,float kD,float SP,float PV,float PVold,float CV,float i}[2]" `1292 
+D G "channel_map_ee_addr" 4 78 "128"
+D G "channel_map_length" 4 79 "2" "length in bytes"
+V G "chMap" 4 80 "channelMap[2]" `1293 
+D G "channel_mode_ee_addr" 4 85 "144"
+D G "channel_mode_length" 4 86 "2" "length in bytes"
+V G "chMode" 4 87 "channelMode[2]" `1294 
+D G "adc_cal_params_ee_addr" 4 92 "160"
+D G "adc_cal_params_length" 4 93 "32" "length in bytes"
+V G "adcCal" 4 100 "{float sinOS,float cosOS,float sinGain,float cosGain}[2]" `1300 
+D G "sensor_cal_params_ee_addr" 4 108 "192"
+D G "sensor_cal_params_length" 4 109 "48" "length in bytes"
+V G "sensorCal" 4 118 "{float c0,float c1,float c2,float c3,float c4,float c5}[2]" `1308 
+D G "mon_cal_params_ee_addr" 4 128 "240"
+D G "mon_cal_params_length" 4 129 "56" "length in bytes"
+C L "params_invalidate" 4 23 1 "FUNCTION"
+V G "monCal" 4 140 "{float[2] vN15,float[2] v200,float[2] v5V6,float[2] v5VA,float[2] v3V6X,float[2] v3V3A,float[2] v3V3D}" `1317 
+D G "man_op_vals_ee_addr" 4 153 "304"
+D G "man_op_vals_length" 4 154 "8"
+V G "manualOutputValues" 4 155 "float[2]" `1318 
+D G "invalidate" 4 160 "0xFF"
+D G "isValid" 4 161 "0xAA"
+D G "params_valid_ee_addr" 4 162 "320"
+D G "params_valid_length" 4 163 "1" "length in bytes"
+V G "paramsValid" 4 164 "int8" `1319 
+C L "params_invalidate" 4 23 2 "FUNCTION"
+C L "params_invalidate" 4 23 1 "FUNCTION"
+V G "monitorVals" 4 181 "{float vN15,float v200,float v5V6,float v5VA,float v3V6X,float v3V3A,float v3V3D}" `1328 
+C L "params_invalidate" 4 23 1 "FUNCTION"
+C L "params_invalidate" 4 23 1 "FUNCTION"
+C L "params_invalidate" 4 23 1 "FUNCTION"
+C L "params_invalidate" 4 23 1 "FUNCTION"
+C L "params_invalidate" 4 23 1 "FUNCTION"
+C L "params_invalidate" 4 23 1 "FUNCTION"
+C L "params_invalidate" 4 23 1 "FUNCTION"
+C L "params_invalidate" 4 23 1 "FUNCTION"
+C L "params_invalidate" 4 23 1 "FUNCTION"
+V G "adcVals" 4 194 "{float sinRaw,float cosRaw,float sinCounts,float cosCounts,float sinLast,float cosLast,float p0,sint8 npoles,float pReal}[2]" `1339 
+C L "params_invalidate" 4 23 1 "FUNCTION"
+V G "timeoutReg0" 4 201 "int32" `1340 
+C L "params_invalidate" 4 23 1 "FUNCTION"
+V G "timeoutReg1" 4 202 "int32" `1341 
+C L "params_invalidate" 4 23 1 "FUNCTION"
+V G "timeoutReg2" 4 203 "int32" `1342 
+V G "intTimeoutReg" 4 204 "int16" `1343 
+C L "params_invalidate" 4 23 5 "FUNCTION"
+F N "ee_save_reg" 4 247 ""
+V L "reg" 4 247 "*int8" `1272 
+V L "eeLocation" 4 247 "int16" `1273 
+V L "length" 4 247 "int8" `1347 
+F G "ee_save_reg" 4 284 "void(*int8 reg,int16 eeLocation,int8 length)" `1271 
+V L "i" 4 285 "int8" `1344 
+C L "ee_load_reg" 4 23 1 "FUNCTION"
+F N "ee_load_reg" 4 296 ""
+V L "reg" 4 296 "*int8" `1276 
+V L "eeLocation" 4 296 "int16" `1277 
+V L "length" 4 296 "int8" `1348 
+F G "ee_load_reg" 4 311 "void(*int8 reg,int16 eeLocation,int8 length)" `1275 
+V L "i" 4 312 "int8" `1345 
+C L "params_save_to_ee" 4 23 1 "FUNCTION"
+F N "params_save_to_ee" 4 323 ""
+F G "params_save_to_ee" 4 324 "void()" `1279 
+C L "params_load_from_ee" 4 23 1 "FUNCTION"
+F N "params_load_from_ee" 4 343 ""
+F G "params_load_from_ee" 4 344 "void()" `1280 
+C L "params_init" 4 23 1 "FUNCTION"
+F N "params_init" 4 357 ""
+F G "params_init" 4 358 "void()" `1281 
+C L "params_init" 4 23 1 "FUNCTION"
+C L "params_invalidate" 4 23 1 "FUNCTION"
+F N "params_invalidate" 4 375 ""
+F G "params_invalidate" 4 376 "void()" `1282 
 D G "monitor" 9 2 ""
 D G "ADS1220" 10 2 ""
 D G "_CS0" 10 7 "PIN_D5" "chip select pins"
 D G "_CS1" 10 8 "PIN_D6"
 D G "_CS2" 10 9 "PIN_D7"
 D G "_CS3" 10 10 "PIN_B0"
-E G "reg0" 10 23 "0" `1348 
-E G "reg1" 10 23 "4" `1349 
-E G "reg2" 10 23 "8" `1350 
-E G "reg3" 10 23 "12" `1351 
-T G "adsReg" 10 23 "" `1352  "REGISTER 0 OPTIONS"
+E G "reg0" 10 23 "0" `1350 
+E G "reg1" 10 23 "4" `1351 
+E G "reg2" 10 23 "8" `1352 
+E G "reg3" 10 23 "12" `1353 
+T G "adsReg" 10 23 "" `1354  "REGISTER 0 OPTIONS"
 D G "IPp0n1" 10 27 "0x00"
 D G "IPp0n2" 10 28 "0x10"
 D G "IPp0n3" 10 29 "0x20"
@@ -3271,8 +3273,8 @@ D G "I2p0" 10 117 "0x14"
 D G "I2n0" 10 118 "0x18"
 D G "drdyPin" 10 120 "0x00"
 D G "doutPin" 10 121 "0x20"
-D G "reg0config" 10 124 "IPp1n2|g16|PGAenabled" "0x38//"
-D G "reg1config" 10 125 "DRn20|MDnormal|CMsingle|TSDisable|BCSoff" "0x00"
+D G "reg0config" 10 124 "IPp1n2|g1|PGAenabled" "0x30//"
+D G "reg1config" 10 125 "DRn20|MDturbo|CMsingle|TSDisable|BCSoff" "0x10"
 D G "reg2config" 10 126 "REFinternal|FIR60|PSWopen|Ioff" "0x30"
 D G "reg3config" 10 127 "I1disabled|I2disabled|drdyPin" "0x00"
 D G "ADSreset" 10 130 "0x06"
@@ -3283,63 +3285,63 @@ D G "ADSreadReg" 10 134 "0x20"
 D G "ADSwriteReg" 10 135 "0x40"
 C L "ads_deselect_all" 10 5 2 "FUNCTION"
 F N "ads_deselect_all" 10 146 ""
-F G "ads_deselect_all" 10 147 "void()" `1353 
+F G "ads_deselect_all" 10 147 "void()" `1355 
 C L "ads_deselect_all" 10 5 1 "FUNCTION"
 C L "ads_select_ch" 10 5 1 "FUNCTION"
-F N "ads_select_ch" 10 157 ""
-V L "ch" 10 157 "int8" `1355 
-F G "ads_select_ch" 10 158 "void(int8 ch)" `1354 
+F N "ads_select_ch" 10 158 ""
+V L "ch" 10 158 "int8" `1357 
+F G "ads_select_ch" 10 159 "void(int8 ch)" `1356 
 C L "ads_select_block" 10 5 1 "FUNCTION"
-F N "ads_select_block" 10 181 ""
-V L "block" 10 181 "int8" `1358 
-F G "ads_select_block" 10 182 "void(int8 block)" `1357 
+F N "ads_select_block" 10 182 ""
+V L "block" 10 182 "int8" `1360 
+F G "ads_select_block" 10 183 "void(int8 block)" `1359 
 C L "ads_write_command" 10 5 1 "FUNCTION"
-F N "ads_write_command" 10 201 ""
-V L "ch" 10 201 "int8" `1360 
-V L "command" 10 201 "int8" `1361 
-F G "ads_write_command" 10 202 "void(int8 ch,int8 command)" `1359 
+F N "ads_write_command" 10 202 ""
+V L "ch" 10 202 "int8" `1362 
+V L "command" 10 202 "int8" `1363 
+F G "ads_write_command" 10 203 "void(int8 ch,int8 command)" `1361 
 C L "ads_write_command_block" 10 5 1 "FUNCTION"
-F N "ads_write_command_block" 10 210 ""
-V L "block" 10 210 "int8" `1363 
-V L "command" 10 210 "int8" `1364 
-F G "ads_write_command_block" 10 211 "void(int8 block,int8 command)" `1362 
+F N "ads_write_command_block" 10 211 ""
+V L "block" 10 211 "int8" `1365 
+V L "command" 10 211 "int8" `1366 
+F G "ads_write_command_block" 10 212 "void(int8 block,int8 command)" `1364 
 C L "ads_read_command" 10 5 1 "FUNCTION"
-F N "ads_read_command" 10 219 ""
-V L "ch" 10 219 "int8" `1366 
-V L "command" 10 219 "int8" `1367 
-F G "ads_read_command" 10 220 "void(int8 ch,int8 command)" `1365 
+F N "ads_read_command" 10 220 ""
+V L "ch" 10 220 "int8" `1368 
+V L "command" 10 220 "int8" `1369 
+F G "ads_read_command" 10 221 "void(int8 ch,int8 command)" `1367 
 C L "ads_write_reg" 10 5 1 "FUNCTION"
-F N "ads_write_reg" 10 228 ""
-V L "ch" 10 228 "int8" `1369 
-V L "regID" 10 228 "adsReg" `1370 
-V L "data" 10 228 "int8" `1371 
-F G "ads_write_reg" 10 229 "void(int8 ch,adsReg regID,int8 data)" `1368 
-V L "command" 10 230 "int8" `1372 
+F N "ads_write_reg" 10 229 ""
+V L "ch" 10 229 "int8" `1371 
+V L "regID" 10 229 "adsReg" `1372 
+V L "data" 10 229 "int8" `1373 
+F G "ads_write_reg" 10 230 "void(int8 ch,adsReg regID,int8 data)" `1370 
+V L "command" 10 231 "int8" `1374 
 C L "ads_write_reg" 10 5 1 "FUNCTION"
 C L "ads_read_reg" 10 5 1 "FUNCTION"
-F N "ads_read_reg" 10 239 ""
-V L "ch" 10 239 "int8" `1374 
-V L "regID" 10 239 "adsReg" `1375 
-F G "ads_read_reg" 10 240 "int8(int8 ch,adsReg regID)" `1373 
-V L "command" 10 241 "int8" `1376 
-V L "data" 10 243 "int8" `1377 
+F N "ads_read_reg" 10 240 ""
+V L "ch" 10 240 "int8" `1376 
+V L "regID" 10 240 "adsReg" `1377 
+F G "ads_read_reg" 10 241 "int8(int8 ch,adsReg regID)" `1375 
+V L "command" 10 242 "int8" `1378 
+V L "data" 10 244 "int8" `1379 
 C L "ads_start_conv_block" 10 5 1 "FUNCTION"
-F N "ads_start_conv_block" 10 252 ""
-V L "block" 10 252 "int8" `1379 
-F G "ads_start_conv_block" 10 253 "void(int8 block)" `1378 
+F N "ads_start_conv_block" 10 253 ""
+V L "block" 10 253 "int8" `1381 
+F G "ads_start_conv_block" 10 254 "void(int8 block)" `1380 
 C L "ads_read_data" 10 5 1 "FUNCTION"
-F N "ads_read_data" 10 262 ""
-V L "ch" 10 262 "int8" `1381 
-F G "ads_read_data" 10 263 "sint32(int8 ch)" `1380 
-V L "data" 10 268 "{int8[4] dBytes,sint32 dWord}" `1385 
+F N "ads_read_data" 10 263 ""
+V L "ch" 10 263 "int8" `1383 
+F G "ads_read_data" 10 264 "sint32(int8 ch)" `1382 
+V L "data" 10 269 "{int8[4] dBytes,sint32 dWord}" `1387 
 C L "ADS1220init" 10 5 1 "FUNCTION"
 F N "ADS1220init" 10 285 ""
-V L "ch" 10 285 "int8" `1387 
-V L "rc0" 10 285 "int8" `1388 
-V L "rc1" 10 285 "int8" `1389 
-V L "rc2" 10 285 "int8" `1390 
-V L "rc3" 10 285 "int8" `1391 
-F G "ADS1220init" 10 286 "void(int8 ch,int8=56 rc0,int8=0 rc1,int8=48 rc2,int8=0 rc3)" `1386 
+V L "ch" 10 285 "int8" `1389 
+V L "rc0" 10 285 "int8" `1390 
+V L "rc1" 10 285 "int8" `1391 
+V L "rc2" 10 285 "int8" `1392 
+V L "rc3" 10 285 "int8" `1393 
+F G "ADS1220init" 10 286 "void(int8 ch,int8=48 rc0,int8=16 rc1,int8=48 rc2,int8=0 rc3)" `1388 
 C L "ADS1220init" 10 5 1 "FUNCTION"
 C L "ADS1220init" 10 5 1 "FUNCTION"
 D G "MATH_H" 11 30 ""
@@ -3347,95 +3349,95 @@ D G "PI" 11 35 "3.1415926535897932"
 D G "SQRT2" 11 38 "1.4142135623730950"
 C L "CEIL_FLOOR" 11 2 3 "FUNCTION"
 F N "CEIL_FLOOR" 11 45 ""
-V L "x" 11 45 "float" `1397 
-V L "n" 11 45 "int8" `1398 
-F G "CEIL_FLOOR" 11 46 "float(float x,int8 n)" `1396 
-V L "y" 11 47 "float" `1399 
-V L "res" 11 47 "float" `1400 
-V L "l" 11 48 "int16" `1401 
-V L "s" 11 49 "int1" `1402 
+V L "x" 11 45 "float" `1399 
+V L "n" 11 45 "int8" `1400 
+F G "CEIL_FLOOR" 11 46 "float(float x,int8 n)" `1398 
+V L "y" 11 47 "float" `1401 
+V L "res" 11 47 "float" `1402 
+V L "l" 11 48 "int16" `1403 
+V L "s" 11 49 "int1" `1404 
 C L "floor" 11 2 5 "FUNCTION"
 F N "floor" 11 207 ""
-V L "x" 11 207 "float" `1409 
-F G "floor" 11 208 "float(float x)" `1408 
+V L "x" 11 207 "float" `1411 
+F G "floor" 11 208 "float(float x)" `1410 
 C L "ceil" 11 2 5 "FUNCTION"
 F N "ceil" 11 233 ""
-V L "x" 11 233 "float" `1411 
-F G "ceil" 11 234 "float(float x)" `1410 
+V L "x" 11 233 "float" `1413 
+F G "ceil" 11 234 "float(float x)" `1412 
 D G "fabs" 11 259 "abs"
 C L "fmod" 11 2 6 "FUNCTION"
 F N "fmod" 11 271 ""
-V L "x" 11 271 "float" `1413 
-V L "y" 11 271 "float" `1414 
-F G "fmod" 11 272 "float(float x,float y)" `1412 
-V L "i" 11 273 "float" `1415 
+V L "x" 11 271 "float" `1415 
+V L "y" 11 271 "float" `1416 
+F G "fmod" 11 272 "float(float x,float y)" `1414 
+V L "i" 11 273 "float" `1417 
 D G "LN2" 11 334 "0.6931471805599453"
 D G "LN2_INV" 11 335 "1.4426950408889634073"
-V G "pe" 11 337 "[6]" `1417 
+V G "pe" 11 337 "[6]" `1419 
 F N "exp" 11 341 ""
-V L "x" 11 341 "float" `1420 
-F G "exp" 11 342 "float(float x)" `1419 
-V L "y" 11 343 "float" `1421 
-V L "res" 11 343 "float" `1422 
-V L "r" 11 343 "float" `1423 
-V L "n" 11 347 "sint8" `1424 
-V L "s" 11 348 "int1" `1425 
+V L "x" 11 341 "float" `1422 
+F G "exp" 11 342 "float(float x)" `1421 
+V L "y" 11 343 "float" `1423 
+V L "res" 11 343 "float" `1424 
+V L "r" 11 343 "float" `1425 
+V L "n" 11 347 "sint8" `1426 
+V L "s" 11 348 "int1" `1427 
 C L "exp" 11 2 1 "FUNCTION"
-V G "pl" 11 525 "[4]" `1429 
-V G "ql" 11 526 "[4]" `1432 
+V G "pl" 11 525 "[4]" `1431 
+V G "ql" 11 526 "[4]" `1434 
 C L "log" 11 2 3 "FUNCTION"
 F N "log" 11 534 ""
-V L "x" 11 534 "float" `1435 
-F G "log" 11 535 "float(float x)" `1434 
-V L "y" 11 536 "float" `1436 
-V L "res" 11 536 "float" `1437 
-V L "r" 11 536 "float" `1438 
-V L "y2" 11 536 "float" `1439 
-V L "n" 11 540 "sint8" `1440 
+V L "x" 11 534 "float" `1437 
+F G "log" 11 535 "float(float x)" `1436 
+V L "y" 11 536 "float" `1438 
+V L "res" 11 536 "float" `1439 
+V L "r" 11 536 "float" `1440 
+V L "y2" 11 536 "float" `1441 
+V L "n" 11 540 "sint8" `1442 
 C L "log" 11 2 1 "FUNCTION"
 D G "LN10" 11 758 "2.3025850929940456"
 D G "LN10_INV" 11 759 "0.4342944819032518276"
 C L "log10" 11 2 3 "FUNCTION"
 F N "log10" 11 767 ""
-V L "x" 11 767 "float" `1442 
-F G "log10" 11 768 "float(float x)" `1441 
-V L "r" 11 769 "float" `1443 
+V L "x" 11 767 "float" `1444 
+F G "log10" 11 768 "float(float x)" `1443 
+V L "r" 11 769 "float" `1445 
 C L "modf" 11 2 8 "FUNCTION"
 F N "modf" 11 808 ""
-V L "value" 11 808 "float" `1445 
-V L "iptr" 11 808 "*float" `1446 
-F G "modf" 11 809 "float(float value,*float iptr)" `1444 
+V L "value" 11 808 "float" `1447 
+V L "iptr" 11 808 "*float" `1448 
+F G "modf" 11 809 "float(float value,*float iptr)" `1446 
 C L "pwr" 11 2 6 "FUNCTION"
 F N "pwr" 11 836 ""
-V L "x" 11 836 "float" `1448 
-V L "y" 11 836 "float" `1449 
-F G "pwr" 11 837 "float(float x,float y)" `1447 
+V L "x" 11 836 "float" `1450 
+V L "y" 11 836 "float" `1451 
+F G "pwr" 11 837 "float(float x,float y)" `1449 
 C L "pow" 11 2 7 "FUNCTION"
 F N "pow" 11 899 ""
-V L "x" 11 899 "float" `1451 
-V L "y" 11 899 "float" `1452 
-F G "pow" 11 900 "float(float x,float y)" `1450 
+V L "x" 11 899 "float" `1453 
+V L "y" 11 899 "float" `1454 
+F G "pow" 11 900 "float(float x,float y)" `1452 
 C L "sqrt" 11 2 5 "FUNCTION"
 F N "sqrt" 11 960 ""
-V L "x" 11 960 "float" `1454 
-F G "sqrt" 11 961 "float(float x)" `1453 
-V L "y" 11 962 "float" `1455 
-V L "res" 11 962 "float" `1456 
-V L "p" 11 967 "*int8" `1457 
+V L "x" 11 960 "float" `1456 
+F G "sqrt" 11 961 "float(float x)" `1455 
+V L "y" 11 962 "float" `1457 
+V L "res" 11 962 "float" `1458 
+V L "p" 11 967 "*int8" `1459 
 D G "PI_DIV_BY_TWO_INV" 11 1156 "0.63661977236758134"
 D G "PI_DIV_BY_TWO" 11 1160 "1.5707963267948966"
 D G "TWOBYPI" 11 1164 "0.6366197723675813"
 C L "cos" 11 2 3 "FUNCTION"
 F N "cos" 11 1172 ""
-V L "x" 11 1172 "float" `1459 
-F G "cos" 11 1173 "float(float x)" `1458 
-V L "y" 11 1174 "float" `1460 
-V L "t" 11 1174 "float" `1461 
-V L "t2" 11 1174 "float" `1462 
-V L "quad" 11 1175 "int8" `1463 
-V L "i" 11 1175 "int8" `1464 
-V L "frac" 11 1176 "float" `1465 
-V L "p" 11 1177 "float[5]" `1466  "by the series definition for cosine"
+V L "x" 11 1172 "float" `1461 
+F G "cos" 11 1173 "float(float x)" `1460 
+V L "y" 11 1174 "float" `1462 
+V L "t" 11 1174 "float" `1463 
+V L "t2" 11 1174 "float" `1464 
+V L "quad" 11 1175 "int8" `1465 
+V L "i" 11 1175 "int8" `1466 
+V L "frac" 11 1176 "float" `1467 
+V L "p" 11 1177 "float[5]" `1468  "by the series definition for cosine"
 C L "cos" 11 2 1 "FUNCTION"
 C L "cos" 11 2 2 "FUNCTION"
 C L "cos" 11 2 1 "FUNCTION"
@@ -3446,519 +3448,538 @@ C L "cos" 11 2 1 "FUNCTION"
 C L "cos" 11 2 1 "FUNCTION"
 C L "sin" 11 2 5 "FUNCTION"
 F N "sin" 11 1311 ""
-V L "x" 11 1311 "float" `1468 
-F G "sin" 11 1312 "float(float x)" `1467 
+V L "x" 11 1311 "float" `1470 
+F G "sin" 11 1312 "float(float x)" `1469 
 C L "tan" 11 2 5 "FUNCTION"
 F N "tan" 11 1337 ""
-V L "x" 11 1337 "float" `1470 
-F G "tan" 11 1338 "float(float x)" `1469 
-V L "c" 11 1339 "float" `1471 
-V L "s" 11 1339 "float" `1472 
-V G "pas" 11 1377 "[3]" `1474 
-V G "qas" 11 1378 "[3]" `1477 
+V L "x" 11 1337 "float" `1472 
+F G "tan" 11 1338 "float(float x)" `1471 
+V L "c" 11 1339 "float" `1473 
+V L "s" 11 1339 "float" `1474 
+V G "pas" 11 1377 "[3]" `1476 
+V G "qas" 11 1378 "[3]" `1479 
 F N "ASIN_COS" 11 1380 ""
-V L "x" 11 1380 "float" `1480 
-V L "n" 11 1380 "int8" `1481 
-F G "ASIN_COS" 11 1381 "float(float x,int8 n)" `1479 
-V L "y" 11 1382 "float" `1482 
-V L "res" 11 1382 "float" `1483 
-V L "r" 11 1382 "float" `1484 
-V L "y2" 11 1382 "float" `1485 
-V L "s" 11 1383 "int1" `1486 
+V L "x" 11 1380 "float" `1482 
+V L "n" 11 1380 "int8" `1483 
+F G "ASIN_COS" 11 1381 "float(float x,int8 n)" `1481 
+V L "y" 11 1382 "float" `1484 
+V L "res" 11 1382 "float" `1485 
+V L "r" 11 1382 "float" `1486 
+V L "y2" 11 1382 "float" `1487 
+V L "s" 11 1383 "int1" `1488 
 C L "ASIN_COS" 11 2 1 "FUNCTION"
 C L "ASIN_COS" 11 2 1 "FUNCTION"
 C L "asin" 11 2 5 "FUNCTION"
 F N "asin" 11 1538 ""
-V L "x" 11 1538 "float" `1488 
-F G "asin" 11 1539 "float(float x)" `1487 
-V L "r" 11 1540 "float" `1489 
+V L "x" 11 1538 "float" `1490 
+F G "asin" 11 1539 "float(float x)" `1489 
+V L "r" 11 1540 "float" `1491 
 C L "acos" 11 2 5 "FUNCTION"
 F N "acos" 11 1572 ""
-V L "x" 11 1572 "float" `1491 
-F G "acos" 11 1573 "float(float x)" `1490 
-V L "r" 11 1574 "float" `1492 
-V G "pat" 11 1600 "[4]" `1494 
-V G "qat" 11 1601 "[4]" `1497 
+V L "x" 11 1572 "float" `1493 
+F G "acos" 11 1573 "float(float x)" `1492 
+V L "r" 11 1574 "float" `1494 
+V G "pat" 11 1600 "[4]" `1496 
+V G "qat" 11 1601 "[4]" `1499 
 C L "atan" 11 2 3 "FUNCTION"
 F N "atan" 11 1609 ""
-V L "x" 11 1609 "float" `1500 
-F G "atan" 11 1610 "float(float x)" `1499 
-V L "y" 11 1611 "float" `1501 
-V L "res" 11 1611 "float" `1502 
-V L "r" 11 1611 "float" `1503 
-V L "s" 11 1612 "int1" `1504 
-V L "flag" 11 1612 "int1" `1505 
+V L "x" 11 1609 "float" `1502 
+F G "atan" 11 1610 "float(float x)" `1501 
+V L "y" 11 1611 "float" `1503 
+V L "res" 11 1611 "float" `1504 
+V L "r" 11 1611 "float" `1505 
+V L "s" 11 1612 "int1" `1506 
+V L "flag" 11 1612 "int1" `1507 
 C L "atan" 11 2 1 "FUNCTION"
 C L "atan2" 11 2 7 "FUNCTION"
 F N "atan2" 11 1752 ""
-V L "y" 11 1752 "float" `1507 
-V L "x" 11 1752 "float" `1508 
-F G "atan2" 11 1753 "float(float y,float x)" `1506 
-V L "z" 11 1754 "float" `1509 
-V L "sign" 11 1755 "int1" `1510 
-V L "quad" 11 1756 "int8" `1511 
+V L "y" 11 1752 "float" `1509 
+V L "x" 11 1752 "float" `1510 
+F G "atan2" 11 1753 "float(float y,float x)" `1508 
+V L "z" 11 1754 "float" `1511 
+V L "sign" 11 1755 "int1" `1512 
+V L "quad" 11 1756 "int8" `1513 
 C L "atan2" 11 2 1 "FUNCTION"
 C L "atan2" 11 2 1 "FUNCTION"
 C L "cosh" 11 2 7 "FUNCTION"
 F N "cosh" 11 1974 ""
-V L "x" 11 1974 "float" `1514 
-F G "cosh" 11 1975 "float(float x)" `1513 
+V L "x" 11 1974 "float" `1516 
+F G "cosh" 11 1975 "float(float x)" `1515 
 C L "sinh" 11 2 6 "FUNCTION"
 F N "sinh" 11 2001 ""
-V L "x" 11 2001 "float" `1516 
-F G "sinh" 11 2002 "float(float x)" `1515 
+V L "x" 11 2001 "float" `1518 
+F G "sinh" 11 2002 "float(float x)" `1517 
 C L "tanh" 11 2 6 "FUNCTION"
 F N "tanh" 11 2031 ""
-V L "x" 11 2031 "float" `1518 
-F G "tanh" 11 2032 "float(float x)" `1517 
+V L "x" 11 2031 "float" `1520 
+F G "tanh" 11 2032 "float(float x)" `1519 
 D G "LOG2" 11 2061 ".30102999566398119521"
 D G "LOG2_INV" 11 2062 "3.32192809488736234787"
 F N "frexp" 11 2063 ""
-V L "x" 11 2063 "float" `1520 
-V L "exp" 11 2063 "*sint8" `1521 
-F G "frexp" 11 2064 "float(float x,*sint8 exp)" `1519 
-V L "res" 11 2065 "float" `1522 
-V L "sign" 11 2066 "int1" `1523 
+V L "x" 11 2063 "float" `1522 
+V L "exp" 11 2063 "*sint8" `1523 
+F G "frexp" 11 2064 "float(float x,*sint8 exp)" `1521 
+V L "res" 11 2065 "float" `1524 
+V L "sign" 11 2066 "int1" `1525 
 C L "ldexp" 11 2 6 "FUNCTION"
 F N "ldexp" 11 2208 ""
-V L "value" 11 2208 "float" `1525 
-V L "exp" 11 2208 "sint8" `1526 
-F G "ldexp" 11 2209 "float(float value,sint8 exp)" `1524 
+V L "value" 11 2208 "float" `1527 
+V L "exp" 11 2208 "sint8" `1528 
+F G "ldexp" 11 2209 "float(float value,sint8 exp)" `1526 
 D G "sensorSampleRate" 9 8 "50" "50mS delay between each sensor sample = 200ms cadence"
 D G "maxCount" 9 10 "16777216.0" "ADC max count"
+D G "vRef" 9 11 "2.048" "ADC vRef"
 D G "sc" 9 13 "sensorCal"
-D G "vMonN15" 9 21 "6"
-D G "vMon200" 9 22 "16"
-D G "vMon5V6" 9 23 "24"
-D G "vMon5VA" 9 24 "25"
-D G "vMon3V6X" 9 25 "17"
-D G "vMon3V3A" 9 26 "27"
-D G "vMon3V3D" 9 27 "26"
-V G "smData" 9 33 "{int1 dataReady,int1 adcBusy}[2]" `1530 
-C L "internal_monitor_task" 9 11 2 "FUNCTION"
-F N "internal_monitor_task" 9 43 ""
-F G "internal_monitor_task" 9 44 "void()" `1531 
-V L "state" 9 45 "int8" `1532 
-C L "internal_monitor_task" 9 11 1 "FUNCTION"
-C L "internal_monitor_task" 9 11 1 "FUNCTION"
-C L "internal_monitor_task" 9 11 1 "FUNCTION"
-C L "internal_monitor_task" 9 11 1 "FUNCTION"
-C L "internal_monitor_task" 9 11 1 "FUNCTION"
-C L "internal_monitor_task" 9 11 1 "FUNCTION"
-C L "internal_monitor_task" 9 11 1 "FUNCTION"
-C L "sensor_process_data" 9 11 1 "FUNCTION"
+D G "vMonN15" 9 15 "6"
+D G "vMon200" 9 16 "16"
+D G "vMon5V6" 9 17 "24"
+D G "vMon5VA" 9 18 "25"
+D G "vMon3V6X" 9 19 "17"
+D G "vMon3V3A" 9 20 "27"
+D G "vMon3V3D" 9 21 "26"
+V G "smData" 9 27 "{int1 dataReady,int1 adcBusy}[2]" `1532 
+C L "internal_monitor_task" 9 34 2 "FUNCTION"
+F N "internal_monitor_task" 9 37 ""
+F G "internal_monitor_task" 9 38 "void()" `1533 
+V L "state" 9 39 "int8" `1534 
+C L "internal_monitor_task" 9 34 1 "FUNCTION"
+C L "internal_monitor_task" 9 34 1 "FUNCTION"
+C L "internal_monitor_task" 9 34 1 "FUNCTION"
+C L "internal_monitor_task" 9 34 1 "FUNCTION"
+C L "internal_monitor_task" 9 34 1 "FUNCTION"
+C L "internal_monitor_task" 9 34 1 "FUNCTION"
+C L "internal_monitor_task" 9 34 1 "FUNCTION"
+C L "sensor_process_data" 9 34 1 "FUNCTION"
 F N "sensor_process_data" 9 104 ""
-V L "ch" 9 104 "int8" `1534 
-V L "sinRawCounts" 9 104 "sint32" `1535 
-V L "cosRawCounts" 9 104 "sint32" `1536 
-F G "sensor_process_data" 9 105 "void(int8 ch,sint32 sinRawCounts,sint32 cosRawCounts)" `1533 
-V L "pTmp" 9 111 "float" `1539 
-V L "polePitch" 9 112 "float" `1540 
-C L "sensor_monitor_interrupt_task" 9 11 2 "FUNCTION"
-F N "sensor_monitor_interrupt_task" 9 127 ""
-F G "sensor_monitor_interrupt_task" 9 128 "void()" `1541 
-V L "ch" 9 129 "int8" `1542 
-C L "sensor_monitor_task" 9 11 2 "FUNCTION"
-F N "sensor_monitor_task" 9 148 ""
-F G "sensor_monitor_task" 9 149 "void()" `1543 
-V L "ch" 9 150 "int8" `1544 
-V L "sinRaw" 9 151 "sint32" `1545 
-V L "cosRaw" 9 152 "sint32" `1546 
-C L "setup_external_ADCs" 9 11 1 "FUNCTION"
-F N "setup_external_ADCs" 9 170 ""
-F G "setup_external_ADCs" 9 171 "void()" `1547 
-V L "rc0" 9 172 "int8" `1548 
-V L "rc1" 9 173 "int8" `1549 
-V L "rc2" 9 174 "int8" `1550 
-V L "rc3" 9 175 "int8" `1551 
-V L "ch" 9 177 "int8" `1552 
-C L "monitor_init" 9 11 1 "FUNCTION"
-F N "monitor_init" 9 192 ""
-F G "monitor_init" 9 193 "void()" `1553 
-C L "monitor_init" 9 11 1 "FUNCTION"
+V L "ch" 9 104 "int8" `1537 
+V L "sinRawCounts" 9 104 "sint32" `1538 
+V L "cosRawCounts" 9 104 "sint32" `1539 
+F G "sensor_process_data" 9 105 "void(int8 ch,sint32 sinRawCounts,sint32 cosRawCounts)" `1536 
+V L "pTmp" 9 114 "float" `1542 
+V L "polePitch" 9 115 "float" `1543 
+C L "sensor_monitor_interrupt_task" 9 34 2 "FUNCTION"
+F N "sensor_monitor_interrupt_task" 9 139 ""
+F G "sensor_monitor_interrupt_task" 9 140 "void()" `1544 
+V L "ch" 9 141 "int8" `1545 
+C L "sensor_monitor_task" 9 34 2 "FUNCTION"
+F N "sensor_monitor_task" 9 160 ""
+F G "sensor_monitor_task" 9 161 "void()" `1546 
+V L "ch" 9 162 "int8" `1547 
+V L "sinRaw" 9 163 "sint32" `1548 
+V L "cosRaw" 9 164 "sint32" `1549 
+C L "setup_external_ADCs" 9 34 1 "FUNCTION"
+F N "setup_external_ADCs" 9 182 ""
+F G "setup_external_ADCs" 9 183 "void()" `1550 
+V L "rc0" 9 184 "int8" `1551 
+V L "rc1" 9 185 "int8" `1552 
+V L "rc2" 9 186 "int8" `1553 
+V L "rc3" 9 187 "int8" `1554 
+V L "ch" 9 189 "int8" `1555 
+C L "monitor_init" 9 34 1 "FUNCTION"
+F N "monitor_init" 9 204 ""
+F G "monitor_init" 9 205 "void()" `1556 
+C L "monitor_init" 9 34 1 "FUNCTION"
 D G "control" 12 2 ""
-D G "__STDBOOL_H__" 13 18 ""
-T G "bool" 13 33 "int1" `1554 
-D G "true" 13 34 "1"
-D G "false" 13 35 "0"
-D G "__bool_true_false_are_defined" 13 36 "1"
-D G "DACfullScale" 12 10 "655.35" "full scale/100 because CV = %"
-C L "invert_voltage" 12 13 1 "FUNCTION"
-F N "invert_voltage" 12 15 ""
-V L "ch" 12 15 "int8" `1559 
-V L "inv_v" 12 15 "int8" `1560 
-F G "invert_voltage" 12 15 "void(int8 ch,int8 inv_v)" `1558 
-C L "set_nanoDAC_outputs" 12 13 1 "FUNCTION"
-F N "set_nanoDAC_outputs" 12 29 ""
-V L "ch" 12 29 "int8" `1562 
-F G "set_nanoDAC_outputs" 12 29 "void(int8 ch)" `1561 
-V L "txData" 12 30 "int16" `1563 
-C L "set_nanoDAC_outputs" 12 13 2 "FUNCTION"
-C L "set_nanoDAC_outputs" 12 13 2 "FUNCTION"
-C L "set_nanoDAC_outputs" 12 13 1 "FUNCTION"
-C L "control_task" 12 13 1 "FUNCTION"
-F N "control_task" 12 69 ""
-F G "control_task" 12 69 "void()" `1569 
-V L "state" 12 70 "int8" `1570 
-C L "control_init" 12 13 1 "FUNCTION"
-F N "control_init" 12 88 ""
-F G "control_init" 12 88 "void()" `1571 
-D G "serialPort" 14 2 ""
-D G "cmd_buffer" 15 2 ""
-D G "startChr" 15 17 "'~'" "start character. Also diagnostic command type"
-D G "diagCmdType" 15 18 "startChr"
-D G "endChr" 15 19 "'\n'"
-D G "delimiter" 15 20 "','"
-D G "ignoreChr1" 15 21 "'\r'"
-D G "ignoreChr2" 15 22 "' '"
-D G "noRecordFound" 15 23 " (char)0xFF"
-D G "numRecords" 15 25 "4"
-D G "numParam" 15 26 "7"
-D G "lenParam" 15 27 "25"
-D G "useSerial" 15 29 ""
-E G "tcp" 15 32 "0" `1573 
-E G "ser" 15 32 "1" `1574 
-V G "" 15 32 "" "this structure holds a command. This is used by the serial routine as well"
-V G "SERcmd" 15 52 "{int1 full,int8 chrIndex,int8 paramIndex,int8 recReadIndex,int8 recWriteIndex,int8 t,int8[7][25] SERcmd}[4]" `1584  "holds serial command"
-V G "SRI" 15 53 "int8" `1585 
-V G "SWI" 15 54 "int8" `1586 
-V G "retData" 15 63 "int8[100]" `1587  "this is used to hold return data"
-C L "resetSERcmd" 15 5 1 "FUNCTION"
-F N "resetSERcmd" 15 69 ""
-V L "recNum" 15 69 "int8" `1589 
-F G "resetSERcmd" 15 70 "void(int8 recNum)" `1588 
-V L "i" 15 73 "int8" `1590 
-C L "getNextSERReadIndex" 15 5 1 "FUNCTION"
-F N "getNextSERReadIndex" 15 90 ""
-F G "getNextSERReadIndex" 15 91 "int8()" `1591 
-C L "setNextSERWriteIndex" 15 5 1 "FUNCTION"
-F N "setNextSERWriteIndex" 15 104 ""
-F G "setNextSERWriteIndex" 15 105 "void()" `1592 
-D G "use_RS485" 14 6 "" "adds RX enable pin//"
-D G "oneByteCmdTestValue" 14 8 "128"
-D G "UART_BUFFER_SIZE" 14 9 "60"
-D G "UART_EOT_CHAR1" 14 10 "0x0D" "Carriage Return"
-D G "UART_EOT_CHAR2" 14 11 "0x0A" "Line Feed"
-D G "UART_SOT_CHAR" 14 12 "'~'" "START CHARACTER"
-D G "line_turnaround_char" 14 13 "0xFF"
-V G "UART_BUFFER" 14 17 "int8[60]" `1594 
-V G "UART_WR_PTR" 14 18 "int8" `1595 
-V G "UART_RD_PTR" 14 19 "int8" `1596 
-V G "BYTES_AVAILABLE" 14 20 "int1" `1597 
-C L "RX_isr" 14 28 4 "FUNCTION"
-F N "RX_isr" 14 40 ""
-F G "RX_isr" 14 41 "void()" `1603 
-C L "getchFromBuffer" 14 28 1 "FUNCTION"
-F N "getchFromBuffer" 14 54 ""
-F G "getchFromBuffer" 14 55 "int8()" `1604 
-V L "data" 14 56 "int8" `1605 
-C L "serial_task" 14 28 1 "FUNCTION"
-F N "serial_task" 14 66 ""
-F G "serial_task" 14 67 "void()" `1606 
-V L "rxChar" 14 70 "int8" `1607 
-C L "serial_task" 14 28 1 "FUNCTION"
-C L "serial_task" 14 28 1 "FUNCTION"
-C L "serial_init" 14 28 1 "FUNCTION"
-F N "serial_init" 14 128 ""
-F G "serial_init" 14 129 "void()" `1612 
-V L "i" 14 130 "int8" `1613 
-D G "pidcontroller" 16 2 ""
+D G "pidcontroller" 13 2 ""
 C L "pid_update" 11 2 24 "FUNCTION"
-C L "pid_update" 16 7 1 "FUNCTION"
-F N "pid_update" 16 9 ""
-V L "ch" 16 9 "int8" `1615 
-F G "pid_update" 16 9 "void(int8 ch)" `1614 
-V L "err" 16 10 "float" `1616 
-C L "pid_update" 16 7 1 "FUNCTION"
-C L "pid_update" 16 7 1 "FUNCTION"
-V L "p" 16 12 "float" `1617 
-C L "pid_update" 16 7 1 "FUNCTION"
-V L "D" 16 13 "float" `1618 
-C L "pid_update" 16 7 1 "FUNCTION"
-C L "pid_update" 16 7 1 "FUNCTION"
-C L "pid_update" 16 7 1 "FUNCTION"
-C L "pid_task" 16 7 1 "FUNCTION"
-F N "pid_task" 16 24 ""
-V L "ch" 16 24 "int8" `1620 
-F G "pid_task" 16 24 "void(int8 ch)" `1619 
-V L "index" 16 25 "int8" `1621 
+C L "pid_update" 13 7 1 "FUNCTION"
+F N "pid_update" 13 9 ""
+V L "ch" 13 9 "int8" `1558 
+F G "pid_update" 13 9 "void(int8 ch)" `1557 
+V L "err" 13 10 "float" `1559 
+C L "pid_update" 13 7 1 "FUNCTION"
+C L "pid_update" 13 7 1 "FUNCTION"
+V L "p" 13 12 "float" `1560 
+C L "pid_update" 13 7 1 "FUNCTION"
+V L "D" 13 13 "float" `1561 
+C L "pid_update" 13 7 1 "FUNCTION"
+C L "pid_update" 13 7 1 "FUNCTION"
+C L "pid_update" 13 7 1 "FUNCTION"
+C L "pid_task" 13 7 1 "FUNCTION"
+F N "pid_task" 13 24 ""
+V L "ch" 13 24 "int8" `1563 
+F G "pid_task" 13 24 "void(int8 ch)" `1562 
+V L "index" 13 25 "int8" `1564 
+C L "pid_task" 13 7 1 "FUNCTION"
+D G "__STDBOOL_H__" 14 18 ""
+T G "bool" 14 33 "int1" `1565 
+D G "true" 14 34 "1"
+D G "false" 14 35 "0"
+D G "__bool_true_false_are_defined" 14 36 "1"
+D G "DACfullScale" 12 11 "655.35" "full scale/100 because CV = %"
+C L "invert_voltage" 12 14 1 "FUNCTION"
+F N "invert_voltage" 12 16 ""
+V L "ch" 12 16 "int8" `1570 
+V L "inv_v" 12 16 "int8" `1571 
+F G "invert_voltage" 12 16 "void(int8 ch,int8 inv_v)" `1569 
+C L "set_nanoDAC_outputs" 12 14 1 "FUNCTION"
+F N "set_nanoDAC_outputs" 12 30 ""
+V L "ch" 12 30 "int8" `1573 
+F G "set_nanoDAC_outputs" 12 30 "void(int8 ch)" `1572 
+V L "txData" 12 31 "int16" `1574 
+C L "set_nanoDAC_outputs" 12 14 2 "FUNCTION"
+C L "set_nanoDAC_outputs" 12 14 2 "FUNCTION"
+C L "set_nanoDAC_outputs" 12 14 1 "FUNCTION"
+C L "control_task" 12 14 1 "FUNCTION"
+F N "control_task" 12 71 ""
+F G "control_task" 12 71 "void()" `1580 
+V L "state" 12 72 "int8" `1581 
+C L "control_init" 12 14 1 "FUNCTION"
+F N "control_init" 12 90 ""
+F G "control_init" 12 90 "void()" `1582 
+D G "serialPort" 15 2 ""
+D G "cmd_buffer" 16 2 ""
+D G "startChr" 16 17 "'~'" "start character. Also diagnostic command type"
+D G "diagCmdType" 16 18 "startChr"
+D G "endChr" 16 19 "'\n'"
+D G "delimiter" 16 20 "','"
+D G "ignoreChr1" 16 21 "'\r'"
+D G "ignoreChr2" 16 22 "' '"
+D G "noRecordFound" 16 23 " (char)0xFF"
+D G "numRecords" 16 25 "4"
+D G "numParam" 16 26 "7"
+D G "lenParam" 16 27 "25"
+D G "useSerial" 16 29 ""
+E G "tcp" 16 32 "0" `1584 
+E G "ser" 16 32 "1" `1585 
+V G "" 16 32 "" "this structure holds a command. This is used by the serial routine as well"
+V G "SERcmd" 16 52 "{int1 full,int8 chrIndex,int8 paramIndex,int8 recReadIndex,int8 recWriteIndex,int8 t,int8[7][25] SERcmd}[4]" `1595  "holds serial command"
+V G "SRI" 16 53 "int8" `1596 
+V G "SWI" 16 54 "int8" `1597 
+V G "retData" 16 63 "int8[100]" `1598  "this is used to hold return data"
+C L "resetSERcmd" 16 5 1 "FUNCTION"
+F N "resetSERcmd" 16 69 ""
+V L "recNum" 16 69 "int8" `1600 
+F G "resetSERcmd" 16 70 "void(int8 recNum)" `1599 
+V L "i" 16 73 "int8" `1601 
+C L "getNextSERReadIndex" 16 5 1 "FUNCTION"
+F N "getNextSERReadIndex" 16 90 ""
+F G "getNextSERReadIndex" 16 91 "int8()" `1602 
+C L "setNextSERWriteIndex" 16 5 1 "FUNCTION"
+F N "setNextSERWriteIndex" 16 104 ""
+F G "setNextSERWriteIndex" 16 105 "void()" `1603 
+D G "use_RS485" 15 6 "" "adds RX enable pin//"
+D G "oneByteCmdTestValue" 15 8 "128"
+D G "UART_BUFFER_SIZE" 15 9 "60"
+D G "UART_EOT_CHAR1" 15 10 "0x0D" "Carriage Return"
+D G "UART_EOT_CHAR2" 15 11 "0x0A" "Line Feed"
+D G "UART_SOT_CHAR" 15 12 "'~'" "START CHARACTER"
+D G "line_turnaround_char" 15 13 "0xFF"
+V G "UART_BUFFER" 15 17 "int8[60]" `1605 
+V G "UART_WR_PTR" 15 18 "int8" `1606 
+V G "UART_RD_PTR" 15 19 "int8" `1607 
+V G "BYTES_AVAILABLE" 15 20 "int1" `1608 
+C L "RX_isr" 15 28 4 "FUNCTION"
+F N "RX_isr" 15 40 ""
+F G "RX_isr" 15 41 "void()" `1614 
+C L "getchFromBuffer" 15 28 1 "FUNCTION"
+F N "getchFromBuffer" 15 54 ""
+F G "getchFromBuffer" 15 55 "int8()" `1615 
+V L "data" 15 56 "int8" `1616 
+C L "serial_task" 15 28 1 "FUNCTION"
+F N "serial_task" 15 66 ""
+F G "serial_task" 15 67 "void()" `1617 
+V L "rxChar" 15 70 "int8" `1618 
+C L "serial_task" 15 28 1 "FUNCTION"
+C L "serial_task" 15 28 1 "FUNCTION"
+C L "serial_init" 15 28 1 "FUNCTION"
+F N "serial_init" 15 128 ""
+F G "serial_init" 15 129 "void()" `1623 
+V L "i" 15 130 "int8" `1624 
 D G "timeout" 17 2 ""
-V G "timeCounter" 17 21 "int32" `1622 
+V G "timeCounter" 17 21 "int32" `1625 
 C L "event_timer_init" 17 6 1 "FUNCTION"
 F N "event_timer_init" 17 26 ""
-F G "event_timer_init" 17 27 "void()" `1623 
+F G "event_timer_init" 17 27 "void()" `1626 
 C L "event_timer_init" 17 6 1 "FUNCTION"
 C L "TIMER1_isr" 17 6 1 "FUNCTION"
 F N "TIMER1_isr" 17 41 ""
-F G "TIMER1_isr" 17 42 "void()" `1624 
+F G "TIMER1_isr" 17 42 "void()" `1627 
 C L "TIMER1_isr" 17 6 1 "FUNCTION"
 C L "TIMER1_isr" 17 6 1 "FUNCTION"
 D G "cmdHandlerC" 18 2 ""
 D G "cmdHandler" 19 2 ""
 D G "hwID" 19 5 "'D'" "DiFCS"
-T G "resp" 19 13 "{int8 id,*int8 msg}" `1628  "!#define INVALID_DATA "error - invalid data""
+T G "resp" 19 13 "{int8 id,*int8 msg}" `1631  "!#define INVALID_DATA "error - invalid data""
 C L "getRev" 19 8 15 "FUNCTION"
 F N "getRev" 19 37 ""
-V L "??65535" 19 37 "int8" `1630 
-f G "getRev" 19 37 "int8(int8 )" `1629  "gr"
+V L "??65535" 19 37 "int8" `1633 
+f G "getRev" 19 37 "int8(int8 )" `1632  "gr"
 F N "getSN" 19 38 ""
-V L "??65535" 19 38 "int8" `1632 
-f G "getSN" 19 38 "int8(int8 )" `1631  "gs"
+V L "??65535" 19 38 "int8" `1635 
+f G "getSN" 19 38 "int8(int8 )" `1634  "gs"
 F N "getOPchMap" 19 40 ""
-V L "??65535" 19 40 "int8" `1634 
-f G "getOPchMap" 19 40 "int8(int8 )" `1633  "gChMap,   {1|2}"
+V L "??65535" 19 40 "int8" `1637 
+f G "getOPchMap" 19 40 "int8(int8 )" `1636  "gChMap,   {1|2}"
 F N "setOPchMap" 19 41 ""
-V L "??65535" 19 41 "int8" `1636 
-f G "setOPchMap" 19 41 "int8(int8 )" `1635  "sChMap,   {1|2}, {X|Y}"
+V L "??65535" 19 41 "int8" `1639 
+f G "setOPchMap" 19 41 "int8(int8 )" `1638  "sChMap,   {1|2}, {X|Y}"
 F N "getIPchMode" 19 43 ""
-V L "??65535" 19 43 "int8" `1638 
-f G "getIPchMode" 19 43 "int8(int8 )" `1637  "gChMode,  {1|2}"
+V L "??65535" 19 43 "int8" `1641 
+f G "getIPchMode" 19 43 "int8(int8 )" `1640  "gChMode,  {1|2}"
 F N "setIPchMode" 19 44 ""
-V L "??65535" 19 44 "int8" `1640 
-f G "setIPchMode" 19 44 "int8(int8 )" `1639  "sChMode,  {1|2}, {MANUAL|MAGSNS}"
+V L "??65535" 19 44 "int8" `1643 
+f G "setIPchMode" 19 44 "int8(int8 )" `1642  "sChMode,  {1|2}, {MANUAL|MAGSNS}"
 F N "getPIDvals" 19 46 ""
-V L "??65535" 19 46 "int8" `1642 
-f G "getPIDvals" 19 46 "int8(int8 )" `1641  "gPID,     {1|2}, {P|I|D}"
+V L "??65535" 19 46 "int8" `1645 
+f G "getPIDvals" 19 46 "int8(int8 )" `1644  "gPID,     {1|2}, {P|I|D}"
 F N "setPIDvals" 19 47 ""
-V L "??65535" 19 47 "int8" `1644 
-f G "setPIDvals" 19 47 "int8(int8 )" `1643  "sPID,     {1|2}, {P|I|D}, <float>"
+V L "??65535" 19 47 "int8" `1647 
+f G "setPIDvals" 19 47 "int8(int8 )" `1646  "sPID,     {1|2}, {P|I|D}, <float>"
 F N "getSetPoint" 19 49 ""
-V L "??65535" 19 49 "int8" `1646 
-f G "getSetPoint" 19 49 "int8(int8 )" `1645  "gSP,      {1|2}"
+V L "??65535" 19 49 "int8" `1649 
+f G "getSetPoint" 19 49 "int8(int8 )" `1648  "gSP,      {1|2}"
 F N "setSetPoint" 19 50 ""
-V L "??65535" 19 50 "int8" `1648 
-f G "setSetPoint" 19 50 "int8(int8 )" `1647  "sSP,      {1|2}, <float>"
+V L "??65535" 19 50 "int8" `1651 
+f G "setSetPoint" 19 50 "int8(int8 )" `1650  "sSP,      {1|2}, <float>"
 F N "getAllSensorCalParams" 19 52 ""
-V L "??65535" 19 52 "int8" `1650 
-f G "getAllSensorCalParams" 19 52 "int8(int8 )" `1649  "gSCals,   {1|2}"
+V L "??65535" 19 52 "int8" `1653 
+f G "getAllSensorCalParams" 19 52 "int8(int8 )" `1652  "gSCals,   {1|2}"
 F N "getSensorCalParam" 19 53 ""
-V L "??65535" 19 53 "int8" `1652 
-f G "getSensorCalParam" 19 53 "int8(int8 )" `1651  "gSCal,    {1|2}, {c0|c1|c2|c3|c4|c5}"
+V L "??65535" 19 53 "int8" `1655 
+f G "getSensorCalParam" 19 53 "int8(int8 )" `1654  "gSCal,    {1|2}, {0|1|2|3|4|5}"
 F N "setSensorCalParam" 19 54 ""
-V L "??65535" 19 54 "int8" `1654 
-f G "setSensorCalParam" 19 54 "int8(int8 )" `1653  "sSCal,    {1|2}, {c0|c1|c2|c3|c4|c5}, <float>"
+V L "??65535" 19 54 "int8" `1657 
+f G "setSensorCalParam" 19 54 "int8(int8 )" `1656  "sSCal,    {1|2}, {0|1|2|3|4|5}, <float>"
 F N "getMonitorCalParam" 19 56 ""
-V L "??65535" 19 56 "int8" `1656 
-f G "getMonitorCalParam" 19 56 "int8(int8 )" `1655  "gMCal,    {N15|200|5V6|5VA|3V6X|3V3A|3V3D}"
+V L "??65535" 19 56 "int8" `1659 
+f G "getMonitorCalParam" 19 56 "int8(int8 )" `1658  "gMCal,    {N15|200|5V6|5VA|3V6X|3V3A|3V3D}"
 F N "setMonitorCalParam" 19 57 ""
-V L "??65535" 19 57 "int8" `1658 
-f G "setMonitorCalParam" 19 57 "int8(int8 )" `1657  "sMCal,    {N15|200|5V6|5VA|3V6X|3V3A|3V3D}, <float>, <float>"
+V L "??65535" 19 57 "int8" `1661 
+f G "setMonitorCalParam" 19 57 "int8(int8 )" `1660  "sMCal,    {N15|200|5V6|5VA|3V6X|3V3A|3V3D}, <float>, <float>"
 F N "getMonitorValue" 19 58 ""
-V L "??65535" 19 58 "int8" `1660 
-f G "getMonitorValue" 19 58 "int8(int8 )" `1659  "gMon,     {N15|200|5V6|5VA|3V6X|3V3A|3V3D|all}"
+V L "??65535" 19 58 "int8" `1663 
+f G "getMonitorValue" 19 58 "int8(int8 )" `1662  "gMon,     {N15|200|5V6|5VA|3V6X|3V3A|3V3D|all}"
 F N "getPIDdata" 19 60 ""
-V L "??65535" 19 60 "int8" `1662 
-f G "getPIDdata" 19 60 "int8(int8 )" `1661  "gPIDdata, {1|2}"
+V L "??65535" 19 60 "int8" `1665 
+f G "getPIDdata" 19 60 "int8(int8 )" `1664  "gPIDdata, {1|2}"
 F N "getIPdata" 19 62 ""
-V L "??65535" 19 62 "int8" `1664 
-f G "getIPdata" 19 62 "int8(int8 )" `1663  "gIPdata,  {1|2}, {raw|calib|p0|poles|real}"
+V L "??65535" 19 62 "int8" `1667 
+f G "getIPdata" 19 62 "int8(int8 )" `1666  "gIPdata,  {1|2}, {raw|calib|p0|poles|real}"
 F N "getManOPvals" 19 64 ""
-V L "??65535" 19 64 "int8" `1666 
-f G "getManOPvals" 19 64 "int8(int8 )" `1665  "gManOP,   {1|2}"
+V L "??65535" 19 64 "int8" `1669 
+f G "getManOPvals" 19 64 "int8(int8 )" `1668  "gManOP,   {1|2}"
 F N "setManOPvals" 19 65 ""
-V L "??65535" 19 65 "int8" `1668 
-f G "setManOPvals" 19 65 "int8(int8 )" `1667  "sManOP,   {1|2}, <float>"
+V L "??65535" 19 65 "int8" `1671 
+f G "setManOPvals" 19 65 "int8(int8 )" `1670  "sManOP,   {1|2}, <float>"
 F N "invalidCmd" 19 67 ""
-V L "??65535" 19 67 "int8" `1670 
-f G "invalidCmd" 19 67 "int8(int8 )" `1669 
+V L "??65535" 19 67 "int8" `1673 
+f G "invalidCmd" 19 67 "int8(int8 )" `1672 
 F N "*cmd_func" 19 71 ""
-V L "??65535" 19 71 "int8" `1674 
-T G "*cmd_func" 19 71 "int8(int8 )" `1673 
+V L "??65535" 19 71 "int8" `1677 
+T G "*cmd_func" 19 71 "int8(int8 )" `1676 
 F N "arg_is_float" 19 74 ""
-V L "??65535" 19 74 "*int8" `1678 
-f G "arg_is_float" 19 74 "int8(*int8 )" `1677 
+V L "??65535" 19 74 "*int8" `1681 
+f G "arg_is_float" 19 74 "int8(*int8 )" `1680 
 F N "is_valid_channel" 19 75 ""
-V L "??65535" 19 75 "*int8" `1680 
-f G "is_valid_channel" 19 75 "int8(*int8 )" `1679 
+V L "??65535" 19 75 "*int8" `1683 
+f G "is_valid_channel" 19 75 "int8(*int8 )" `1682 
 F N "hex_to_int" 19 76 ""
-V L "??65535" 19 76 "int8" `1682 
-f G "hex_to_int" 19 76 "int8(int8 )" `1681 
+V L "??65535" 19 76 "int8" `1685 
+f G "hex_to_int" 19 76 "int8(int8 )" `1684 
 F N "echo_cmd" 19 77 ""
-V L "rec" 19 77 "int8" `1684 
-f G "echo_cmd" 19 77 "void(int8 rec)" `1683 
+V L "rec" 19 77 "int8" `1687 
+f G "echo_cmd" 19 77 "void(int8 rec)" `1686 
 F N "command_parser" 19 78 ""
-V L "rec" 19 78 "int8" `1686 
-f G "command_parser" 19 78 "int8(int8 rec)" `1685 
+V L "rec" 19 78 "int8" `1689 
+f G "command_parser" 19 78 "int8(int8 rec)" `1688 
 F N "command_handler_task" 19 79 ""
-f G "command_handler_task" 19 79 "void()" `1687  "LIST OF DIAGNOSTIC COMMAND KEYWORDS AND THEIR FUNCTIONS *"
-V G "cmd_list" 18 6 "{*int8 cmd_name,int8(int8 ) cmd_func,cmd_func cmd_func}[1]" `1688 
+f G "command_handler_task" 19 79 "void()" `1690  "LIST OF DIAGNOSTIC COMMAND KEYWORDS AND THEIR FUNCTIONS *"
+V G "cmd_list" 18 6 "{*int8 cmd_name,int8(int8 ) cmd_func,cmd_func cmd_func}[1]" `1691 
 C L "command_handler_task" 18 30 1 "FUNCTION"
-E G "SUCCESS" 18 33 "0" `1711 
-E G "INV_CMD" 18 34 "1" `1712 
-E G "INV_PARAM" 18 35 "2" `1713 
+E G "SUCCESS" 18 33 "0" `1714 
+E G "INV_CMD" 18 34 "1" `1715 
+E G "INV_PARAM" 18 35 "2" `1716 
 V G "" 18 35 ""
-V G "resp_list" 18 37 "resp[1]" `1714 
+V G "resp_list" 18 37 "resp[1]" `1717 
 C L "command_handler_task" 18 30 1 "FUNCTION"
 F N "getRev" 18 47 ""
-V L "rec" 18 47 "int8" `1719 
-F G "getRev" 18 47 "int8(int8 rec)" `1629 
+V L "rec" 18 47 "int8" `1722 
+F G "getRev" 18 47 "int8(int8 rec)" `1632 
 F N "getSN" 18 52 ""
-V L "rec" 18 52 "int8" `1722 
-F G "getSN" 18 52 "int8(int8 rec)" `1631 
+V L "rec" 18 52 "int8" `1725 
+F G "getSN" 18 52 "int8(int8 rec)" `1634 
 F N "getOPchMap" 18 57 ""
-V L "rec" 18 57 "int8" `1724 
-F G "getOPchMap" 18 57 "int8(int8 rec)" `1633  "** ARG CHECKS ********************"
-V L "arg1" 18 59 "int8" `1723 
+V L "rec" 18 57 "int8" `1727 
+F G "getOPchMap" 18 57 "int8(int8 rec)" `1636  "** ARG CHECKS ********************"
+V L "arg1" 18 59 "int8" `1726 
 C L "getOPchMap" 18 64 1 "*"
 F N "setOPchMap" 18 72 ""
-V L "rec" 18 72 "int8" `1727 
-F G "setOPchMap" 18 72 "int8(int8 rec)" `1635  "** ARG CHECKS ********************"
-V L "arg1" 18 74 "int8" `1726 
-V L "arg2" 18 75 "int8" `1727 
+V L "rec" 18 72 "int8" `1730 
+F G "setOPchMap" 18 72 "int8(int8 rec)" `1638  "** ARG CHECKS ********************"
+V L "arg1" 18 74 "int8" `1729 
+V L "arg2" 18 75 "int8" `1730 
 C L "setOPchMap" 18 83 1 "*"
 F N "getIPchMode" 18 91 ""
-V L "rec" 18 91 "int8" `1733 
-F G "getIPchMode" 18 91 "int8(int8 rec)" `1637  "** ARG CHECKS ********************"
-V L "arg1" 18 93 "int8" `1732 
+V L "rec" 18 91 "int8" `1736 
+F G "getIPchMode" 18 91 "int8(int8 rec)" `1640  "** ARG CHECKS ********************"
+V L "arg1" 18 93 "int8" `1735 
 C L "getIPchMode" 18 98 1 "*"
 F N "setIPchMode" 18 106 ""
-V L "rec" 18 106 "int8" `1736 
-F G "setIPchMode" 18 106 "int8(int8 rec)" `1639  "** ARG CHECKS ********************"
-V L "arg1" 18 108 "int8" `1735 
-V L "arg2" 18 109 "*int8" `1736 
-V L "s_manual" 18 110 "*int8" `1737 
-V L "s_magsns" 18 111 "*int8" `1739 
+V L "rec" 18 106 "int8" `1739 
+F G "setIPchMode" 18 106 "int8(int8 rec)" `1642  "** ARG CHECKS ********************"
+V L "arg1" 18 108 "int8" `1738 
+V L "arg2" 18 109 "*int8" `1739 
+V L "s_manual" 18 110 "*int8" `1740 
+V L "s_magsns" 18 111 "*int8" `1742 
 C L "setIPchMode" 18 119 1 "*"
 F N "getPIDvals" 18 127 ""
-V L "rec" 18 127 "int8" `1742 
-F G "getPIDvals" 18 127 "int8(int8 rec)" `1641  "** ARG CHECKS ********************"
-V L "arg1" 18 129 "int8" `1741 
-V L "arg2" 18 130 "int8" `1742 
+V L "rec" 18 127 "int8" `1745 
+F G "getPIDvals" 18 127 "int8(int8 rec)" `1644  "** ARG CHECKS ********************"
+V L "arg1" 18 129 "int8" `1744 
+V L "arg2" 18 130 "int8" `1745 
 C L "getPIDvals" 18 138 1 "*"
-F N "setPIDvals" 18 147 ""
-V L "rec" 18 147 "int8" `1755 
-F G "setPIDvals" 18 147 "int8(int8 rec)" `1643  "** ARG CHECKS ********************"
-V L "arg1" 18 149 "int8" `1754 
-V L "arg2" 18 150 "int8" `1755 
-V L "arg3" 18 151 "float" `1756 
-C L "setPIDvals" 18 162 1 "*"
-F N "getSetPoint" 18 171 ""
-V L "rec" 18 171 "int8" `1758 
-F G "getSetPoint" 18 171 "int8(int8 rec)" `1645  "** ARG CHECKS ********************"
-V L "arg1" 18 173 "int8" `1757 
-C L "getSetPoint" 18 178 1 "*"
-F N "setSetPoint" 18 183 ""
-V L "rec" 18 183 "int8" `1760 
-F G "setSetPoint" 18 183 "int8(int8 rec)" `1647  "** ARG CHECKS ********************"
-V L "arg1" 18 185 "int8" `1759 
-V L "arg2" 18 186 "float" `1760 
-C L "setSetPoint" 18 194 1 "*"
-F N "getAllSensorCalParams" 18 200 ""
-V L "rec" 18 200 "int8" `1762 
-F G "getAllSensorCalParams" 18 200 "int8(int8 rec)" `1649  "** ARG CHECKS ********************"
-V L "arg1" 18 202 "int8" `1761 
-C L "getAllSensorCalParams" 18 207 1 "*"
-F N "getSensorCalParam" 18 218 ""
-V L "rec" 18 218 "int8" `1769 
-F G "getSensorCalParam" 18 218 "int8(int8 rec)" `1651  "** ARG CHECKS ********************"
-V L "arg1" 18 220 "int8" `1768 
-V L "arg2" 18 221 "int8" `1769 
-C L "getSensorCalParam" 18 229 1 "*"
-F N "setSensorCalParam" 18 241 ""
-V L "rec" 18 241 "int8" `1777 
-F G "setSensorCalParam" 18 241 "int8(int8 rec)" `1653  "** ARG CHECKS ********************"
-V L "arg1" 18 243 "int8" `1776 
-V L "arg2" 18 244 "int8" `1777 
-V L "arg3" 18 245 "float" `1778 
-C L "setSensorCalParam" 18 256 1 "*"
-F N "getMonitorCalParam" 18 268 ""
-V L "rec" 18 268 "int8" `1780 
-F G "getMonitorCalParam" 18 268 "int8(int8 rec)" `1655 
-F N "setMonitorCalParam" 18 273 ""
-V L "rec" 18 273 "int8" `1780 
-F G "setMonitorCalParam" 18 273 "int8(int8 rec)" `1657 
-F N "getMonitorValue" 18 278 ""
-V L "rec" 18 278 "int8" `1780 
-F G "getMonitorValue" 18 278 "int8(int8 rec)" `1659  "** ARG CHECKS ********************"
-V L "arg1" 18 280 "*int8" `1779 
-V L "s_N15" 18 281 "*int8" `1780 
-V L "s_200" 18 282 "*int8" `1782 
-V L "s_5V6" 18 283 "*int8" `1784 
-V L "s_5VA" 18 284 "*int8" `1786 
-V L "s_3V6X" 18 285 "*int8" `1788 
-V L "s_3V3A" 18 286 "*int8" `1790 
-V L "s_3V3D" 18 287 "*int8" `1792 
-V L "s_all" 18 288 "*int8" `1794 
-C L "getMonitorValue" 18 292 1 "*"
-F N "getPIDdata" 18 328 ""
-V L "rec" 18 328 "int8" `1813 
-F G "getPIDdata" 18 328 "int8(int8 rec)" `1661 
-F N "getIPdata" 18 333 ""
-V L "rec" 18 333 "int8" `1813 
-F G "getIPdata" 18 333 "int8(int8 rec)" `1663  "** ARG CHECKS ********************"
-V L "arg1" 18 335 "int8" `1812 
-V L "arg2" 18 336 "*int8" `1813 
-V L "s_raw" 18 337 "*int8" `1814 
-V L "s_calibrated" 18 338 "*int8" `1816 
-V L "s_p0" 18 339 "*int8" `1818 
-V L "s_poles" 18 340 "*int8" `1820 
-V L "s_real" 18 341 "*int8" `1822 
-C L "getIPdata" 18 348 1 "*"
-F N "getManOPvals" 18 376 ""
-V L "rec" 18 376 "int8" `1845 
-F G "getManOPvals" 18 376 "int8(int8 rec)" `1665  "** ARG CHECKS ********************"
-V L "arg1" 18 378 "int8" `1844 
-C L "getManOPvals" 18 383 1 "*"
-F N "setManOPvals" 18 389 ""
-V L "rec" 18 389 "int8" `1847 
-F G "setManOPvals" 18 389 "int8(int8 rec)" `1667  "** ARG CHECKS ********************"
-V L "arg1" 18 391 "int8" `1846 
-V L "arg2" 18 392 "float" `1847 
-C L "setManOPvals" 18 400 1 "*"
-F N "invalidCmd" 18 406 ""
-V L "rec" 18 406 "int8" `1849 
-F G "invalidCmd" 18 406 "int8(int8 rec)" `1669 
-C L "arg_is_float" 18 400 1 "FUNCTION"
-F N "arg_is_float" 18 413 ""
-V L "arg" 18 413 "*int8" `1849 
-F G "arg_is_float" 18 413 "int8(*int8 arg)" `1677 
-V L "decimal" 18 414 "int1" `1848 
-V L "i" 18 415 "int8" `1849 
-C L "arg_is_float" 18 400 1 "FUNCTION"
-C L "arg_is_float" 18 400 1 "FUNCTION"
-F N "is_valid_channel" 18 431 ""
-V L "arg" 18 431 "*int8" `1852 
-F G "is_valid_channel" 18 431 "int8(*int8 arg)" `1679 
-C L "hex_to_int" 18 400 1 "FUNCTION"
-F N "hex_to_int" 18 440 ""
-V L "ascii" 18 440 "int8" `1852 
-F G "hex_to_int" 18 440 "int8(int8 ascii)" `1681 
-C L "echo_cmd" 18 400 1 "FUNCTION"
-F N "echo_cmd" 18 449 ""
-V L "rec" 18 449 "int8" `1852 
-F G "echo_cmd" 18 449 "void(int8 rec)" `1683 
-F N "command_parser" 18 460 ""
-V L "rec" 18 460 "int8" `1855 
-F G "command_parser" 18 460 "int8(int8 rec)" `1685 
-V L "cmd_adr" 18 461 "*int8" `1854 
-V L "cmd_str" 18 462 "*int8" `1855 
-C L "command_parser" 18 400 1 "FUNCTION"
-V L "devID" 18 464 "int8" `1856 
-V L "i" 18 465 "int8" `1857 
-V L "return_code" 18 472 "int8" `1858 
-C L "command_parser" 18 400 1 "FUNCTION"
-C L "command_parser" 18 400 1 "FUNCTION"
-C L "command_parser" 18 400 1 "FUNCTION"
-F N "command_handler_task" 18 482 ""
-F G "command_handler_task" 18 482 "void()" `1687 
-V L "return_code" 18 485 "int8" `1859 
-C L "command_handler_task" 18 400 1 "FUNCTION"
-F N "MAIN" 0 11 ""
-F G "MAIN" 0 12 "void()" `1863 
-C L "MAIN" 0 13 1 "FUNCTION"
-C L "MAIN" 0 13 1 "FUNCTION"
-C L "MAIN" 0 13 1 "FUNCTION"
-C L "MAIN" 0 13 1 "FUNCTION"
-C L "MAIN" 0 13 3 "FUNCTION"
-C L "MAIN" 0 13 1 "FUNCTION"
-C L "MAIN" 0 13 2 "FUNCTION"
-C L "MAIN" 0 13 1 "FUNCTION"
-C L "MAIN" 0 13 10 "FUNCTION"
-V L "xs" 0 44 "sint32" `1866 
-V L "xc" 0 47 "sint32" `1870 
-V L "ys" 0 50 "sint32" `1872 
-V L "yc" 0 53 "sint32" `1874 
-C L "MAIN" 0 13 1 "FUNCTION"
+F N "setPIDvals" 18 148 ""
+V L "rec" 18 148 "int8" `1759 
+F G "setPIDvals" 18 148 "int8(int8 rec)" `1646  "** ARG CHECKS ********************"
+V L "arg1" 18 150 "int8" `1758 
+V L "arg2" 18 151 "int8" `1759 
+V L "arg3" 18 152 "float" `1760 
+C L "setPIDvals" 18 163 1 "*"
+F N "getSetPoint" 18 172 ""
+V L "rec" 18 172 "int8" `1762 
+F G "getSetPoint" 18 172 "int8(int8 rec)" `1648  "** ARG CHECKS ********************"
+V L "arg1" 18 174 "int8" `1761 
+C L "getSetPoint" 18 179 1 "*"
+F N "setSetPoint" 18 184 ""
+V L "rec" 18 184 "int8" `1764 
+F G "setSetPoint" 18 184 "int8(int8 rec)" `1650  "** ARG CHECKS ********************"
+V L "arg1" 18 186 "int8" `1763 
+V L "arg2" 18 187 "float" `1764 
+C L "setSetPoint" 18 195 1 "*"
+F N "getAllSensorCalParams" 18 201 ""
+V L "rec" 18 201 "int8" `1766 
+F G "getAllSensorCalParams" 18 201 "int8(int8 rec)" `1652  "** ARG CHECKS ********************"
+V L "arg1" 18 203 "int8" `1765 
+C L "getAllSensorCalParams" 18 208 1 "*"
+F N "getSensorCalParam" 18 219 ""
+V L "rec" 18 219 "int8" `1773 
+F G "getSensorCalParam" 18 219 "int8(int8 rec)" `1654  "** ARG CHECKS ********************"
+V L "arg1" 18 221 "int8" `1772 
+V L "arg2" 18 222 "int8" `1773 
+C L "getSensorCalParam" 18 230 1 "*"
+F N "setSensorCalParam" 18 242 ""
+V L "rec" 18 242 "int8" `1781 
+F G "setSensorCalParam" 18 242 "int8(int8 rec)" `1656  "** ARG CHECKS ********************"
+V L "arg1" 18 244 "int8" `1780 
+V L "arg2" 18 245 "int8" `1781 
+V L "arg3" 18 246 "float" `1782 
+C L "setSensorCalParam" 18 257 1 "*"
+F N "getMonitorCalParam" 18 269 ""
+V L "rec" 18 269 "int8" `1784 
+F G "getMonitorCalParam" 18 269 "int8(int8 rec)" `1658  "** ARG CHECKS ********************"
+V L "arg1" 18 271 "*int8" `1783 
+V L "s_N15" 18 272 "*int8" `1784 
+V L "s_200" 18 273 "*int8" `1786 
+V L "s_5V6" 18 274 "*int8" `1788 
+V L "s_5VA" 18 275 "*int8" `1790 
+V L "s_3V6X" 18 276 "*int8" `1792 
+V L "s_3V3A" 18 277 "*int8" `1794 
+V L "s_3V3D" 18 278 "*int8" `1796 
+C L "getMonitorCalParam" 18 257 1 "FUNCTION"
+C L "getMonitorCalParam" 18 283 1 "*"
+C L "getMonitorCalParam" 18 283 9 "FUNCTION"
+F N "setMonitorCalParam" 18 319 ""
+V L "rec" 18 319 "int8" `1806 
+F G "setMonitorCalParam" 18 319 "int8(int8 rec)" `1660 
+F N "getMonitorValue" 18 324 ""
+V L "rec" 18 324 "int8" `1806 
+F G "getMonitorValue" 18 324 "int8(int8 rec)" `1662  "** ARG CHECKS ********************"
+V L "arg1" 18 326 "*int8" `1805 
+V L "s_N15" 18 327 "*int8" `1806 
+V L "s_200" 18 328 "*int8" `1808 
+V L "s_5V6" 18 329 "*int8" `1810 
+V L "s_5VA" 18 330 "*int8" `1812 
+V L "s_3V6X" 18 331 "*int8" `1814 
+V L "s_3V3A" 18 332 "*int8" `1816 
+V L "s_3V3D" 18 333 "*int8" `1818 
+V L "s_all" 18 334 "*int8" `1820 
+C L "getMonitorValue" 18 338 1 "*"
+F N "getPIDdata" 18 374 ""
+V L "rec" 18 374 "int8" `1837 
+F G "getPIDdata" 18 374 "int8(int8 rec)" `1664  "** ARG CHECKS ********************"
+V L "arg1" 18 376 "int8" `1836 
+V L "arg2" 18 377 "*int8" `1837 
+V L "s_PV" 18 378 "*int8" `1838 
+V L "s_CV" 18 379 "*int8" `1840 
+V L "s_PVold" 18 380 "*int8" `1842 
+V L "s_I" 18 381 "*int8" `1844 
+C L "getPIDdata" 18 388 1 "*"
+F N "getIPdata" 18 398 ""
+V L "rec" 18 398 "int8" `1851 
+F G "getIPdata" 18 398 "int8(int8 rec)" `1666  "** ARG CHECKS ********************"
+V L "arg1" 18 400 "int8" `1850 
+V L "arg2" 18 401 "*int8" `1851 
+V L "s_raw" 18 402 "*int8" `1852 
+V L "s_calibrated" 18 403 "*int8" `1854 
+V L "s_p0" 18 404 "*int8" `1856 
+V L "s_poles" 18 405 "*int8" `1858 
+V L "s_real" 18 406 "*int8" `1860 
+C L "getIPdata" 18 413 1 "*"
+F N "getManOPvals" 18 441 ""
+V L "rec" 18 441 "int8" `1883 
+F G "getManOPvals" 18 441 "int8(int8 rec)" `1668  "** ARG CHECKS ********************"
+V L "arg1" 18 443 "int8" `1882 
+C L "getManOPvals" 18 448 1 "*"
+F N "setManOPvals" 18 454 ""
+V L "rec" 18 454 "int8" `1885 
+F G "setManOPvals" 18 454 "int8(int8 rec)" `1670  "** ARG CHECKS ********************"
+V L "arg1" 18 456 "int8" `1884 
+V L "arg2" 18 457 "float" `1885 
+C L "setManOPvals" 18 465 1 "*"
+F N "invalidCmd" 18 471 ""
+V L "rec" 18 471 "int8" `1887 
+F G "invalidCmd" 18 471 "int8(int8 rec)" `1672 
+C L "arg_is_float" 18 465 1 "FUNCTION"
+F N "arg_is_float" 18 478 ""
+V L "arg" 18 478 "*int8" `1887 
+F G "arg_is_float" 18 478 "int8(*int8 arg)" `1680 
+V L "decimal" 18 479 "int1" `1886 
+V L "i" 18 480 "int8" `1887 
+C L "arg_is_float" 18 465 1 "FUNCTION"
+C L "arg_is_float" 18 465 1 "FUNCTION"
+F N "is_valid_channel" 18 496 ""
+V L "arg" 18 496 "*int8" `1890 
+F G "is_valid_channel" 18 496 "int8(*int8 arg)" `1682 
+C L "hex_to_int" 18 465 1 "FUNCTION"
+F N "hex_to_int" 18 505 ""
+V L "ascii" 18 505 "int8" `1890 
+F G "hex_to_int" 18 505 "int8(int8 ascii)" `1684 
+C L "echo_cmd" 18 465 1 "FUNCTION"
+F N "echo_cmd" 18 514 ""
+V L "rec" 18 514 "int8" `1890 
+F G "echo_cmd" 18 514 "void(int8 rec)" `1686 
+F N "command_parser" 18 525 ""
+V L "rec" 18 525 "int8" `1893 
+F G "command_parser" 18 525 "int8(int8 rec)" `1688 
+V L "cmd_adr" 18 526 "*int8" `1892 
+V L "cmd_str" 18 527 "*int8" `1893 
+C L "command_parser" 18 465 1 "FUNCTION"
+V L "devID" 18 529 "int8" `1894 
+V L "i" 18 530 "int8" `1895 
+V L "return_code" 18 537 "int8" `1896 
+C L "command_parser" 18 465 1 "FUNCTION"
+C L "command_parser" 18 465 1 "FUNCTION"
+C L "command_parser" 18 465 1 "FUNCTION"
+F N "command_handler_task" 18 547 ""
+F G "command_handler_task" 18 547 "void()" `1690 
+V L "return_code" 18 550 "int8" `1897 
+C L "command_handler_task" 18 465 1 "FUNCTION"
+C L "MAIN" 0 12 2 "FUNCTION"
+F N "MAIN" 0 15 ""
+F G "MAIN" 0 16 "void()" `1901 
+C L "MAIN" 0 12 1 "FUNCTION"
+C L "MAIN" 0 12 1 "FUNCTION"
+C L "MAIN" 0 12 1 "FUNCTION"
+C L "MAIN" 0 12 1 "FUNCTION"
+C L "MAIN" 0 12 1 "FUNCTION"
+C L "MAIN" 0 12 1 "FUNCTION"
+C L "MAIN" 0 12 1 "FUNCTION"
+C L "MAIN" 0 12 1 "FUNCTION"
+C L "MAIN" 0 12 1 "FUNCTION"
+C L "MAIN" 0 12 1 "FUNCTION"
+C L "MAIN" 0 12 1 "FUNCTION"
+C L "MAIN" 0 12 1 "FUNCTION"
 F B "reset_cpu" 0 0
 F B "abs" 1 0
 F B "sleep" 0 1

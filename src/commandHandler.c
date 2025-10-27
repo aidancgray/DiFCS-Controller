@@ -135,10 +135,11 @@ int8 getPIDvals(unsigned int8 rec){
    if (1 != strlen(SERcmd[rec].p[3])) return INV_PARAM;
    else arg2 = SERcmd[rec].p[3][0];
    
-   /*** GET P, I, or D VALUE **********/
+   /*** GET P, I, D, or A(LL) VALUE **********/
    if      ('P' == arg2) sprintf(retData+strlen(retData), "%f,", PID[arg1-1].kP);
    else if ('I' == arg2) sprintf(retData+strlen(retData), "%f,", PID[arg1-1].kI);
    else if ('D' == arg2) sprintf(retData+strlen(retData), "%f,", PID[arg1-1].kD);
+   else if ('A' == arg2) sprintf(retData+strlen(retData), "%f,%f,%f", PID[arg1-1].kP, PID[arg1-1].kI, PID[arg1-1].kD);
    else return INV_PARAM;
    
    return SUCCESS;
@@ -156,7 +157,7 @@ int8 setPIDvals(unsigned int8 rec){
    if (1 != strlen(SERcmd[rec].p[3])) return INV_PARAM;
    else arg2 = SERcmd[rec].p[3][0];
    
-   if (!arg_is_float(strtod(SERcmd[rec].p[4], '\0'))) return INV_PARAM;
+   if (!arg_is_float(SERcmd[rec].p[4])) return INV_PARAM;
    else arg3 = strtod(SERcmd[rec].p[4], '\0');
    
    /*** SET P, I, or D VALUE **********/
@@ -188,7 +189,7 @@ int8 setSetPoint(unsigned int8 rec){
    if (!is_valid_channel(SERcmd[rec].p[2])) return INV_PARAM;
    else arg1 = strtoul(SERcmd[rec].p[2],'\0',10);
    
-   if (!arg_is_float(strtod(SERcmd[rec].p[3], '\0'))) return INV_PARAM;
+   if (!arg_is_float(SERcmd[rec].p[3])) return INV_PARAM;
    else arg2 = strtod(SERcmd[rec].p[3], '\0');
    
    /*** SET SETPOINT ******************/ 
@@ -250,7 +251,7 @@ int8 setSensorCalParam(unsigned int8 rec){
    if (1 != strlen(SERcmd[rec].p[3])) return INV_PARAM;
    else arg2 = SERcmd[rec].p[3][0];
    
-   if (!arg_is_float(strtod(SERcmd[rec].p[4], '\0'))) return INV_PARAM;
+   if (!arg_is_float(SERcmd[rec].p[4])) return INV_PARAM;
    else arg3 = strtod(SERcmd[rec].p[4], '\0');
    
    /*** SET SENSOR CAL PARAM **********/
@@ -266,6 +267,51 @@ int8 setSensorCalParam(unsigned int8 rec){
 }
 
 int8 getMonitorCalParam(unsigned int8 rec){
+   /*** ARG CHECKS ********************/
+   char *arg1;
+   char *s_N15 = "N15";
+   char *s_200 = "200";
+   char *s_5V6 = "5V6";
+   char *s_5VA = "5VA";
+   char *s_3V6X = "3V6X";
+   char *s_3V3A = "3V3A";
+   char *s_3V3D = "3V3D";
+//!   char *s_all = "all";
+   
+   arg1 = SERcmd[rec].p[2];
+   
+   /*** GET MONITOR VALUES ************/
+   if      (0 == strcmp(s_N15, arg1)) {
+      sprintf(retData+strlen(retData), "%f,%f,", monCal.vN15[0],monCal.vN15[1]);
+   }
+   else if (0 == strcmp(s_200, arg1)) {
+      sprintf(retData+strlen(retData), "%f,%f,", monCal.v200[0],monCal.v200[1]);
+   }
+   else if (0 == strcmp(s_5V6, arg1)) {
+      sprintf(retData+strlen(retData), "%f,%f,", monCal.v5V6[0],monCal.v5V6[1]);
+   }
+   else if (0 == strcmp(s_5VA, arg1)) {
+      sprintf(retData+strlen(retData), "%f,%f,", monCal.v5VA[0],monCal.v5VA[1]);
+   }
+   else if (0 == strcmp(s_3V6X, arg1)) {
+      sprintf(retData+strlen(retData), "%f,%f,", monCal.v3V6X[0],monCal.v3V6X[1]);
+   }
+   else if (0 == strcmp(s_3V3A, arg1)) {
+      sprintf(retData+strlen(retData), "%f,%f,", monCal.v3V3A[0],monCal.v3V3A[1]);
+   }
+   else if (0 == strcmp(s_3V3D, arg1)) {
+      sprintf(retData+strlen(retData), "%f,%f,", monCal.v3V3D[0],monCal.v3V3D[1]);
+   }
+//!   else if (0 == strcmp(s_all, arg1)) {
+//!      sprintf(retData+strlen(retData), "%f,%f,", monCal.vN15[0],monCal.vN15[1]);
+//!      sprintf(retData+strlen(retData), "%f,%f,", monCal.v200[0],monCal.v200[1]);
+//!      sprintf(retData+strlen(retData), "%f,%f,", monCal.v5V6[0],monCal.v5V6[1]);
+//!      sprintf(retData+strlen(retData), "%f,%f,", monCal.v5VA[0],monCal.v5VA[1]);
+//!      sprintf(retData+strlen(retData), "%f,%f,", monCal.v3V6X[0],monCal.v3V6X[1]);
+//!      sprintf(retData+strlen(retData), "%f,%f,", monCal.v3V3A[0],monCal.v3V3A[1]);
+//!      sprintf(retData+strlen(retData), "%f,%f,", monCal.v3V3D[0],monCal.v3V3D[1]);
+//!   }
+   else return INV_PARAM;
    
    return SUCCESS;
 }
@@ -291,34 +337,34 @@ int8 getMonitorValue(unsigned int8 rec){
    
    /*** GET MONITOR VALUES ************/
    if      (0 == strcmp(s_N15, arg1)) {
-      sprintf(retData+strlen(retData), "%Ld,", monitorVals.vN15);
+      sprintf(retData+strlen(retData), "%.2f,", monitorVals.vN15);
    }
    else if (0 == strcmp(s_200, arg1)) {
-      sprintf(retData+strlen(retData), "%Ld,", monitorVals.v200);
+      sprintf(retData+strlen(retData), "%.1f,", monitorVals.v200);
    }
    else if (0 == strcmp(s_5V6, arg1)) {
-      sprintf(retData+strlen(retData), "%Ld,", monitorVals.v5V6);
+      sprintf(retData+strlen(retData), "%.3f,", monitorVals.v5V6);
    }
    else if (0 == strcmp(s_5VA, arg1)) {
-      sprintf(retData+strlen(retData), "%Ld,", monitorVals.v5VA);
+      sprintf(retData+strlen(retData), "%.3f,", monitorVals.v5VA);
    }
    else if (0 == strcmp(s_3V6X, arg1)) {
-      sprintf(retData+strlen(retData), "%Ld,", monitorVals.v3V6X);
+      sprintf(retData+strlen(retData), "%.3f,", monitorVals.v3V6X);
    }
    else if (0 == strcmp(s_3V3A, arg1)) {
-      sprintf(retData+strlen(retData), "%Ld,", monitorVals.v3V3A);
+      sprintf(retData+strlen(retData), "%.3f,", monitorVals.v3V3A);
    }
    else if (0 == strcmp(s_3V3D, arg1)) {
-      sprintf(retData+strlen(retData), "%Ld,", monitorVals.v3V3D);
+      sprintf(retData+strlen(retData), "%.3f,", monitorVals.v3V3D);
    }
    else if (0 == strcmp(s_all, arg1)) {
-      sprintf(retData+strlen(retData), "%Ld,", monitorVals.vN15);
-      sprintf(retData+strlen(retData), "%Ld,", monitorVals.v200);
-      sprintf(retData+strlen(retData), "%Ld,", monitorVals.v5V6);
-      sprintf(retData+strlen(retData), "%Ld,", monitorVals.v5VA);
-      sprintf(retData+strlen(retData), "%Ld,", monitorVals.v3V6X);
-      sprintf(retData+strlen(retData), "%Ld,", monitorVals.v3V3A);
-      sprintf(retData+strlen(retData), "%Ld,", monitorVals.v3V3D);
+      sprintf(retData+strlen(retData), "%.2f,", monitorVals.vN15);
+      sprintf(retData+strlen(retData), "%.1f,", monitorVals.v200);
+      sprintf(retData+strlen(retData), "%.3f,", monitorVals.v5V6);
+      sprintf(retData+strlen(retData), "%.3f,", monitorVals.v5VA);
+      sprintf(retData+strlen(retData), "%.3f,", monitorVals.v3V6X);
+      sprintf(retData+strlen(retData), "%.3f,", monitorVals.v3V3A);
+      sprintf(retData+strlen(retData), "%.3f,", monitorVals.v3V3D);
    }
    else return INV_PARAM;
    
@@ -326,6 +372,25 @@ int8 getMonitorValue(unsigned int8 rec){
 }
 
 int8 getPIDdata(unsigned int8 rec){
+  /*** ARG CHECKS ********************/ 
+   int8 arg1;
+   char *arg2;
+   char *s_PV = "PV";
+   char *s_CV = "CV";
+   char *s_PVold = "PVold";
+   char *s_I = "I";
+   
+   if (!is_valid_channel(SERcmd[rec].p[2])) return INV_PARAM;
+   else arg1 = strtoul(SERcmd[rec].p[2],'\0',10);
+   
+   arg2 = SERcmd[rec].p[3];
+   
+   /*** GET PV, CV, PVold, I, or A(LL) VALUE **********/
+   if      (0 == strcmp(s_PV, arg2))     sprintf(retData+strlen(retData), "%f,", PID[arg1-1].PV);
+   else if (0 == strcmp(s_CV, arg2))     sprintf(retData+strlen(retData), "%f,", PID[arg1-1].CV);
+   else if (0 == strcmp(s_PVold, arg2))  sprintf(retData+strlen(retData), "%f,", PID[arg1-1].PVold);
+   else if (0 == strcmp(s_I, arg2))      sprintf(retData+strlen(retData), "%f,", PID[arg1-1].I);
+   else return INV_PARAM;
    
    return SUCCESS;
 }
@@ -485,7 +550,7 @@ void command_handler_task(){
       int8 return_code = command_parser(SRI);
       //echo_cmd(SRI);
       sprintf(retData + strlen(retData), "%s", resp_list[return_code].msg);
-      fprintf(SERIAL, "%s,%s", SERcmd[SRI].p[0], retData);
+      fprintf(SERIAL, "$%s,%s\n", SERcmd[SRI].p[0], retData);
       
       resetSERcmd(SRI);
    }

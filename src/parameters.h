@@ -18,7 +18,6 @@
 
 typedef enum channelMap {chX, chY}; // Piezo channels
 typedef enum channelMode {MANUAL, MAGSNS}; // Voltage or Magnetic Sensor Control
-//!typedef enum sensorType {kmxp1000, kmxp2000}; // Magsensors
 
 /*****************************************************************************/
 /* CAT24C04 EEProm --- page size = 16 bytes, Write when LSB=0 Read when LSB=1*/
@@ -68,7 +67,10 @@ struct pidParams
    float PVold;  // oldPV value  
    float CV;     // control variable-- output -- 0 to 100%
    float I;      // integral value
-}PID[2];
+}PID[2] = {
+   {0.01,0,0,0,0,0,0,0},
+   {0.01,0,0,0,0,0,0,0}
+   };
 
 /*****************************************************************************/
 /* Output Channel Map                                                        */
@@ -135,9 +137,14 @@ struct monCalParams
    float v3V3A[2];
    float v3V3D[2];
    
-}monCal = 
-{
-   {0,1}, {0,1}, {0,1}, {0,1}, {0,1}, {0,1}, {0,1}
+}monCal = {
+   {0, -0.02245509}, 
+   {0,   0.2127659}, 
+   {0, 0.008432515}, 
+   {0, 0.008173486}, 
+   {0, 0.009655914}, 
+   {0, 0.007094828}, 
+   {0, 0.007081720}
 };
 
 /*****************************************************************************/
@@ -171,21 +178,23 @@ struct mv
    float v3V6X;
    float v3V3A;
    float v3V3D;
-}monitorVals;
+}monitorVals = {0,0,0,0,0,0,0};
 
 struct adcV
 {
-   float sinRaw;    // adc raw count data
-   float cosRaw;    // adc raw count data
-   float sinCounts; // calibrated counts
-   float cosCounts; // calibrated counts
+   float sinRaw;           // adc raw count data
+   float cosRaw;           // adc raw count data
+   float sinCounts;        // calibrated counts
+   float cosCounts;        // calibrated counts
+   float sinLast;          // previous sin data
+   float cosLast;          // previous cos data
    float p0;               // mid-pole position in microns
-   int8  npoles;           // number of poles passed
+   signed int8  npoles;           // number of poles passed
    float pReal;            // real position in microns
 }adcVals[2] = 
 {
-   {0,0,0,0,0},
-   {0,0,0,0,0}
+   {0,0,0,0,0,0,0,0,0},
+   {0,0,0,0,0,0,0,0,0}
 };
 
 // used with timeouts

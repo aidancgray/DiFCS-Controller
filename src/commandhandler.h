@@ -50,8 +50,8 @@ int8 getSetPoint(unsigned int8);           // gSP,      {1|2}
 int8 setSetPoint(unsigned int8);           // sSP,      {1|2}, <float>
 
 int8 getAllSensorCalParams(unsigned int8); // gSCals,   {1|2}
-int8 getSensorCalParam(unsigned int8);     // gSCal,    {1|2}, {c0|c1|c2|c3|c4|c5}
-int8 setSensorCalParam(unsigned int8);     // sSCal,    {1|2}, {c0|c1|c2|c3|c4|c5}, <float>
+int8 getSensorCalParam(unsigned int8);     // gSCal,    {1|2}, {0|1|2|3|4|5}
+int8 setSensorCalParam(unsigned int8);     // sSCal,    {1|2}, {0|1|2|3|4|5}, <float>
 
 int8 getMonitorCalParam(unsigned int8);    // gMCal,    {N15|200|5V6|5VA|3V6X|3V3A|3V3D}
 int8 setMonitorCalParam(unsigned int8);    // sMCal,    {N15|200|5V6|5VA|3V6X|3V3A|3V3D}, <float>, <float>

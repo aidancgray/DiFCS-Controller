@@ -1,6 +1,7 @@
 #ifndef control
 #define control
 #include <parameters.h>
+#include <pid.h>
 #include <stdbool.h>
 
 #pin_select SCK1=PIN_C3
@@ -38,6 +39,7 @@ void set_nanoDAC_outputs(channelMap ch){
       txData = (unsigned int16)(abs(manualOutputValues[ch]) * DACfullScale);
    }
    else {
+      pid_task(ch);
       if ( PID[(int)ch].CV < 0) invert_voltage(ch, TRUE); 
       else                      invert_voltage(ch, FALSE);
       
@@ -71,11 +73,11 @@ void control_task(){
    
    switch (state)
    {
-      case 0:       
+      case 0:
          set_nanoDAC_outputs(chX);
          state = 1;
       break;
-      default:
+      case 1:
          set_nanoDAC_outputs(chY);
          state = 0;
       break;

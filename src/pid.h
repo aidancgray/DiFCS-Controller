@@ -23,7 +23,8 @@ void pid_update (channelMap ch){
 /*****************************************************************************/
 void pid_task(channelMap ch){
    static int index = 0;
-   if (adcVals[ch].pReal != PID[ch].PV) pid_update(ch);
+//!   if (adcVals[ch].pReal != PID[ch].PV) pid_update(ch);
+   if (PID[ch].SP != PID[ch].PV) pid_update(ch);
    if ((index++) >= numChannels) index = 0;
 }
 

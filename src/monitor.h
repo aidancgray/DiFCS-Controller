@@ -8,15 +8,9 @@
 #define sensorSampleRate 50 // 50mS delay between each sensor sample = 200ms cadence 
 
 #define maxCount 16777216.0   // ADC max count
-//!#define vRef 2.048            // ADC vRef
+#define vRef 2.048            // ADC vRef
 
 #define sc sensorCal
-
-// adc settings for magnetoresistive sensors
-//!#define reg0cfg IPp1n2|g16|PGAenabled                   // 0x3A
-//!#define reg1cfg DRn20|MDturbo|CMsingle|TSDisable|BCSoff // 0x00
-//!#define reg2cfg REFinternal|FIR60|PSWopen|Ioff          // 0x30
-//!#define reg3cfg I1disabled|I2disabled|drdyPin           // 0x00
 
 #define vMonN15   6
 #define vMon200   16
@@ -50,6 +44,7 @@ void internal_monitor_task()
          case 0:     // vMonN15
             monitorVals.vN15 = read_adc(ADC_READ_ONLY) * monCal.vN15[1] + monCal.vN15[0];
             set_adc_channel(vMon200);
+            delay_ms(10);
             read_adc(ADC_START_ONLY);
             state = 1;
          break;
@@ -57,6 +52,7 @@ void internal_monitor_task()
          case 1:     // vMon200
             monitorVals.v200 = read_adc(ADC_READ_ONLY) * monCal.v200[1] + monCal.v200[0];
             set_adc_channel(vMon5V6);
+            delay_ms(10);
             read_adc(ADC_START_ONLY);
             state = 2;
          break;
@@ -64,6 +60,7 @@ void internal_monitor_task()
          case 2:     // vMon5V6
             monitorVals.v5V6 = read_adc(ADC_READ_ONLY) * monCal.v5V6[1] + monCal.v5V6[0];
             set_adc_channel(vMon5VA);
+            delay_ms(10);
             read_adc(ADC_START_ONLY);
             state = 3;
          break;
@@ -71,6 +68,7 @@ void internal_monitor_task()
          case 3:     // vMon5VA
             monitorVals.v5VA = read_adc(ADC_READ_ONLY) * monCal.v5VA[1] + monCal.v5VA[0];
             set_adc_channel(vMon3V6X);
+            delay_ms(10);
             read_adc(ADC_START_ONLY);
             state = 4;
          break;
@@ -78,6 +76,7 @@ void internal_monitor_task()
          case 4:     // vMon3V6X
             monitorVals.v3V6X = read_adc(ADC_READ_ONLY) * monCal.v3V6X[1] + monCal.v3V6X[0];
             set_adc_channel(vMon3V3A);
+            delay_ms(10);
             read_adc(ADC_START_ONLY);
             state = 5;
          break;
@@ -85,11 +84,12 @@ void internal_monitor_task()
          case 5:     // vMon3V3A
             monitorVals.v3V3A = read_adc(ADC_READ_ONLY) * monCal.v3V3A[1] + monCal.v3V3A[0];
             set_adc_channel(vMon3V3D);
+            delay_ms(10);
             read_adc(ADC_START_ONLY);
             state = 6;
          break;
          
-         default:    // vMon3V3D
+         case 6:    // vMon3V3D
             monitorVals.v3V3D = read_adc(ADC_READ_ONLY) * monCal.v3V3D[1] + monCal.v3V3D[0];
             set_adc_channel(vMonN15);
             read_adc(ADC_START_ONLY);
@@ -103,6 +103,9 @@ void internal_monitor_task()
 /*****************************************************************************/
 void sensor_process_data(int8 ch, signed int32 sinRawCounts, signed int32 cosRawCounts)
 {
+   adcVals[ch].sinLast = adcVals[ch].sinCounts;
+   adcVals[ch].cosLast = adcVals[ch].cosCounts;
+   
    adcVals[ch].sinRaw = (float)sinRawCounts;
    adcVals[ch].cosRaw = (float)cosRawCounts;
    
@@ -111,8 +114,17 @@ void sensor_process_data(int8 ch, signed int32 sinRawCounts, signed int32 cosRaw
    float pTmp = 0;
    float polePitch = magPP;
    
+   if (adcVals[ch].cosCounts < 0){
+      if ((adcVals[ch].sinCounts > 0) && (adcVals[ch].sinLast < 0)){
+         adcVals[ch].npoles--;
+      }
+      else if ((adcVals[ch].sinCounts < 0) && (adcVals[ch].sinLast > 0)){
+         adcVals[ch].npoles++;
+      }
+   }
+   
    adcVals[ch].p0 = polePitch * ( 1000 / (2*PI) ) * atan2( (float)adcVals[ch].sinCounts, (float)adcVals[ch].cosCounts );
-   pTmp = adcVals[ch].p0 + ( polePitch * adcVals[ch].npoles );
+   pTmp = adcVals[ch].p0 + ( 1000 * polePitch * (float)adcVals[ch].npoles );
    
    adcVals[ch].pReal = (pow(pTmp*sc[ch].c5,5) + pow(pTmp*sc[ch].c4,4) + pow(pTmp*sc[ch].c3,3) + pow(pTmp*sc[ch].c2,2) + pTmp*sc[ch].c1 + sc[ch].c0);
    

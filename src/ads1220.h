@@ -121,8 +121,8 @@ typedef enum {reg0 = 0x00,reg1 = 0x04 ,reg2 = 0x08, reg3 = 0x0C}adsReg;
 #define doutPin 0x20
 
 // REGISTER CONGIGURATIONS FOR THIS APP
-#define reg0config IPp1n2|g16|PGAenabled // 0x38//
-#define reg1config DRn20|MDnormal|CMsingle|TSDisable|BCSoff //0x00
+#define reg0config IPp1n2|g1|PGAenabled // 0x30//
+#define reg1config DRn20|MDturbo|CMsingle|TSDisable|BCSoff //0x10
 #define reg2config REFinternal|FIR60|PSWopen|Ioff //0x30
 #define reg3config I1disabled|I2disabled|drdyPin //0x00
 
@@ -149,6 +149,7 @@ void ads_deselect_all()
    output_high(_CS1);
    output_high(_CS2);
    output_high(_CS3); 
+   delay_us(10);
 }
 
 /*****************************************************************************/
@@ -172,7 +173,7 @@ void ads_select_ch(int8 ch)
          output_low(_CS3);
       break;              
    }
-   delay_us(20);
+   delay_us(10);
 }
 
 /*****************************************************************************/
@@ -192,7 +193,7 @@ void ads_select_block(int8 block)
          output_low(_CS3);
       break;         
    }
-   delay_us(20);
+   delay_us(10);
 }
 
 /*****************************************************************************/
@@ -268,12 +269,11 @@ signed int32 ads_read_data(int8 ch)
    }data;
    
    ads_read_command(ch, ADSreadData);
-   data.dBytes[3] = 0;
+   data.dBytes[0] = 0;
+   data.dBytes[3] = spi_read2(0);
    data.dBytes[2] = spi_read2(0);
    data.dBytes[1] = spi_read2(0);
-   data.dBytes[0] = spi_read2(0);
    
-   ads_write_command(ch, ADSstart);
    ads_deselect_all();
    return data.dWord;
 }

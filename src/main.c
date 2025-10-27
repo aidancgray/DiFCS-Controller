@@ -8,15 +8,18 @@
 #include <eventTimer.h>
 #include <commandHandler.c>
 
+
+//!#define DEBUG_1
+//!#define DEBUG_2
+
 void main()
 {
    IO_init();                    // set up IO 
    params_init();                // load parameters
    monitor_init();               // initialize internal ADC for voltage and current telemetry
    control_init();               // initialize the output control DACs
-   output_high(EN_EXC);
    serial_init();                // setup the serial port
-//!   event_timer_init();
+   event_timer_init();
 //!   setup_wdt(WDT_512MS);
    enable_interrupts(GLOBAL);
    
@@ -24,37 +27,29 @@ void main()
    {
 //!      restart_wdt();
       internal_monitor_task();   //Update monitored voltage and currents etc
-//!      sensor_monitor_task();     //get magnetoresistive sensor data
+      sensor_monitor_task();     //get magnetoresistive sensor data
       control_task();            //output control
       serial_task();             //serial port 
       
-//!      adcVals[0].sinRaw = ads_read_data(0);
-//!      adcVals[0].cosRaw = ads_read_data(1);
-//!      adcVals[1].sinRaw = ads_read_data(2);
-//!      adcVals[1].cosRaw = ads_read_data(3);
-//!      
-//!      signed int32 xs = adcVals[0].sinRaw;
-//!      signed int32 xc = adcVals[0].cosRaw;
-//!      
-//!      signed int32 ys = adcVals[1].sinRaw;
-//!      signed int32 yc = adcVals[1].cosRaw;
+      #ifdef DEBUG_1
+      fprintf(SERIAL, "#D0,1,%.0f,%.0f,SUCCESS\n", adcVals[0].sinCounts, adcVals[0].cosCounts);
+      fprintf(SERIAL, "#D0,2,%.0f,%.0f,SUCCESS\n", adcVals[1].sinCounts, adcVals[1].cosCounts);
+      fprintf(SERIAL, "#D0,1,%3.3f,SUCCESS\n", adcVals[0].pReal);
+      fprintf(SERIAL, "#D0,2,%3.3f,SUCCESS\n", adcVals[1].pReal);
+      #endif
       
-//!      fprintf(SERIAL, "y= %Ld, %Ld | x= %Ld, %Ld\r\n", ys, yc, xs, xc);
-      
-      signed int32 xs = ads_read_data(0);
-      fprintf(SERIAL, "%Ld\r\n", xs);
-      
-      signed int32 xc = ads_read_data(1);
-      fprintf(SERIAL, "%Ld\r\n", xc);
-      
-      signed int32 ys = ads_read_data(2);
-      fprintf(SERIAL, "%Ld\r\n", ys);
-      
-      signed int32 yc = ads_read_data(3);
-      fprintf(SERIAL, "%Ld\r\n", yc);
+      #ifdef DEBUG_2
+      set_adc_channel(vMon3V6X);
+      delay_ms(10);
+      int16 mon3V6X = read_adc(ADC_READ_ONLY);
+      delay_ms(10);
+      read_adc(ADC_START_ONLY);
+      delay_ms(10);
+      fprintf(SERIAL, "%Ld\n", mon3V6X);
+      #endif
       
       command_handler_task();    //execute commands
       
-      delay_ms(500);
+      delay_ms(200);
    }
 }
