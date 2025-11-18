@@ -68,8 +68,8 @@ struct pidParams
    float CV;     // control variable-- output -- 0 to 100%
    float I;      // integral value
 }PID[2] = {
-   {0.01,0,0,0,0,0,0,0},
-   {0.01,0,0,0,0,0,0,0}
+   {0.01,0.3,0.1,0,0,0,0,0},
+   {0.01,0.3,0.1,0,0,0,0,0}
    };
 
 /*****************************************************************************/
@@ -78,6 +78,9 @@ struct pidParams
 #define channel_map_ee_addr 128
 #define channel_map_length 2  // length in bytes
 channelMap chMap[2] = {chX, chY};
+
+#define op_upper_bound 63
+#define op_lower_bound -63
 
 /*****************************************************************************/
 /* Input Channel Mode                                                        */
@@ -196,6 +199,8 @@ struct adcV
    {0,0,0,0,0,0,0,0,0},
    {0,0,0,0,0,0,0,0,0}
 };
+
+unsigned int16 dacVals[2] = {0,0};
 
 // used with timeouts
 unsigned int32 timeoutReg0 = 0; //All timers are defined in milliseconds, 

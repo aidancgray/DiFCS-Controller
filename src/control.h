@@ -6,7 +6,7 @@
 
 #pin_select SCK1=PIN_C3
 #pin_select SDO1=PIN_C2
-#use spi (MASTER, SPI1, BAUD=100000, MODE=0, STREAM=SPI_ctrl)
+#use spi (MASTER, SPI1, BAUD=100000, MODE=2, STREAM=SPI_ctrl)
 
 #define DACfullScale 655.35 // full scale/100 because CV = %
 
@@ -40,12 +40,14 @@ void set_nanoDAC_outputs(channelMap ch){
    }
    else {
       pid_task(ch);
-      if ( PID[(int)ch].CV < 0) invert_voltage(ch, TRUE); 
-      else                      invert_voltage(ch, FALSE);
+      if ( PID[(int)ch].CV < 0 ) invert_voltage(ch, TRUE); 
+      else                       invert_voltage(ch, FALSE);
       
       txData = (unsigned int16)(abs(PID[(int)ch].CV) * DACfullScale);
    }
-      
+   
+   dacVals[ch] = txData;
+   
    // use channel map to decide which outputs channels to update
    // strobe _sync low to push data to the outputs
    if (chMap[0] == ch) output_high(_SYNC_X);
@@ -55,10 +57,10 @@ void set_nanoDAC_outputs(channelMap ch){
    
    if (chMap[0] == ch) output_low(_SYNC_X);
    if (chMap[1] == ch) output_low(_SYNC_Y);
+   delay_ms(1);
    
    // shift 16 bits of data
    spi_xfer(SPI_ctrl, txData, 24);
-   
    delay_ms(1);
    
    if (chMap[0] == ch) output_high(_SYNC_X);

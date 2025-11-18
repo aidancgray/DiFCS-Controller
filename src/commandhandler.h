@@ -46,6 +46,9 @@ int8 setIPchMode(unsigned int8);           // sChMode,  {1|2}, {MANUAL|MAGSNS}
 int8 getPIDvals(unsigned int8);            // gPID,     {1|2}, {P|I|D}
 int8 setPIDvals(unsigned int8);            // sPID,     {1|2}, {P|I|D}, <float>
 
+int8 enablePID(unsigned int8);             // enaPID,   {1|2}
+int8 disablePID(unsigned int8);            // disPID,   {1|2}
+
 int8 getSetPoint(unsigned int8);           // gSP,      {1|2}
 int8 setSetPoint(unsigned int8);           // sSP,      {1|2}, <float>
 
@@ -57,7 +60,7 @@ int8 getMonitorCalParam(unsigned int8);    // gMCal,    {N15|200|5V6|5VA|3V6X|3V
 int8 setMonitorCalParam(unsigned int8);    // sMCal,    {N15|200|5V6|5VA|3V6X|3V3A|3V3D}, <float>, <float>
 int8 getMonitorValue(unsigned int8);       // gMon,     {N15|200|5V6|5VA|3V6X|3V3A|3V3D|all}
 
-int8 getPIDdata(unsigned int8);            // gPIDdata, {1|2}
+int8 getPIDdata(unsigned int8);            // gPIDdata, {1|2}, {PV|CV|PVold|I}
 
 int8 getIPdata(unsigned int8);             // gIPdata,  {1|2}, {raw|calib|p0|poles|real}
    

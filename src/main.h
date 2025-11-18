@@ -9,7 +9,7 @@
 #define baudRate 128000
 #define numChannels 2
 
-#define version  "20250812" // SW Version
+#define version  "20251104" // SW Version
 #define serialID "0000"     // Unique Serial ID
 #define magPP 1             // Magnetoresistive Sensor Pole Pitch in mm   
 #define gainLvl 16          // 1, 2, 4, 8, 16, 32, 64, 128

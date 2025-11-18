@@ -127,7 +127,7 @@ void sensor_process_data(int8 ch, signed int32 sinRawCounts, signed int32 cosRaw
    pTmp = adcVals[ch].p0 + ( 1000 * polePitch * (float)adcVals[ch].npoles );
    
    adcVals[ch].pReal = (pow(pTmp*sc[ch].c5,5) + pow(pTmp*sc[ch].c4,4) + pow(pTmp*sc[ch].c3,3) + pow(pTmp*sc[ch].c2,2) + pTmp*sc[ch].c1 + sc[ch].c0);
-   
+   if (ch == chX) adcVals[ch].pReal *= -1;
    PID[ch].PVold = PID[ch].PV;
    PID[ch].PV = adcVals[ch].pReal;
 }  

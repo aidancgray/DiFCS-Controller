@@ -12,6 +12,8 @@ struct command cmd_list[] = {
    {"sChMode",  &setIPchMode},
    {"gPID",     &getPIDvals},
    {"sPID",     &setPIDvals},
+//!   {"enaPID",   &enablePID},
+//!   {"disPID",   &disablePID},
    {"gSP",      &getSetPoint},
    {"sSP",      &setSetPoint},
    {"gSCals",   &getAllSensorCalParams},
@@ -62,8 +64,8 @@ int8 getOPchMap(unsigned int8 rec){
    else arg1 = strtoul(SERcmd[rec].p[2],'\0',10);
    
    /*** GET CHANNEL MAP ***************/ 
-   if      (0 == chMap[arg1-1]) sprintf(retData+strlen(retData), "%c,", 'X');
-   else if (1 == chMap[arg1-1]) sprintf(retData+strlen(retData), "%c,", 'Y');
+   if      (0 == chMap[arg1-1]) sprintf(retData+strlen(retData), "%d,%c,", arg1, 'X');
+   else if (1 == chMap[arg1-1]) sprintf(retData+strlen(retData), "%d,%c,", arg1, 'Y');
    else return INV_PARAM;
    
    return SUCCESS;
@@ -96,8 +98,8 @@ int8 getIPchMode(unsigned int8 rec){
    else arg1 = strtoul(SERcmd[rec].p[2],'\0',10);
    
    /*** GET INPUT MAP *****************/
-   if      (0 == chMode[arg1-1]) sprintf(retData+strlen(retData), "MANUAL,");
-   else if (1 == chMode[arg1-1]) sprintf(retData+strlen(retData), "MAGSNS,");
+   if      (0 == chMode[arg1-1]) sprintf(retData+strlen(retData), "%d,MANUAL,", arg1);
+   else if (1 == chMode[arg1-1]) sprintf(retData+strlen(retData), "%d,MAGSNS,", arg1);
    else return INV_PARAM;
    
    return SUCCESS;
@@ -136,10 +138,10 @@ int8 getPIDvals(unsigned int8 rec){
    else arg2 = SERcmd[rec].p[3][0];
    
    /*** GET P, I, D, or A(LL) VALUE **********/
-   if      ('P' == arg2) sprintf(retData+strlen(retData), "%f,", PID[arg1-1].kP);
-   else if ('I' == arg2) sprintf(retData+strlen(retData), "%f,", PID[arg1-1].kI);
-   else if ('D' == arg2) sprintf(retData+strlen(retData), "%f,", PID[arg1-1].kD);
-   else if ('A' == arg2) sprintf(retData+strlen(retData), "%f,%f,%f", PID[arg1-1].kP, PID[arg1-1].kI, PID[arg1-1].kD);
+   if      ('P' == arg2) sprintf(retData+strlen(retData), "%d,%f,", arg1, PID[arg1-1].kP);
+   else if ('I' == arg2) sprintf(retData+strlen(retData), "%d,%f,", arg1, PID[arg1-1].kI);
+   else if ('D' == arg2) sprintf(retData+strlen(retData), "%d,%f,", arg1, PID[arg1-1].kD);
+   else if ('A' == arg2) sprintf(retData+strlen(retData), "%d,%f,%f,%f,", arg1, PID[arg1-1].kP, PID[arg1-1].kI, PID[arg1-1].kD);
    else return INV_PARAM;
    
    return SUCCESS;
@@ -169,6 +171,30 @@ int8 setPIDvals(unsigned int8 rec){
    return SUCCESS;
 }
 
+//!int8 enablePID(unsigned int8 rec){
+//!   /*** ARG CHECKS ********************/
+//!   int8  arg1;
+//!   
+//!   if (!is_valid_channel(SERcmd[rec].p[2])) return INV_PARAM;
+//!   else arg1 = strtoul(SERcmd[rec].p[2],'\0',10);
+//!   
+//!   PID[arg1-1].enable = TRUE;
+//!   
+//!   return SUCCESS;
+//!}
+//!
+//!int8 disablePID(unsigned int8 rec){
+//!   /*** ARG CHECKS ********************/
+//!   int8  arg1;
+//!   
+//!   if (!is_valid_channel(SERcmd[rec].p[2])) return INV_PARAM;
+//!   else arg1 = strtoul(SERcmd[rec].p[2],'\0',10);
+//!   
+//!   PID[arg1-1].enable = FALSE;
+//!   
+//!   return SUCCESS;
+//!}
+
 int8 getSetPoint(unsigned int8 rec){
    /*** ARG CHECKS ********************/
    int8  arg1;
@@ -177,7 +203,7 @@ int8 getSetPoint(unsigned int8 rec){
    else arg1 = strtoul(SERcmd[rec].p[2],'\0',10);
    
    /*** GET SETPOINT ******************/ 
-   sprintf(retData+strlen(retData), "%f,", PID[arg1-1].SP);
+   sprintf(retData+strlen(retData), "%d,%f,", arg1, PID[arg1-1].SP);
    return SUCCESS;
 }
 
@@ -206,6 +232,7 @@ int8 getAllSensorCalParams(unsigned int8 rec){
    else arg1 = strtoul(SERcmd[rec].p[2],'\0',10);
    
    /*** GET ALL SENSOR CAL PARAMS *****/
+   sprintf(retData+strlen(retData), "%d,", arg1);
    sprintf(retData+strlen(retData), "%f,", sensorCal[arg1-1].c0);
    sprintf(retData+strlen(retData), "%f,", sensorCal[arg1-1].c1);
    sprintf(retData+strlen(retData), "%f,", sensorCal[arg1-1].c2);
@@ -228,12 +255,12 @@ int8 getSensorCalParam(unsigned int8 rec){
    else arg2 = SERcmd[rec].p[3][0];
    
    /*** GET SENSOR CAL PARAM **********/
-   if      ('0' == arg2) sprintf(retData+strlen(retData), "%f,", sensorCal[arg1-1].c0);
-   else if ('1' == arg2) sprintf(retData+strlen(retData), "%f,", sensorCal[arg1-1].c1);
-   else if ('2' == arg2) sprintf(retData+strlen(retData), "%f,", sensorCal[arg1-1].c2);
-   else if ('3' == arg2) sprintf(retData+strlen(retData), "%f,", sensorCal[arg1-1].c3);
-   else if ('4' == arg2) sprintf(retData+strlen(retData), "%f,", sensorCal[arg1-1].c4);
-   else if ('5' == arg2) sprintf(retData+strlen(retData), "%f,", sensorCal[arg1-1].c5);
+   if      ('0' == arg2) sprintf(retData+strlen(retData), "%d,%f,", arg1, sensorCal[arg1-1].c0);
+   else if ('1' == arg2) sprintf(retData+strlen(retData), "%d,%f,", arg1, sensorCal[arg1-1].c1);
+   else if ('2' == arg2) sprintf(retData+strlen(retData), "%d,%f,", arg1, sensorCal[arg1-1].c2);
+   else if ('3' == arg2) sprintf(retData+strlen(retData), "%d,%f,", arg1, sensorCal[arg1-1].c3);
+   else if ('4' == arg2) sprintf(retData+strlen(retData), "%d,%f,", arg1, sensorCal[arg1-1].c4);
+   else if ('5' == arg2) sprintf(retData+strlen(retData), "%d,%f,", arg1, sensorCal[arg1-1].c5);
    else return INV_PARAM;
    
    return SUCCESS;
@@ -386,10 +413,10 @@ int8 getPIDdata(unsigned int8 rec){
    arg2 = SERcmd[rec].p[3];
    
    /*** GET PV, CV, PVold, I, or A(LL) VALUE **********/
-   if      (0 == strcmp(s_PV, arg2))     sprintf(retData+strlen(retData), "%f,", PID[arg1-1].PV);
-   else if (0 == strcmp(s_CV, arg2))     sprintf(retData+strlen(retData), "%f,", PID[arg1-1].CV);
-   else if (0 == strcmp(s_PVold, arg2))  sprintf(retData+strlen(retData), "%f,", PID[arg1-1].PVold);
-   else if (0 == strcmp(s_I, arg2))      sprintf(retData+strlen(retData), "%f,", PID[arg1-1].I);
+   if      (0 == strcmp(s_PV, arg2))     sprintf(retData+strlen(retData), "%d,%f,", arg1, PID[arg1-1].PV);
+   else if (0 == strcmp(s_CV, arg2))     sprintf(retData+strlen(retData), "%d,%f,", arg1, PID[arg1-1].CV);
+   else if (0 == strcmp(s_PVold, arg2))  sprintf(retData+strlen(retData), "%d,%f,", arg1, PID[arg1-1].PVold);
+   else if (0 == strcmp(s_I, arg2))      sprintf(retData+strlen(retData), "%d,%f,", arg1, PID[arg1-1].I);
    else return INV_PARAM;
    
    return SUCCESS;
@@ -446,7 +473,7 @@ int8 getManOPvals(unsigned int8 rec){
    else arg1 = strtoul(SERcmd[rec].p[2],'\0',10);
    
    /*** GET MANUAL OUTPUT VALUE ***************/ 
-   sprintf(retData+strlen(retData), "%f,", manualOutputValues[arg1-1]);
+   sprintf(retData+strlen(retData), "%d,%f,", arg1, manualOutputValues[arg1-1]);
    
    return SUCCESS;
 }
@@ -463,7 +490,9 @@ int8 setManOPvals(unsigned int8 rec){
    else arg2 = strtod(SERcmd[rec].p[3], '\0');
    
    /*** SET MANUAL OUTPUT VALUE ***************/
-   manualOutputValues[arg1-1] = arg2;
+   if (arg2 > op_upper_bound) manualOutputValues[arg1-1] = op_upper_bound;
+   else if (arg2 < op_lower_bound) manualOutputValues[arg1-1] = op_lower_bound;  
+   else manualOutputValues[arg1-1] = arg2;
    
    return SUCCESS;
 }

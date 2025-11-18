@@ -8,9 +8,7 @@
 #include <eventTimer.h>
 #include <commandHandler.c>
 
-
-//!#define DEBUG_1
-//!#define DEBUG_2
+#define DEBUG_1
 
 void main()
 {
@@ -32,24 +30,15 @@ void main()
       serial_task();             //serial port 
       
       #ifdef DEBUG_1
-      fprintf(SERIAL, "#D0,1,%.0f,%.0f,SUCCESS\n", adcVals[0].sinCounts, adcVals[0].cosCounts);
-      fprintf(SERIAL, "#D0,2,%.0f,%.0f,SUCCESS\n", adcVals[1].sinCounts, adcVals[1].cosCounts);
-      fprintf(SERIAL, "#D0,1,%3.3f,SUCCESS\n", adcVals[0].pReal);
-      fprintf(SERIAL, "#D0,2,%3.3f,SUCCESS\n", adcVals[1].pReal);
-      #endif
-      
-      #ifdef DEBUG_2
-      set_adc_channel(vMon3V6X);
-      delay_ms(10);
-      int16 mon3V6X = read_adc(ADC_READ_ONLY);
-      delay_ms(10);
-      read_adc(ADC_START_ONLY);
-      delay_ms(10);
-      fprintf(SERIAL, "%Ld\n", mon3V6X);
+      static int8 ch = 0;
+//!      fprintf(SERIAL, "#D0,%u,%.0f,%.0f,SUCCESS\n", ch+1, adcVals[ch].sinCounts, adcVals[ch].cosCounts);
+      fprintf(SERIAL, "#D0,%u,%3.3f\n", ch+1, adcVals[ch].pReal);
+      fprintf(SERIAL, "#D0,OP,%u,%Lu\n", ch+1, dacVals[ch]);
+      ch = !ch;
       #endif
       
       command_handler_task();    //execute commands
       
-      delay_ms(200);
+      delay_ms(250);
    }
 }
