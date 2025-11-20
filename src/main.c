@@ -31,14 +31,15 @@ void main()
       
       #ifdef DEBUG_1
       static int8 ch = 0;
-//!      fprintf(SERIAL, "#D0,%u,%.0f,%.0f,SUCCESS\n", ch+1, adcVals[ch].sinCounts, adcVals[ch].cosCounts);
-      fprintf(SERIAL, "#D0,%u,%3.3f\n", ch+1, adcVals[ch].pReal);
-      fprintf(SERIAL, "#D0,OP,%u,%Lu\n", ch+1, dacVals[ch]);
+      fprintf(SERIAL, "#D0,CNT,%u,%.0f,%.0f\n", ch+1, adcVals[ch].sinCounts, adcVals[ch].cosCounts);
+      fprintf(SERIAL, "#D0,POS,%u,%3.3f\n", ch+1, adcVals[ch].pReal);
+      if ( dacVals[ch].invV ) fprintf(SERIAL, "#D0,OUT,%u,-,%Lu\n", ch+1, dacVals[ch].val);
+      else                    fprintf(SERIAL, "#D0,OUT,%u,+,%Lu\n", ch+1, dacVals[ch].val);
       ch = !ch;
       #endif
       
       command_handler_task();    //execute commands
       
-      delay_ms(250);
+      delay_ms(100);
    }
 }

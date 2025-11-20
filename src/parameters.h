@@ -200,7 +200,15 @@ struct adcV
    {0,0,0,0,0,0,0,0,0}
 };
 
-unsigned int16 dacVals[2] = {0,0};
+struct dacV
+{
+   unsigned int16 val;
+   BOOLEAN invV;
+}dacVals[2] = 
+{
+   {0,FALSE},
+   {0,FALSE}
+};
 
 // used with timeouts
 unsigned int32 timeoutReg0 = 0; //All timers are defined in milliseconds, 

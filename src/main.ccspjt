@@ -17,7 +17,7 @@ Type=4
 forcecoff=0
 
 [ProjectLog]
-Days=74
+Days=75
 D1=11-03-2025
 D1_L=2
 D1_L1=[76140]Project Opened.
@@ -27,7 +27,7 @@ D2_L=4
 D2_L1=[61297]Project Opened.
 D2_L2=[72340]Started Editing.
 D2_L3=[72431]Stopped Editing.
-TotalEdit=2447
+TotalEdit=2457
 TotalDebug=5477
 D2_E=2
 D2_D=0
@@ -1131,19 +1131,36 @@ D73_L16=[71732]Project Closed.
 D73_L17=[72718]Project Opened.
 D73_L18=[72983]Project Closed.
 D74=18-11-2025
-D74_L=1
+D74_L=2
 D74_L1=[42460]Project Opened.
+D74_L2=[42694]Project Closed.
+D75=19-11-2025
+D75_L=12
+D75_L1=[52699]Project Opened.
+D75_L2=[53355]Started Editing.
+D75_L3=[53660]Stopped Editing.
+D75_L4=[54004]Started Editing.
+D75_L5=[54785]Stopped Editing.
+D75_L6=[55246]Started Editing.
+D75_L7=[55546]Stopped Editing.
+D75_L8=[57518]Started Editing.
+D75_L9=[57869]Stopped Editing.
+D75_L10=[72926]Started Editing.
+D75_L11=[73229]Stopped Editing.
+D75_E=10
+D75_D=0
+D75_L12=[74044]Project Closed.
 
 [Opened Files]
 1=main.c
-t1=1
+t1=9
 2=main.h
 t2=1
 3=parameters.h
-t3=1
+t3=198
 Count=10
 4=control.h
-t4=1
+t4=33
 5=pid.h
 t5=1
 6=commandHandler.c
@@ -1151,7 +1168,7 @@ t6=1
 7=commandHandler.h
 t7=1
 8=ADS1220.h
-t8=1
+t8=121
 9=monitor.h
 t9=1
 10=io.h
@@ -1172,7 +1189,7 @@ t16=256
 Type=4
 
 [defines]
-buildcount=389
+buildcount=394
 
 [Documentation]
 1=P:\MIRMOS\electrical\Detector Dither Electronics\DitherCtrl\Firmware\difics v2\main.ccspjt

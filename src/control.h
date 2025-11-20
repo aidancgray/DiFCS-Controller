@@ -17,10 +17,12 @@ void invert_voltage(channelMap ch, BOOLEAN inv_v){
    if ( inv_v ) {
       if (chMap[0] == ch) output_low(INV_HVX);
       if (chMap[1] == ch) output_low(INV_HVY);
+      dacVals[ch].invV = TRUE;
    }
    else {
       if (chMap[0] == ch) output_high(INV_HVX);
       if (chMap[1] == ch) output_high(INV_HVY);
+      dacVals[ch].invV = FALSE;
    }
 }
 
@@ -46,7 +48,7 @@ void set_nanoDAC_outputs(channelMap ch){
       txData = (unsigned int16)(abs(PID[(int)ch].CV) * DACfullScale);
    }
    
-   dacVals[ch] = txData;
+   dacVals[ch].val = txData;
    
    // use channel map to decide which outputs channels to update
    // strobe _sync low to push data to the outputs
