@@ -253,7 +253,7 @@ unsigned int8 ads_read_reg(int8 ch, adsReg regID)
 void ads_start_conv_block(int8 block)
 {
    ads_write_command_block(block, ADSstart);
-   delay_us(20);
+   delay_us(10);
    ads_deselect_all();
 }
 
