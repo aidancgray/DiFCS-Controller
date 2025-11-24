@@ -4,6 +4,7 @@
 #include <parameters.h>
 #include <ADS1220.h>
 #include <math.h>
+#include <fifo.h>
 
 #define sensorSampleRate 50 // 50mS delay between each sensor sample = 200ms cadence 
 
