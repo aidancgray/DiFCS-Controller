@@ -1,6 +1,6 @@
-CCS PCH C Compiler, Version 5.109, 62303               25-Nov-25 15:47
+CCS PCH C Compiler, Version 5.117, 2138               25-Nov-25 16:18
 
-               Filename:   C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\main.lst
+               Filename:   C:\Users\Aidan\Documents\GitHub\DiFCS-Controller\src\main.lst
 
                ROM used:   43788 bytes (67%)
                            Largest free fragment is 21746
@@ -12623,14 +12623,7 @@ CCS PCH C Compiler, Version 5.109, 62303               25-Nov-25 15:47
 00256:  GOTO   0318 (RETURN)
 .................... }
 .................... 
-.................... //!int compar(void *arg1,void *arg2)  {
-.................... //!
-.................... //!   if (* (int *) arg1 < (* (int *) arg2)) return -1;
-.................... //!   else if (* (int *) arg1 == (* (int *) arg2)) return 0;
-.................... //!   
-.................... //!   else return 1;
-.................... //!}
-.................... 
+.................... signed int8 compar(signed int32 *arg1,signed int32 *arg2);
 .................... 
 .................... /*****************************************************************************/
 .................... /* Interquartile Mean Ring Buffer                                            */
@@ -13501,6 +13494,11 @@ CCS PCH C Compiler, Version 5.109, 62303               25-Nov-25 15:47
 01F3C:  GOTO   47A4 (RETURN)
 .................... }
 .................... 
+.................... signed int8 compar(signed int32 *arg1,signed int32 *arg2)  {
+....................    if (* (signed int32 *) arg1 < (* (signed int32 *) arg2)) return -1;
+....................    else if (* (signed int32 *) arg1 == (* (signed int32 *) arg2)) return 0;
+....................    else return 1;
+.................... }
 .................... 
 .................... /*****************************************************************************/
 .................... /* SENSOR MONITOR task - gets magnetoresistive sensor counts                 */

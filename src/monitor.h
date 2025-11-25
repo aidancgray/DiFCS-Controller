@@ -183,14 +183,7 @@ void sensor_monitor_interrupt_task()
    }
 }
 
-//!int compar(void *arg1,void *arg2)  {
-//!
-//!   if (* (int *) arg1 < (* (int *) arg2)) return -1;
-//!   else if (* (int *) arg1 == (* (int *) arg2)) return 0;
-//!   
-//!   else return 1;
-//!}
-
+signed int8 compar(signed int32 *arg1,signed int32 *arg2);
 
 /*****************************************************************************/
 /* Interquartile Mean Ring Buffer                                            */
@@ -217,7 +210,7 @@ void iqm_ring_buffer(int8 ch, signed int32 sinCnts, signed int32 cosCnts)
       iqmBufCos[i] = smData[ch].cosQ->buff[i];   
    }
    
-//!   qsort(iqmBufSin, BUFFER_SIZE, sizeof(*iqmBufSin), compar);
+   qsort(iqmBufSin, BUFFER_SIZE, sizeof(*iqmBufSin), compar);
 //!   qsort(iqmBufCos, BUFFER_SIZE, sizeof(*iqmBufCos), compar);
    
    for (int8 i=1; i<BUFFER_SIZE-1; i++){
@@ -228,6 +221,11 @@ void iqm_ring_buffer(int8 ch, signed int32 sinCnts, signed int32 cosCnts)
    smData[ch].avgCos = sumCos >> 3;
 }
 
+signed int8 compar(signed int32 *arg1,signed int32 *arg2)  {
+   if (* (signed int32 *) arg1 < (* (signed int32 *) arg2)) return -1;
+   else if (* (signed int32 *) arg1 == (* (signed int32 *) arg2)) return 0;
+   else return 1;
+}
 
 /*****************************************************************************/
 /* SENSOR MONITOR task - gets magnetoresistive sensor counts                 */
