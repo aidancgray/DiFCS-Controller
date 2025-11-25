@@ -20,7 +20,7 @@
 #define vMon3V3A  27
 #define vMon3V3D  26
 
-#define BUFFER_SIZE 10
+#define BUFFER_SIZE 5
 typedef struct {
    int in;
    int out;
@@ -46,6 +46,8 @@ buffer cosQ_y;
    bname->out=incout(bname), \
    btemp##bname)
 #define clrbuff(buff) buff->in=buff->out=0
+
+#define COMPARE(a,b) (((a) > (b)) - ((a) < (b)))
 
 struct sensorMonitorData
 {
@@ -183,7 +185,9 @@ void sensor_monitor_interrupt_task()
    }
 }
 
-signed int8 compar(signed int32 *arg1,signed int32 *arg2);
+signed int compar(void *a, void *b) {
+   return COMPARE(a,b);
+}
 
 /*****************************************************************************/
 /* Interquartile Mean Ring Buffer                                            */
@@ -196,8 +200,8 @@ void iqm_ring_buffer(int8 ch, signed int32 sinCnts, signed int32 cosCnts)
    -  sort IQM buffer
    -  average values from middle quartile
    **************************************/
-   signed int32 iqmBufSin[BUFFER_SIZE];
-   signed int32 iqmBufCos[BUFFER_SIZE];
+   signed int32 iqmBufSin[];
+   signed int32 iqmBufCos[];
    signed int32 sumSin=0;
    signed int32 sumCos=0;
    
@@ -206,25 +210,19 @@ void iqm_ring_buffer(int8 ch, signed int32 sinCnts, signed int32 cosCnts)
    
    // copy queue contents out to buffer for qsorting
    for (int8 i=0; i<BUFFER_SIZE; i++){
-      iqmBufSin[i] = smData[ch].sinQ->buff[i];   
-      iqmBufCos[i] = smData[ch].cosQ->buff[i];   
+      iqmBufSin[i] = smData[ch].sinQ->buff[i];
+      iqmBufCos[i] = smData[ch].cosQ->buff[i];
    }
    
    qsort(iqmBufSin, BUFFER_SIZE, sizeof(*iqmBufSin), compar);
-//!   qsort(iqmBufCos, BUFFER_SIZE, sizeof(*iqmBufCos), compar);
+   qsort(iqmBufCos, BUFFER_SIZE, sizeof(*iqmBufCos), compar);
    
    for (int8 i=1; i<BUFFER_SIZE-1; i++){
       sumSin+=iqmBufSin[i];
       sumCos+=iqmBufCos[i];
    }
-   smData[ch].avgSin = sumSin >> 3;
-   smData[ch].avgCos = sumCos >> 3;
-}
-
-signed int8 compar(signed int32 *arg1,signed int32 *arg2)  {
-   if (* (signed int32 *) arg1 < (* (signed int32 *) arg2)) return -1;
-   else if (* (signed int32 *) arg1 == (* (signed int32 *) arg2)) return 0;
-   else return 1;
+   smData[ch].avgSin = sumSin / (BUFFER_SIZE-2);
+   smData[ch].avgCos = sumCos / (BUFFER_SIZE-2);
 }
 
 /*****************************************************************************/
@@ -262,7 +260,7 @@ void setup_external_ADCs()
    unsigned int8 rc2=0;
    unsigned int8 rc3=0;
    
-   for(int ch = 0; ch < 4; ch++)
+   for (int ch = 0; ch < 4; ch++)
    {
       rc0=reg0config;
       rc1=reg1config;
@@ -273,11 +271,13 @@ void setup_external_ADCs()
       delay_ms(1);
    }
    
-   for(int8 i = 0; i < BUFFER_SIZE; i++){
-      tobuff(smData[0].sinQ, 0);
-      tobuff(smData[0].cosQ, 0);
-      tobuff(smData[1].sinQ, 0);
-      tobuff(smData[1].cosQ, 0);      
+   for (int i = 0; i < BUFFER_SIZE; i++){
+      ads_start_conv_all();
+      delay_ms(300);
+      for (int b = 0; b < 2; b++){
+         tobuff(smData[b].sinQ, ads_read_data(b*2+1));
+         tobuff(smData[b].cosQ, ads_read_data(b*2+1));      
+      }
    }
 }
 

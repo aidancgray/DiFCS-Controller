@@ -197,6 +197,18 @@ void ads_select_block(int8 block)
 }
 
 /*****************************************************************************/
+/* SELECT ALL ADCs                                                           */
+/*****************************************************************************/
+void ads_select_all()
+{
+   output_low(_CS0);
+   output_low(_CS1);
+   output_low(_CS2);
+   output_low(_CS3);
+   delay_us(10);
+}
+
+/*****************************************************************************/
 /* WRITE THE COMMAND BYTE TO AN ADC                                          */
 /*****************************************************************************/
 void ads_write_command(int8 ch, unsigned int8 command)
@@ -211,6 +223,15 @@ void ads_write_command(int8 ch, unsigned int8 command)
 void ads_write_command_block(int8 block, unsigned int8 command)
 {
    ads_select_block(block);
+   spi_write2(command);
+}
+
+/*****************************************************************************/
+/* WRITE THE COMMAND BYTE TO ALL ADCs                                        */
+/*****************************************************************************/
+void ads_write_command_all(unsigned int8 command)
+{
+   ads_select_all();
    spi_write2(command);
 }
 
@@ -253,6 +274,16 @@ unsigned int8 ads_read_reg(int8 ch, adsReg regID)
 void ads_start_conv_block(int8 block)
 {
    ads_write_command_block(block, ADSstart);
+   delay_us(10);
+   ads_deselect_all();
+}
+
+/*****************************************************************************/
+/* START ALL CONVERSION                                                      */
+/*****************************************************************************/
+void ads_start_conv_all()
+{
+   ads_write_command_all(ADSstart);
    delay_us(10);
    ads_deselect_all();
 }
