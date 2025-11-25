@@ -5,10 +5,10 @@
    \@date 05/03/2017
 */
 
-
-#include "fifo.h"
+#include <fifo.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdlibm.h>
 
 #define FIFO_LOCK //pFifo->mLock =1//while(pFifo->lock){delay_ms(1);} pFifo->lock = 1
 #define FIFO_UNLOCK //pFifo->mLock = 0
@@ -35,11 +35,11 @@ void fifo_deinit(fifo_t* pFifo)
 
 int fifo_push( fifo_t* pFifo, void* data)
 {
-	FIFO_LOCK;
+   FIFO_LOCK;
 
     if (pFifo->mCount >= pFifo->mMaxLen) /* check if fifo is full */
     {
-		    FIFO_UNLOCK;
+          FIFO_UNLOCK;
         return FIFO_OVERFLOW;
     }
 
@@ -65,11 +65,11 @@ int fifo_push( fifo_t* pFifo, void* data)
 
 int fifo_pop( fifo_t* pFifo, void* data)
 {
-	FIFO_LOCK;
+   FIFO_LOCK;
     // if the head isn't ahead of the tail, we don't have any characters
     if (pFifo->mCount <= 0) // check if circular buffer is empty
     {
-		    FIFO_UNLOCK;
+          FIFO_UNLOCK;
         return FIFO_UNDERFLOW;          // and return with an error
     }
 
@@ -206,7 +206,6 @@ int fifo_checksum(fifo_t* pFifo, int offset,  int len)
       addr =0;
     }
   }
-
 
   //we return as an int so we can send -1 to indicate there isnt enough data
   FIFO_UNLOCK;

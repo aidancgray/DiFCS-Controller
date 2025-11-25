@@ -192,7 +192,7 @@ struct adcV
    float sinLast;          // previous sin data
    float cosLast;          // previous cos data
    float p0;               // mid-pole position in microns
-   signed int8  npoles;           // number of poles passed
+   signed int8  npoles;    // number of poles passed
    float pReal;            // real position in microns
 }adcVals[2] = 
 {

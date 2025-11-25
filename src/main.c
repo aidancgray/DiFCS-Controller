@@ -40,6 +40,6 @@ void main()
       
       command_handler_task();    //execute commands
       
-      delay_ms(100);
+      delay_ms(250);
    }
 }

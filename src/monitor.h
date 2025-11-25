@@ -4,7 +4,6 @@
 #include <parameters.h>
 #include <ADS1220.h>
 #include <math.h>
-#include <fifo.h>
 
 #define sensorSampleRate 50 // 50mS delay between each sensor sample = 200ms cadence 
 
@@ -21,14 +20,45 @@
 #define vMon3V3A  27
 #define vMon3V3D  26
 
+#define BUFFER_SIZE 10
+typedef struct {
+   int in;
+   int out;
+   int buff[BUFFER_SIZE];
+} buffer;
+
+buffer sinQ_x;
+buffer cosQ_x;
+buffer sinQ_y;
+buffer cosQ_y;
+
+#define incin(buff) ((buff->in==(BUFFER_SIZE-1))?0:buff->in+1)
+#define incout(buff) ((buff->out==(BUFFER_SIZE-1))?0:buff->out+1)
+#define isempty(buff) (buff->in==buff->out)
+#define hasdata(buff) (buff->in!=buff->out)
+#define isfull(buff) (incin(buff)==buff->out)
+
+#define tobuff(bname,c) { bname->buff[bname->in]=c;\
+   bname->in=incin(bname);\
+   if (bname->in==bname->out) bname->out=incout(bname);\
+   }
+#define frombuff(bname) (btemp##bname=bname->buff[bname->out],\
+   bname->out=incout(bname), \
+   btemp##bname)
+#define clrbuff(buff) buff->in=buff->out=0
+
 struct sensorMonitorData
 {
    boolean dataReady;
    boolean adcBusy;
+   buffer* sinQ;
+   buffer* cosQ;
+   signed int32 avgSin;
+   signed int32 avgCos;
 } smData[2] = 
 {
-   {false, false},
-   {false, false}
+   {false, false, &sinQ_x, &cosQ_x, 0, 0},
+   {false, false, &sinQ_y, &cosQ_y, 0, 0}
 };
 
 /*****************************************************************************/
@@ -102,13 +132,13 @@ void internal_monitor_task()
 /*****************************************************************************/
 /* PROCESS ADC SENSOR DATA                                                   */
 /*****************************************************************************/
-void sensor_process_data(int8 ch, signed int32 sinRawCounts, signed int32 cosRawCounts)
+void sensor_process_data(int8 ch)//, signed int32 sinRawCounts, signed int32 cosRawCounts)
 {
    adcVals[ch].sinLast = adcVals[ch].sinCounts;
    adcVals[ch].cosLast = adcVals[ch].cosCounts;
    
-   adcVals[ch].sinRaw = (float)sinRawCounts;
-   adcVals[ch].cosRaw = (float)cosRawCounts;
+   adcVals[ch].sinRaw = (float)smData[ch].avgSin;
+   adcVals[ch].cosRaw = (float)smData[ch].avgCos;
    
    adcVals[ch].sinCounts = adcVals[ch].sinRaw * adcCal[ch].sinGain + adcCal[ch].sinOS;
    adcVals[ch].cosCounts = adcVals[ch].cosRaw * adcCal[ch].cosGain + adcCal[ch].cosOS;
@@ -153,24 +183,71 @@ void sensor_monitor_interrupt_task()
    }
 }
 
+//!int compar(void *arg1,void *arg2)  {
+//!
+//!   if (* (int *) arg1 < (* (int *) arg2)) return -1;
+//!   else if (* (int *) arg1 == (* (int *) arg2)) return 0;
+//!   
+//!   else return 1;
+//!}
+
+
+/*****************************************************************************/
+/* Interquartile Mean Ring Buffer                                            */
+/* Filters the ADC data to remove spurious readings                          */
+/*****************************************************************************/
+void iqm_ring_buffer(int8 ch, signed int32 sinCnts, signed int32 cosCnts)
+{
+   /* 
+   -  copy data out to IQM buffer
+   -  sort IQM buffer
+   -  average values from middle quartile
+   **************************************/
+   signed int32 iqmBufSin[BUFFER_SIZE];
+   signed int32 iqmBufCos[BUFFER_SIZE];
+   signed int32 sumSin=0;
+   signed int32 sumCos=0;
+   
+   tobuff(smData[ch].sinQ, sinCnts); // push new data into queues
+   tobuff(smData[ch].cosQ, cosCnts);
+   
+   // copy queue contents out to buffer for qsorting
+   for (int8 i=0; i<BUFFER_SIZE; i++){
+      iqmBufSin[i] = smData[ch].sinQ->buff[i];   
+      iqmBufCos[i] = smData[ch].cosQ->buff[i];   
+   }
+   
+//!   qsort(iqmBufSin, BUFFER_SIZE, sizeof(*iqmBufSin), compar);
+//!   qsort(iqmBufCos, BUFFER_SIZE, sizeof(*iqmBufCos), compar);
+   
+   for (int8 i=1; i<BUFFER_SIZE-1; i++){
+      sumSin+=iqmBufSin[i];
+      sumCos+=iqmBufCos[i];
+   }
+   smData[ch].avgSin = sumSin >> 3;
+   smData[ch].avgCos = sumCos >> 3;
+}
+
 
 /*****************************************************************************/
 /* SENSOR MONITOR task - gets magnetoresistive sensor counts                 */
-/* gets two values each time the task is run                                  */
+/* gets two values each time the task is run                                 */
 /*****************************************************************************/
 void sensor_monitor_task()
 {
    static int8 ch = 0;
-   signed int32 sinRaw = 0;
-   signed int32 cosRaw = 0;
+   signed int32 sinNew = 0;
+   signed int32 cosNew = 0;
    
    if ( (!smData[ch].adcBusy) && smData[ch].dataReady ){
       smData[ch].adcBusy = true;
       
-      sinRaw = ads_read_data(ch*2);
-      cosRaw = ads_read_data(ch*2+1);      
+      sinNew = ads_read_data(ch*2);
+      cosNew = ads_read_data(ch*2+1);      
       
-      sensor_process_data(ch, sinRaw, cosRaw);
+      iqm_ring_buffer(ch, sinNew, cosNew);
+      
+      sensor_process_data(ch);
       ch = !ch;
       
       smData[!ch].dataReady = false;
@@ -196,7 +273,14 @@ void setup_external_ADCs()
       
       ADS1220init(ch, rc0, rc1, rc2, rc3);
       delay_ms(1);
-   }   
+   }
+   
+   for(int8 i = 0; i < BUFFER_SIZE; i++){
+      tobuff(smData[0].sinQ, 0);
+      tobuff(smData[0].cosQ, 0);
+      tobuff(smData[1].sinQ, 0);
+      tobuff(smData[1].cosQ, 0);      
+   }
 }
 
 /*****************************************************************************/
