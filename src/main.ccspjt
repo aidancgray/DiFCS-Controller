@@ -17,7 +17,7 @@ Type=4
 forcecoff=0
 
 [ProjectLog]
-Days=78
+Days=79
 D1=11-03-2025
 D1_L=2
 D1_L1=[76140]Project Opened.
@@ -1194,6 +1194,10 @@ D78_L23=[71759]Stopped Editing.
 D78_E=88
 D78_D=0
 D78_L24=[71759]Project Closed.
+D79=25-11-2025
+D79_L=2
+D79_L1=[41688]Project Opened.
+D79_L2=[56845]Project Closed.
 
 [Opened Files]
 1=main.c
@@ -1220,9 +1224,9 @@ t10=26
 11=ADS1220.h
 t11=240
 12=monitor.h
-t12=1
+t12=240
 13=parameters.h
-t13=1
+t13=165
 14=fifo.h
 t14=5
 15=fifo.c
@@ -1233,7 +1237,7 @@ t16=11
 Type=4
 
 [defines]
-buildcount=399
+buildcount=400
 
 [Documentation]
 1=P:\MIRMOS\electrical\Detector Dither Electronics\DitherCtrl\Firmware\difics v2\main.ccspjt

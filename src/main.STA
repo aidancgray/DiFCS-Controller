@@ -60,7 +60,7 @@ Page ROM  %  RAM    Vol Diff  Functions:
 0     54   0    0    149  3.9  params_init
 0     30   0    0     86  1.3  ads_deselect_all
 0     72   0    1    242  3.1  ads_select_ch
-0     34   0    0             @goto46760
+0     34   0    0             @goto31441
 0     54   0    1    190  3.1  ads_select_block
 0     22   0    2     59  2.0  ads_write_command
 0     24   0    2     59  2.0  ads_write_command_block
@@ -81,11 +81,11 @@ Page ROM  %  RAM    Vol Diff  Functions:
 0    766   1   12    581  7.5  pow
 0   1322   2   21   1082  6.9  atan
 0    640   1   20   1100  9.0  atan2
-0     34   0    0             @goto47276
+0     34   0    0             @goto31963
 0   1366   2    4   2174  6.4  internal_monitor_task
-0     40   0    0    850  5.6  @goto47405
+0     40   0    0             @goto32092
 0   3410   4   27   2552 10.2  sensor_process_data
-0     90   0    5    850  5.6  @SDTOF
+0     90   0    5             @SDTOF
 0    156   0    4    262  3.7  sensor_monitor_interrupt_task
 0   2046   2  114   2531 10.1  iqm_ring_buffer
 0    314   0   12    571  6.0  sensor_monitor_task
@@ -95,40 +95,40 @@ Page ROM  %  RAM    Vol Diff  Functions:
 0    134   0    7    219  4.4  pid_task
 0    164   0    4    401  4.7  invert_voltage
 0    672   1    7   1292  6.1  set_nanoDAC_outputs
-0     54   0    5    850  5.6  @READBITA
-0     42   0    6    850  5.6  @SPI_XFER_2_24
+0     54   0    5             @READBITA
+0     42   0    6             @SPI_XFER_2_24
 0     54   0    0    176  3.5  control_task
 0     36   0    0    129  0.9  control_init
 0    378   0    6    526  4.9  resetSERcmd
 0     90   0    2    168  5.6  getNextSERReadIndex
 0     18   0    0     68  1.3  setNextSERWriteIndex
-0     40   0    1    850  5.6  @PUTCHAR_BIU_1
-0     30   0    0    140  3.9  @GETCH_BIU_1
+0     40   0    1             @PUTCHAR_BIU_1
+0     30   0    0             @GETCH_BIU_1
 0     78   0    4    140  3.9  RX_isr
 0     52   0    1    162  4.4  getchFromBuffer
 0   1272   1    5   1712  8.3  serial_task
-0     32   0    1    850  5.6  @SPRINTF
-0     36   0    2    850  5.6  @PSTRINGR_1636
+0     32   0    1             @SPRINTF
+0     36   0    2             @PSTRINGR_1636
 0     34   0    1    107  2.3  serial_init
 0     58   0    0    143  2.2  event_timer_init
 0    212   0    0    400  4.6  TIMER1_isr
 0     68   0    3     83  2.5  getRev
-0     10   0    0    850  5.6  @const1752
-0     32   0    2    850  5.6  @PSTRINGC_1645
+0     10   0    0             @const1752
+0     32   0    2             @PSTRINGC_1645
 0     68   0    3     83  2.5  getSN
-0      6   0    0    850  5.6  @const1755
+0      6   0    0             @const1755
 0    412   0    4    553  6.7  getOPchMap
-0     44   0    3    850  5.6  @DIV88
-0    192   0    6    850  5.6  @PRINTF_D_1645
+0     44   0    3             @DIV88
+0    192   0    6             @PRINTF_D_1645
 0    430   0    5    634  6.9  setOPchMap
-0     66   0    6    850  5.6  @WRITEBITA
+0     66   0    6             @WRITEBITA
 0    396   0    4    525  6.7  getIPchMode
-0     12   0    0    850  5.6  @const1772
+0     12   0    0             @const1772
 0     42   0    3             @PSTRINGCN_1645
-0     12   0    0    850  5.6  @const1775
+0     12   0    0             @const1775
 0    538   1   24    769  7.0  setIPchMode
 0   1206   1   19   1340  7.3  getPIDvals
-0     66   0    5    850  5.6  @FTOSD
+0     66   0    5             @FTOSD
 0    148   0   13             @DIV3232
 0    438   1   13             @PRINTF_L32D_1645FPFPF
 0    736   1   11   1024  6.9  setPIDvals
@@ -155,25 +155,25 @@ Page ROM  %  RAM    Vol Diff  Functions:
 0   1676   2    9    850  5.6  MAIN
 0     22   0    0             @const1938
 0     40   0    3             @PSTRINGCN_1636
-0    124   0    2    850  5.6  @PRINTF_U_1636
+0    124   0    2             @PRINTF_U_1636
 0    432   0   13             @PRINTF_L32D_1636FPFPF
-0     18   0    0    850  5.6  @const1947
-0     18   0    0    850  5.6  @const1948
-0    200   0    9    850  5.6  @PRINTF_LU_1636
+0     18   0    0             @const1947
+0     18   0    0             @const1948
+0    200   0    9             @PRINTF_LU_1636
 0     18   0    0             @const1951
- Inline         0    850  5.6  @cinit1
+ Inline         0             @cinit1
 
 Program metrics:
-    Functions               101
+    Functions               79
     Statements              1184
     Comments                1528
-    Volume (V)              146225
-    Difficulty (D)          552.5
-    Effort to implement (E) 80783417
-    Time to implement (T)   1246 hours, 39 minutes
-    Est Delivered Bugs (B)  62
-    Cyclomatic Complexity   252
-    Maintainability (MI)    80
+    Volume (V)              106138
+    Difficulty (D)          428.4
+    Effort to implement (E) 45473519
+    Time to implement (T)   701 hours, 45 minutes
+    Est Delivered Bugs (B)  42
+    Cyclomatic Complexity   230
+    Maintainability (MI)    114
 
  Segment     Used  Free
 -----------  ----  ----

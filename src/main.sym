@@ -749,7 +749,7 @@ ROM Allocation:
 0005AC  params_load_from_ee
 00064A  params_init
 000680  ads_select_ch
-0006C8  @goto46760
+0006C8  @goto31441
 0006EA  ads_write_command
 000700  @delay_us1
 000726  ads_write_reg
@@ -766,7 +766,7 @@ ROM Allocation:
 000DEC  @MULFF
 000EE2  @ADDFF
 00115A  internal_monitor_task
-0016B0  @goto47405
+0016B0  @goto32092
 0016D8  ads_read_command
 0016F2  ads_read_data
 001742  iqm_ring_buffer
@@ -775,7 +775,7 @@ ROM Allocation:
 002014  @DIVFF
 002172  atan
 00269C  atan2
-00291C  @goto47276
+00291C  @goto31963
 00293E  @SITOF
 00298E  @SFTOI
 0029CA  CEIL_FLOOR
