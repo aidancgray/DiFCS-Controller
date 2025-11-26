@@ -1,5 +1,5 @@
 ÀÄmain
-   ÃÄMAIN  0/1676  Ram=9
+   ÃÄMAIN  0/1404  Ram=9
    ³  ÃÄ@cinit1  (Inline)  Ram=0
    ³  ÃÄ@cinit2  (Inline)  Ram=0
    ³  ÃÄIO_init  0/68  Ram=0
@@ -29,14 +29,14 @@
    ³  ³     ÃÄee_load_reg  0/82  Ram=11
    ³  ³     ÃÄee_load_reg  0/82  Ram=11
    ³  ³     ÀÄee_load_reg  0/82  Ram=11
-   ³  ÃÄmonitor_init  0/112  Ram=0
+   ³  ÃÄmonitor_init  0/114  Ram=0
    ³  ³  ÃÄ@delay_ms1  0/42  Ram=1
-   ³  ³  ÀÄsetup_external_ADCs  0/1694  Ram=22
+   ³  ³  ÀÄsetup_external_ADCs  0/1956  Ram=22
    ³  ³     ÃÄADS1220init  0/106  Ram=6
    ³  ³     ³  ÃÄads_write_command  0/22  Ram=2
    ³  ³     ³  ³  ÀÄads_select_ch  0/72  Ram=1
    ³  ³     ³  ³     ÃÄads_deselect_all  0/30  Ram=0
-   ³  ³     ³  ³     ÀÄ@goto3622  0/34  Ram=0
+   ³  ³     ³  ³     ÀÄ@goto27226  0/34  Ram=0
    ³  ³     ³  ÃÄ@delay_us1  0/38  Ram=1
    ³  ³     ³  ÃÄads_write_reg  0/38  Ram=5
    ³  ³     ³  ³  ÃÄads_write_command  0/22  Ram=2
@@ -54,17 +54,19 @@
    ³  ³     ³  ³  ÀÄads_select_all  0/32  Ram=0
    ³  ³     ³  ÀÄads_deselect_all  0/30  Ram=0
    ³  ³     ÃÄ@delay_ms1  0/42  Ram=1
+   ³  ³     ÃÄ@MUL1616  0/34  Ram=5
    ³  ³     ÃÄads_read_data  0/78  Ram=5
    ³  ³     ³  ÃÄads_read_command  0/24  Ram=2
    ³  ³     ³  ³  ÀÄads_select_ch  0/72  Ram=1
    ³  ³     ³  ³     ÀÄ*
    ³  ³     ³  ÀÄads_deselect_all  0/30  Ram=0
+   ³  ³     ÃÄ@MUL1616  0/34  Ram=5
    ³  ³     ÀÄads_read_data  0/78  Ram=5
    ³  ³        ÀÄ*
    ³  ÃÄcontrol_init  0/36  Ram=0
    ³  ³  ÀÄ@SPI_XFER_2_24  0/42  Ram=6
    ³  ÃÄserial_init  0/34  Ram=1
-   ³  ³  ÀÄresetSERcmd  0/378  Ram=6
+   ³  ³  ÀÄresetSERcmd  0/394  Ram=6
    ³  ³     ÃÄ@MUL1616  0/34  Ram=5
    ³  ³     ÃÄ@MUL1616  0/34  Ram=5
    ³  ³     ÃÄ@MUL1616  0/34  Ram=5
@@ -75,7 +77,7 @@
    ³  ³     ÀÄ@MUL1616  0/34  Ram=5
    ³  ÃÄevent_timer_init  0/58  Ram=0
    ³  ÃÄinternal_monitor_task  0/1366  Ram=4
-   ³  ³  ÃÄ@goto4286  0/40  Ram=0
+   ³  ³  ÃÄ@goto27921  0/40  Ram=0
    ³  ³  ÃÄ@ITOF  0/54  Ram=2
    ³  ³  ÃÄ@MULFF  0/246  Ram=11
    ³  ³  ÃÄ@ADDFF  0/632  Ram=16
@@ -108,7 +110,11 @@
    ³  ³  ³  ÀÄ*
    ³  ³  ÃÄads_read_data  0/78  Ram=5
    ³  ³  ³  ÀÄ*
-   ³  ³  ÃÄiqm_ring_buffer  0/2162  Ram=42
+   ³  ³  ÃÄiqm_ring_buffer  0/2368  Ram=74
+   ³  ³  ³  ÃÄ@MUL1616  0/34  Ram=5
+   ³  ³  ³  ÃÄ@MUL1616  0/34  Ram=5
+   ³  ³  ³  ÃÄ@MUL1616  0/34  Ram=5
+   ³  ³  ³  ÃÄ@MUL1616  0/34  Ram=5
    ³  ³  ³  ÃÄqsort  0/296  Ram=31
    ³  ³  ³  ³  ÀÄcompar  0/52  Ram=5
    ³  ³  ³  ÃÄqsort  0/296  Ram=31
@@ -137,7 +143,7 @@
    ³  ³     ³  ÃÄ@FLT  0/122  Ram=10
    ³  ³     ³  ÃÄ@FLT  0/122  Ram=10
    ³  ³     ³  ÃÄ@DIVFF  0/350  Ram=14
-   ³  ³     ³  ÃÄ@goto4156  0/34  Ram=0
+   ³  ³     ³  ÃÄ@goto27786  0/34  Ram=0
    ³  ³     ³  ÃÄatan  0/1322  Ram=21
    ³  ³     ³  ³  ÃÄ@FLT  0/122  Ram=10
    ³  ³     ³  ³  ÃÄ@FLT  0/122  Ram=10
@@ -328,10 +334,10 @@
    ³  ÃÄserial_task  0/1272  Ram=5
    ³  ³  ÃÄ@MUL1616  0/34  Ram=5
    ³  ³  ÃÄgetchFromBuffer  0/52  Ram=1
-   ³  ³  ÃÄresetSERcmd  0/378  Ram=6
+   ³  ³  ÃÄresetSERcmd  0/394  Ram=6
    ³  ³  ³  ÀÄ*
    ³  ³  ÃÄ@MUL1616  0/34  Ram=5
-   ³  ³  ÃÄresetSERcmd  0/378  Ram=6
+   ³  ³  ÃÄresetSERcmd  0/394  Ram=6
    ³  ³  ³  ÀÄ*
    ³  ³  ÃÄ@MUL1616  0/34  Ram=5
    ³  ³  ÃÄ@MUL1616  0/34  Ram=5
@@ -345,7 +351,7 @@
    ³  ³  ÃÄ@MUL1616  0/34  Ram=5
    ³  ³  ÃÄ@MUL1616  0/34  Ram=5
    ³  ³  ÃÄ@MUL1616  0/34  Ram=5
-   ³  ³  ÃÄresetSERcmd  0/378  Ram=6
+   ³  ³  ÃÄresetSERcmd  0/394  Ram=6
    ³  ³  ³  ÀÄ*
    ³  ³  ÃÄ@PSTRINGR_1644  0/36  Ram=2
    ³  ³  ³  ÀÄ@PUTCHAR_BIU_1  0/40  Ram=1
@@ -359,7 +365,7 @@
    ³  ³  ÃÄ@MUL1616  0/34  Ram=5
    ³  ³  ÃÄ@MUL1616  0/34  Ram=5
    ³  ³  ÃÄ@MUL1616  0/34  Ram=5
-   ³  ³  ÃÄresetSERcmd  0/378  Ram=6
+   ³  ³  ÃÄresetSERcmd  0/394  Ram=6
    ³  ³  ³  ÀÄ*
    ³  ³  ÀÄ@PSTRINGR_1644  0/36  Ram=2
    ³  ³     ÀÄ*
@@ -393,24 +399,8 @@
    ³  ÃÄ@PRINTF_L32D_1644FPFPF  0/432  Ram=13
    ³  ³  ÀÄ*
    ³  ÃÄ@PUTCHAR_BIU_1  0/40  Ram=1
-   ³  ÃÄ@PSTRINGCN_1644  0/40  Ram=3
-   ³  ³  ÀÄ*
-   ³  ÃÄ@PRINTF_U_1644  0/124  Ram=2
-   ³  ³  ÀÄ*
-   ³  ÃÄ@PSTRINGCN_1644  0/40  Ram=3
-   ³  ³  ÀÄ*
-   ³  ÃÄ@PRINTF_LU_1644  0/200  Ram=9
+   ³  ÃÄ@PSTRINGC_1644  0/36  Ram=2
    ³  ³  ÀÄ@PUTCHAR_BIU_1  0/40  Ram=1
-   ³  ÃÄ@PUTCHAR_BIU_1  0/40  Ram=1
-   ³  ÃÄ@PSTRINGCN_1644  0/40  Ram=3
-   ³  ³  ÀÄ*
-   ³  ÃÄ@PRINTF_U_1644  0/124  Ram=2
-   ³  ³  ÀÄ*
-   ³  ÃÄ@PSTRINGCN_1644  0/40  Ram=3
-   ³  ³  ÀÄ*
-   ³  ÃÄ@PRINTF_LU_1644  0/200  Ram=9
-   ³  ³  ÀÄ*
-   ³  ÃÄ@PUTCHAR_BIU_1  0/40  Ram=1
    ³  ÃÄcommand_handler_task  0/250  Ram=5
    ³  ³  ÃÄgetNextSERReadIndex  0/90  Ram=2
    ³  ³  ³  ÀÄ@MUL1616  0/34  Ram=5
@@ -983,7 +973,7 @@
    ³  ³  ÃÄ@PSTRINGR_1644  0/36  Ram=2
    ³  ³  ³  ÀÄ*
    ³  ³  ÃÄ@PUTCHAR_BIU_1  0/40  Ram=1
-   ³  ³  ÀÄresetSERcmd  0/378  Ram=6
+   ³  ³  ÀÄresetSERcmd  0/394  Ram=6
    ³  ³     ÀÄ*
    ³  ÀÄ@delay_ms1  0/42  Ram=1
    ÃÄ@GOTOPTR  0/14  Ram=0

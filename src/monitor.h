@@ -22,9 +22,9 @@
 
 #define BUFFER_SIZE 5
 typedef struct {
-   int in;
-   int out;
-   int buff[BUFFER_SIZE];
+   int8 in;
+   int8 out;
+   signed int32 buff[BUFFER_SIZE];
 } buffer;
 
 buffer sinQ_x;
@@ -195,13 +195,8 @@ signed int compar(void *a, void *b) {
 /*****************************************************************************/
 void iqm_ring_buffer(int8 ch, signed int32 sinCnts, signed int32 cosCnts)
 {
-   /* 
-   -  copy data out to IQM buffer
-   -  sort IQM buffer
-   -  average values from middle quartile
-   **************************************/
-   signed int32 iqmBufSin[];
-   signed int32 iqmBufCos[];
+   signed int32 iqmBufSin[BUFFER_SIZE];
+   signed int32 iqmBufCos[BUFFER_SIZE];
    signed int32 sumSin=0;
    signed int32 sumCos=0;
    
@@ -209,17 +204,17 @@ void iqm_ring_buffer(int8 ch, signed int32 sinCnts, signed int32 cosCnts)
    tobuff(smData[ch].cosQ, cosCnts);
    
    // copy queue contents out to buffer for qsorting
-   for (int8 i=0; i<BUFFER_SIZE; i++){
-      iqmBufSin[i] = smData[ch].sinQ->buff[i];
-      iqmBufCos[i] = smData[ch].cosQ->buff[i];
+   for (int j=0; j<BUFFER_SIZE; j++){
+      iqmBufSin[j] = smData[ch].sinQ->buff[j];
+      iqmBufCos[j] = smData[ch].cosQ->buff[j];
    }
    
    qsort(iqmBufSin, BUFFER_SIZE, sizeof(*iqmBufSin), compar);
    qsort(iqmBufCos, BUFFER_SIZE, sizeof(*iqmBufCos), compar);
    
-   for (int8 i=1; i<BUFFER_SIZE-1; i++){
-      sumSin+=iqmBufSin[i];
-      sumCos+=iqmBufCos[i];
+   for (int k=1; k<(BUFFER_SIZE-1); k++){
+      sumSin+=iqmBufSin[k];
+      sumCos+=iqmBufCos[k];
    }
    smData[ch].avgSin = sumSin / (BUFFER_SIZE-2);
    smData[ch].avgCos = sumCos / (BUFFER_SIZE-2);
@@ -268,14 +263,21 @@ void setup_external_ADCs()
       rc3=reg3config;
       
       ADS1220init(ch, rc0, rc1, rc2, rc3);
-      delay_ms(1);
+      delay_ms(100);
    }
    
+
+   clrbuff(smData[0].sinQ);
+   clrbuff(smData[0].cosQ);
+   clrbuff(smData[1].sinQ);
+   clrbuff(smData[1].cosQ);
+   smData[0].sinQ->in = 0;
+   smData[0].sinQ->out = 0;
    for (int i = 0; i < BUFFER_SIZE; i++){
       ads_start_conv_all();
-      delay_ms(300);
+      delay_ms(600);
       for (int b = 0; b < 2; b++){
-         tobuff(smData[b].sinQ, ads_read_data(b*2+1));
+         tobuff(smData[b].sinQ, ads_read_data(b*2));
          tobuff(smData[b].cosQ, ads_read_data(b*2+1));      
       }
    }
