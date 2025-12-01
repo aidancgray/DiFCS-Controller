@@ -33,10 +33,10 @@ void main()
       static int8 ch = 0;
       fprintf(SERIAL, "#D0,CNT,%u,%.0f,%.0f\n", ch+1, adcVals[ch].sinCounts, adcVals[ch].cosCounts);
       fprintf(SERIAL, "#D0,POS,%u,%3.3f\n", ch+1, adcVals[ch].pReal);
-//!      if ( dacVals[ch].invV ) fprintf(SERIAL, "#D0,OUT,%u,-,%Lu\n", ch+1, dacVals[ch].val);
-//!      else                    fprintf(SERIAL, "#D0,OUT,%u,+,%Lu\n", ch+1, dacVals[ch].val);
+      if ( dacVals[ch].invV ) fprintf(SERIAL, "#D0,OUT,%u,-,%Lu\n", ch+1, dacVals[ch].val);
+      else                    fprintf(SERIAL, "#D0,OUT,%u,+,%Lu\n", ch+1, dacVals[ch].val);
       ch = !ch;
-      fprintf(SERIAL, "---------------\n");
+//!      fprintf(SERIAL, "---------------\n");
       #endif
       
       command_handler_task();    //execute commands

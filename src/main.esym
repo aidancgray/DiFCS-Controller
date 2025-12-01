@@ -1,9 +1,9 @@
-D G "__PCH__" 0 48 ""5.117""
-D G "__DEVICE__" 0 48 "4610"
-D G "__DATE__" 0 48 ""25-Nov-25""
-D G "__TIME__" 0 48 ""21:09:23""
-D G "_UNICODE" 0 48 ""?""
-D G "__EVAL" 0 48 ""?"" "Standard Header file for the PIC18F46Q10 device ////////////////"
+D G "__PCH__" 0 0 ""5.117""
+D G "__DEVICE__" 0 0 ""
+D G "__DATE__" 0 0 ""25-Nov-25""
+D G "__TIME__" 0 0 ""21:15:15""
+D G "_UNICODE" 0 0 ""?""
+D G "__EVAL" 0 0 ""?"" "Standard Header file for the PIC18F46Q10 device ////////////////"
 c L "set_tris_a" 2 3 25 "FUNCTION"
 F N "set_tris_a" 2 70 ""
 V L "value" 2 70 "int8" `56 
@@ -247,7 +247,7 @@ F B "set_timer0" 2 223 "void(int16 value)" `163
 F N "get_timer0" 2 224 ""
 F B "get_timer0" 2 224 "int8()" `165 
 F N "get_timer0" 2 225 ""
-f G "get_timer0" 2 225 "int16(int8 mode,int8 prescaler)" `166 
+f G "get_timer0" 2 225 "int16()" `166 
 F N "setup_counters" 2 226 ""
 V L "mode" 2 226 "int8" `167 
 V L "prescaler" 2 226 "int8" `168 
@@ -261,7 +261,7 @@ F B "set_rtcc" 2 228 "void(int16 value)" `171
 F N "get_rtcc" 2 229 ""
 F B "get_rtcc" 2 229 "int8()" `173 
 F N "get_rtcc" 2 230 ""
-f G "get_rtcc" 2 230 "int16(int16 mode)" `174  "Constants used for SETUP_TIMER_0() first parameter are:"
+f G "get_rtcc" 2 230 "int16()" `174  "Constants used for SETUP_TIMER_0() first parameter are:"
 D G "T0_INTERNAL" 2 232 "0x8040"
 D G "T0_HFINTOSC" 2 233 "0x8060"
 D G "T0_LFINTOSC" 2 234 "0x8080"
@@ -1558,15 +1558,15 @@ F N "read_adc" 2 1481 ""
 f G "read_adc" 2 1481 "int16()" `477 
 F N "read_adc" 2 1482 ""
 V L "mode" 2 1482 "int8" `478 
-f G "read_adc" 2 1482 "int16(int8 mode,int8 which)" `477 
+f G "read_adc" 2 1482 "int16(int8 mode)" `477 
 F N "adc_done" 2 1483 ""
-F B "adc_done" 2 1483 "int8(int8 mode,int8 which)" `477 
+F B "adc_done" 2 1483 "int8(int8 mode)" `477 
 F N "adc_read" 2 1484 ""
 V L "which" 2 1484 "int8" `479 
 F B "adc_read" 2 1484 "int8(int8 which)" `478 
 F N "adc_read" 2 1485 ""
 V L "which" 2 1485 "int8" `481 
-f G "adc_read" 2 1485 "int16(int8 which,int8 value)" `480 
+f G "adc_read" 2 1485 "int16(int8 which)" `480 
 F N "adc_write" 2 1486 ""
 V L "which" 2 1486 "int8" `481 
 V L "value" 2 1486 "int8" `482 
@@ -2120,9 +2120,9 @@ F B "i2c_transfer_in" 2 1796 "int8(int8 stream,int8 address,*int8 rData,int8 rCo
 F N "spi_xfer" 2 1799 ""
 F B "spi_xfer" 2 1799 "int8()" `792 
 F N "spi_xfer" 2 1800 ""
-f G "spi_xfer" 2 1800 "int16(int8 data)" `793 
+f G "spi_xfer" 2 1800 "int16()" `793 
 F N "spi_xfer" 2 1801 ""
-f G "spi_xfer" 2 1801 "int32(int8 data)" `793 
+f G "spi_xfer" 2 1801 "int32()" `793 
 F N "spi_xfer" 2 1802 ""
 V L "data" 2 1802 "int8" `794 
 F B "spi_xfer" 2 1802 "int8(int8 data)" `793 
@@ -2202,18 +2202,18 @@ F B "spi_prewrite" 2 1821 "void(int8 ,int32 data)" `846
 F N "spi_xfer_in" 2 1822 ""
 F B "spi_xfer_in" 2 1822 "int8()" `849 
 F N "spi_xfer_in" 2 1823 ""
-f G "spi_xfer_in" 2 1823 "int16(int8 bits)" `850 
+f G "spi_xfer_in" 2 1823 "int16()" `850 
 F N "spi_xfer_in" 2 1824 ""
-f G "spi_xfer_in" 2 1824 "int32(int8 bits)" `850 
+f G "spi_xfer_in" 2 1824 "int32()" `850 
 F N "spi_xfer_in" 2 1825 ""
 V L "bits" 2 1825 "int8" `851 
 F B "spi_xfer_in" 2 1825 "int8(int8 bits)" `850 
 F N "spi_xfer_in" 2 1826 ""
 V L "bits" 2 1826 "int8" `853 
-f G "spi_xfer_in" 2 1826 "int16(int8 bits,int8 bits)" `852 
+f G "spi_xfer_in" 2 1826 "int16(int8 bits)" `852 
 F N "spi_xfer_in" 2 1827 ""
 V L "bits" 2 1827 "int8" `853 
-f G "spi_xfer_in" 2 1827 "int32(int8 bits,int8 bits)" `852 
+f G "spi_xfer_in" 2 1827 "int32(int8 bits)" `852 
 F N "spi_xfer_in" 2 1828 ""
 V L "stream" 2 1828 "int8" `853 
 V L "bits" 2 1828 "int8" `854 
@@ -2221,11 +2221,11 @@ F B "spi_xfer_in" 2 1828 "int8(int8 stream,int8 bits)" `852
 F N "spi_xfer_in" 2 1829 ""
 V L "stream" 2 1829 "int8" `853 
 V L "bits" 2 1829 "int8" `857 
-f G "spi_xfer_in" 2 1829 "int16(int8 stream,int8 bits,int16 count)" `855 
+f G "spi_xfer_in" 2 1829 "int16(int8 stream,int8 bits)" `855 
 F N "spi_xfer_in" 2 1830 ""
 V L "stream" 2 1830 "int8" `853 
 V L "bits" 2 1830 "int8" `857 
-f G "spi_xfer_in" 2 1830 "int32(int8 stream,int8 bits,int16 count)" `855 
+f G "spi_xfer_in" 2 1830 "int32(int8 stream,int8 bits)" `855 
 F N "spi_transfer" 2 1831 ""
 V L "wData" 2 1831 "*int8" `856 
 V L "rData" 2 1831 "*int8" `857 
@@ -2294,9 +2294,9 @@ F B "rtos_stats" 2 1851 "void(int8 task,*int8 stat)" `898  "#use timer() Prototy
 F N "get_ticks" 2 1854 ""
 F B "get_ticks" 2 1854 "int8()" `901 
 F N "get_ticks" 2 1855 ""
-f G "get_ticks" 2 1855 "int16(int8 stream)" `902 
+f G "get_ticks" 2 1855 "int16()" `902 
 F N "get_ticks" 2 1856 ""
-f G "get_ticks" 2 1856 "int32(int8 stream)" `902 
+f G "get_ticks" 2 1856 "int32()" `902 
 F N "get_ticks" 2 1857 ""
 V L "stream" 2 1857 "int8" `903 
 F B "get_ticks" 2 1857 "int8(int8 stream)" `902 
@@ -4035,7 +4035,7 @@ C L "MAIN" 0 15 1 "FUNCTION"
 C L "MAIN" 0 15 1 "FUNCTION"
 C L "MAIN" 0 15 1 "FUNCTION"
 V L "ch" 0 33 "int8" `1945 
-C L "MAIN" 0 15 2 "FUNCTION"
+C L "MAIN" 0 15 1 "FUNCTION"
 C L "MAIN" 0 15 1 "FUNCTION"
 F B "reset_cpu" 0 0
 F B "abs" 1 0
