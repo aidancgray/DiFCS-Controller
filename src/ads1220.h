@@ -12,7 +12,7 @@
 #pin_select SCK2=PIN_B1
 #pin_select SDI2=PIN_B2
 #pin_select SDO2=PIN_B3
-#use spi(MASTER, SPI2, BAUD=1000000, MODE=1, STREAM=SPI_mon)
+#use spi(MASTER, SPI2, BAUD=4096000, MODE=1, STREAM=SPI_mon)
 //!setup_spi2(SPI_MASTER | SPI_SCK_IDLE_LOW | SPI_XMIT_H_TO_L | SPI_CLK_DIV_64);
 
 /*****************************************************************************/
@@ -123,7 +123,7 @@ typedef enum {reg0 = 0x00,reg1 = 0x04 ,reg2 = 0x08, reg3 = 0x0C}adsReg;
 // REGISTER CONGIGURATIONS FOR THIS APP
 #define reg0config IPp1n2|g1|PGAenabled // 0x30//
 #define reg1config DRn20|MDturbo|CMsingle|TSDisable|BCSoff //0x10
-#define reg2config REFinternal|FIR60|PSWopen|Ioff //0x30
+#define reg2config REFinternal|FIRoff|PSWopen|Ioff //0x30
 #define reg3config I1disabled|I2disabled|drdyPin //0x00
 
 //COMMANDS

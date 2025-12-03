@@ -20,10 +20,10 @@
 #define vMon3V3A  27
 #define vMon3V3D  26
 
-#define BUFFER_SIZE 5
+#define BUFFER_SIZE 8
 typedef struct {
-   int8 in;
-   int8 out;
+   signed int8 in;
+//!   signed int8 out;
    signed int32 buff[BUFFER_SIZE];
 } buffer;
 
@@ -32,22 +32,22 @@ buffer cosQ_x;
 buffer sinQ_y;
 buffer cosQ_y;
 
-#define incin(buff) ((buff->in==(BUFFER_SIZE-1))?0:buff->in+1)
-#define incout(buff) ((buff->out==(BUFFER_SIZE-1))?0:buff->out+1)
-#define isempty(buff) (buff->in==buff->out)
-#define hasdata(buff) (buff->in!=buff->out)
-#define isfull(buff) (incin(buff)==buff->out)
+//!#define incin(buff) ((buff->in==(BUFFER_SIZE-1))?0:buff->in+1)
+//!#define incout(buff) ((buff->out==(BUFFER_SIZE-1))?0:buff->out+1)
+//!#define isempty(buff) (buff->in==buff->out)
+//!#define hasdata(buff) (buff->in!=buff->out)
+//!#define isfull(buff) (incin(buff)==buff->out)
+//!
+//!#define tobuff(bname,c) { bname->buff[bname->in]=c;\
+//!   bname->in=incin(bname);\
+//!   if (bname->in==bname->out) bname->out=incout(bname);\
+//!   }
+//!#define frombuff(bname) (btemp##bname=bname->buff[bname->out],\
+//!   bname->out=incout(bname), \
+//!   btemp##bname)
+//!#define clrbuff(buff) buff->in=buff->out=0
 
-#define tobuff(bname,c) { bname->buff[bname->in]=c;\
-   bname->in=incin(bname);\
-   if (bname->in==bname->out) bname->out=incout(bname);\
-   }
-#define frombuff(bname) (btemp##bname=bname->buff[bname->out],\
-   bname->out=incout(bname), \
-   btemp##bname)
-#define clrbuff(buff) buff->in=buff->out=0
-
-#define COMPARE(a,b) (((a) > (b)) - ((a) < (b)))
+//!#define COMPARE(a,b) (((a) > (b)) - ((a) < (b)))
 
 struct sensorMonitorData
 {
@@ -62,6 +62,17 @@ struct sensorMonitorData
    {false, false, &sinQ_x, &cosQ_x, 0, 0},
    {false, false, &sinQ_y, &cosQ_y, 0, 0}
 };
+
+signed int compar(void *a, void *b) {
+    if ((* (signed int32 *)a) < (* (signed int32 *)b)) return -1;
+    else if ((* (signed int32 *)a) == (* (signed int32 *)b)) return 0;
+    else return 1;
+}
+
+void push(buffer* q, signed int32 newData) {
+   q->buff[q->in]=newData;
+   q->in=(q->in+1) % BUFFER_SIZE;
+}
 
 /*****************************************************************************/
 /* INTERNAL MONITOR task - gets voltages                                     */
@@ -185,10 +196,6 @@ void sensor_monitor_interrupt_task()
    }
 }
 
-signed int compar(void *a, void *b) {
-   return COMPARE(a,b);
-}
-
 /*****************************************************************************/
 /* Interquartile Mean Ring Buffer                                            */
 /* Filters the ADC data to remove spurious readings                          */
@@ -200,8 +207,11 @@ void iqm_ring_buffer(int8 ch, signed int32 sinCnts, signed int32 cosCnts)
    signed int32 sumSin=0;
    signed int32 sumCos=0;
    
-   tobuff(smData[ch].sinQ, sinCnts); // push new data into queues
-   tobuff(smData[ch].cosQ, cosCnts);
+//!   tobuff(smData[ch].sinQ, sinCnts); // push new data into queues
+//!   tobuff(smData[ch].cosQ, cosCnts);
+   
+   push(smData[ch].sinQ, sinCnts); // push new data into queues
+   push(smData[ch].cosQ, cosCnts);
    
    // copy queue contents out to buffer for qsorting
    for (int j=0; j<BUFFER_SIZE; j++){
@@ -255,8 +265,7 @@ void setup_external_ADCs()
    unsigned int8 rc2=0;
    unsigned int8 rc3=0;
    
-   for (int ch = 0; ch < 4; ch++)
-   {
+   for (int ch = 0; ch < 4; ch++){
       rc0=reg0config;
       rc1=reg1config;
       rc2=reg2config;
@@ -266,19 +275,16 @@ void setup_external_ADCs()
       delay_ms(100);
    }
    
-
-   clrbuff(smData[0].sinQ);
-   clrbuff(smData[0].cosQ);
-   clrbuff(smData[1].sinQ);
-   clrbuff(smData[1].cosQ);
-   smData[0].sinQ->in = 0;
-   smData[0].sinQ->out = 0;
    for (int i = 0; i < BUFFER_SIZE; i++){
       ads_start_conv_all();
       delay_ms(600);
       for (int b = 0; b < 2; b++){
-         tobuff(smData[b].sinQ, ads_read_data(b*2));
-         tobuff(smData[b].cosQ, ads_read_data(b*2+1));      
+         smData[b].sinQ->in = 0;
+         smData[b].cosQ->in = 0;
+//!         tobuff(smData[b].sinQ, ads_read_data(b*2));
+//!         tobuff(smData[b].cosQ, ads_read_data(b*2+1));      
+         push(smData[b].sinQ, ads_read_data(b*2));
+         push(smData[b].cosQ, ads_read_data(b*2+1));      
       }
    }
 }
