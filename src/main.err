@@ -1,0 +1,115 @@
+Compiling C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\main on 03-Dec-25 at 17:25
+>>> Warning 240 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\parameters.h" Line 338(17,20): Pointer types do not match
+>>> Warning 240 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\parameters.h" Line 340(17,22): Pointer types do not match
+>>> Warning 240 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\parameters.h" Line 342(17,23): Pointer types do not match
+>>> Warning 240 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\parameters.h" Line 344(17,23): Pointer types do not match
+>>> Warning 240 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\parameters.h" Line 346(17,26): Pointer types do not match
+>>> Warning 240 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\parameters.h" Line 348(17,23): Pointer types do not match
+>>> Warning 240 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\parameters.h" Line 358(17,20): Pointer types do not match
+>>> Warning 240 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\parameters.h" Line 359(17,22): Pointer types do not match
+>>> Warning 240 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\parameters.h" Line 360(17,23): Pointer types do not match
+>>> Warning 240 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\parameters.h" Line 361(17,23): Pointer types do not match
+>>> Warning 240 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\parameters.h" Line 362(17,26): Pointer types do not match
+>>> Warning 240 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\parameters.h" Line 363(17,23): Pointer types do not match
+>>> Warning 207 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\ADS1220.h" Line 308(1,1): Code has no effect
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(1,2): Illegal C character in input file  0x80
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(1,2): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(1,2): Illegal C character in input file  0xF2
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(1,2): Illegal C character in input file  0x16
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(1,2): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(1,2): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(1,2): Illegal C character in input file  0xFF
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(1,2): Illegal C character in input file  0xFF
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(1,2): Illegal C character in input file  0xFF
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(1,2): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(1,2): Illegal C character in input file  0x06
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(1,2): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(1,2): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(1,2): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(1,2): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(1,2): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(1,2): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(1,2): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(1,2): Illegal C character in input file  0x02
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(1,2): Illegal C character in input file  0xE3
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(1,2): Illegal C character in input file  0x95
+*** Error 124 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(126,128): Structure field name required
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(9,10): Illegal C character in input file  0xFF
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(9,10): Illegal C character in input file  0xA9
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(15,16): Illegal C character in input file  0xE6
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(15,16): Illegal C character in input file  0x40
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(15,16): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(15,16): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(15,16): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(15,16): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(15,16): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(15,16): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(15,16): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(15,16): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(15,16): Illegal C character in input file  0xC0
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(15,16): Illegal C character in input file  0x07
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(15,16): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(15,16): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(15,16): Illegal C character in input file  0xB0
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(15,16): Illegal C character in input file  0xD7
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(15,16): Illegal C character in input file  0x01
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(15,16): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(15,16): Illegal C character in input file  0x80
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(15,16): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(15,16): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(15,16): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(15,16): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(15,16): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(15,16): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(15,16): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(15,16): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(15,16): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(15,16): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(15,16): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(15,16): Illegal C character in input file  0xB8
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(15,16): Illegal C character in input file  0x87 after \
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(15,16): Illegal C character in input file  0x87
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(15,16): Illegal C character in input file  0x04
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(15,16): Illegal C character in input file  0x40
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(26,27): Illegal C character in input file  0x04
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(26,27): Illegal C character in input file  0xD0
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(29,30): Illegal C character in input file  0x04
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(29,30): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(29,30): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(29,30): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(29,30): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(29,30): Illegal C character in input file  0x90
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(32,33): Illegal C character in input file  0x04
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(32,33): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(32,33): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(32,33): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(32,33): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(32,33): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(32,33): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(32,33): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(32,33): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(32,33): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(32,33): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(32,33): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(32,33): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(32,33): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(32,33): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(32,33): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(32,33): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(32,33): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(32,33): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(32,33): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(32,33): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(32,33): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(32,33): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(32,33): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(32,33): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(32,33): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(32,33): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(32,33): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(32,33): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(32,33): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(32,33): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(32,33): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(32,33): Illegal C character in input file  0x00
+*** Error 1 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h" Line 180(35,36): Illegal C character in input file  0x50 after \

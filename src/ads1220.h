@@ -300,10 +300,12 @@ signed int32 ads_read_data(int8 ch)
    }data;
    
    ads_read_command(ch, ADSreadData);
-   data.dBytes[0] = 0;
-   data.dBytes[3] = spi_read2(0);
+   data.dBytes[3] = 0;
    data.dBytes[2] = spi_read2(0);
    data.dBytes[1] = spi_read2(0);
+   data.dBytes[0] = spi_read2(0);
+   
+//!   data.dBytes[2];
    
    ads_deselect_all();
    return data.dWord;
