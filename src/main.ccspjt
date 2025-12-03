@@ -3,7 +3,7 @@ Target=main.hex
 Processor_Text=PIC18F46Q10
 CCSVerions=5.117
 Compiler=PCH
-CCSVersion=5.109
+CCSVersion=5.117
 [Target Data]
 FileList=main.c
 [Directories]
@@ -27,8 +27,8 @@ D2_L=4
 D2_L1=[61297]Project Opened.
 D2_L2=[72340]Started Editing.
 D2_L3=[72431]Stopped Editing.
-TotalEdit=2668
-TotalDebug=5572
+TotalEdit=2676
+TotalDebug=5597
 D2_E=2
 D2_D=0
 D2_L4=[72435]Project Closed.
@@ -1239,7 +1239,7 @@ D80=26-11-2025
 D80_L=1
 D80_L1=[58550]Project Closed.
 D81=02-12-2025
-D81_L=20
+D81_L=38
 D81_L1=[42560]Project Opened.
 D81_L2=[48779]Started Editing.
 D81_L3=[49081]Stopped Editing.
@@ -1259,29 +1259,47 @@ D81_L16=[66534]Started Editing.
 D81_L17=[67497]Stopped Editing.
 D81_L18=[68096]Started Editing.
 D81_L19=[68427]Stopped Editing.
-D81_E=19
-D81_D=0
+D81_E=27
+D81_D=25
 D81_L20=[68548]Project Closed.
+D81_L21=[72106]Project Opened.
+D81_L22=[72253]Started Debugging.
+D81_L23=[73183]Stopped Debugging.
+D81_L24=[73183]Started Editing.
+D81_L25=[73262]Stopped Editing.
+D81_L26=[73262]Started Debugging.
+D81_L27=[73427]Stopped Debugging.
+D81_L28=[73427]Started Editing.
+D81_L29=[73489]Stopped Editing.
+D81_L30=[73489]Started Debugging.
+D81_L31=[73575]Stopped Debugging.
+D81_L32=[73575]Started Editing.
+D81_L33=[73768]Stopped Editing.
+D81_L34=[73768]Started Debugging.
+D81_L35=[74069]Stopped Debugging.
+D81_L36=[74069]Started Editing.
+D81_L37=[74199]Stopped Editing.
+D81_L38=[74199]Project Closed.
 
 [Opened Files]
 1=main.c
-t1=13
-2=main.h
-t2=1
-3=serialport.h
-t3=1
-Count=13
-4=cmdBuffer.h
-t4=5
-5=commandHandler.h
-t5=1
-6=commandhandler.c
-t6=4
-7=eventTimer.h
-t7=17
-8=io.h
-t8=1
-9=pid.h
+t1=1
+2=parameters.h
+t2=353
+3=ADS1220.h
+t3=121
+Count=9
+4=monitor.h
+t4=121
+5=eventTimer.h
+t5=22
+6=main.h
+t6=1
+7=control.h
+t7=1
+8=..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\stdlib.h
+t8=1287
+9=commandHandler.c
 t9=1
 10=control.h
 t10=1
@@ -1301,7 +1319,7 @@ t16=11
 Type=4
 
 [defines]
-buildcount=425
+buildcount=437
 
 [Documentation]
 1=P:\MIRMOS\electrical\Detector Dither Electronics\DitherCtrl\Firmware\difics v2\main.ccspjt
@@ -1332,25 +1350,25 @@ Count=0
 selected=Analog to Digital Converter
 
 [debugbreak]
-count=0
+count=1
 f1=C:\Users\Aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h
-l1=275
-a.1=2450
+l1=236
+a.1=7366
 f2=C:\Users\Aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h
-l2=214
-a.2=8994
+l2=230
+a.2=7338
 f3=C:\Users\Aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h
 l3=214
 a.3=9100
 
 [debugwatch]
-e1=smData
-count=5
-e2=smData[0].sinQ
-e3=smData[0].cosQ
-e4=smData[1].sinQ
-e5=smData[1].cosQ
-e6=buffSize
+e1=k
+count=6
+e2=sumSin
+e3=iqmBufSin
+e4=iqmBufCos
+e5=a_p
+e6=b_p
 
 [debugexpr]
 expr=

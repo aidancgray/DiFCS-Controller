@@ -64,9 +64,16 @@ struct sensorMonitorData
 };
 
 signed int compar(void *a, void *b) {
-    if ((* (signed int32 *)a) < (* (signed int32 *)b)) return -1;
-    else if ((* (signed int32 *)a) == (* (signed int32 *)b)) return 0;
+    signed int32 a_t = (signed int32)a;
+    signed int32 b_t = (signed int32)b;
+
+    signed int32 a_p = (*(signed int32)a);
+    signed int32 b_p = (*(signed int32)b);
+    
+    if ( a_p < b_p ) return -1;
+    else if ( a_p == b_p ) return 0;
     else return 1;
+//!    return COMPARE(a,b);
 }
 
 void push(buffer* q, signed int32 newData) {
@@ -246,7 +253,9 @@ void sensor_monitor_task()
       sinNew = ads_read_data(ch*2);
       cosNew = ads_read_data(ch*2+1);      
       
-      iqm_ring_buffer(ch, sinNew, cosNew);
+//!      iqm_ring_buffer(ch, sinNew, cosNew);
+      smData[ch].avgSin = sinNew;
+      smData[ch].avgCos = cosNew;
       
       sensor_process_data(ch);
       ch = !ch;
@@ -281,8 +290,7 @@ void setup_external_ADCs()
       for (int b = 0; b < 2; b++){
          smData[b].sinQ->in = 0;
          smData[b].cosQ->in = 0;
-//!         tobuff(smData[b].sinQ, ads_read_data(b*2));
-//!         tobuff(smData[b].cosQ, ads_read_data(b*2+1));      
+     
          push(smData[b].sinQ, ads_read_data(b*2));
          push(smData[b].cosQ, ads_read_data(b*2+1));      
       }

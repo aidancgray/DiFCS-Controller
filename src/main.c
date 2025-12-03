@@ -19,7 +19,7 @@ void main()
    serial_init();                // setup the serial port
    event_timer_init();
 //!   setup_wdt(WDT_512MS);
-   enable_interrupts(GLOBAL);
+//!   enable_interrupts(GLOBAL);
    
    while(TRUE)
    {
@@ -28,6 +28,8 @@ void main()
       sensor_monitor_task();     //get magnetoresistive sensor data
       control_task();            //output control
       serial_task();             //serial port 
+      
+      sensor_monitor_interrupt_task();
       
       #ifdef DEBUG_1
       static int8 ch = 0;
