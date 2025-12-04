@@ -5,7 +5,7 @@
 #include <ADS1220.h>
 #include <math.h>
 
-#define sensorSampleRate 50 // 50mS delay between each sensor sample = 200ms cadence 
+#define sensorSampleRate 50 // 50mS delay between each sensor sample = 100ms cadence 
 
 #define maxCount 16777216.0   // ADC max count
 #define vRef 2.048            // ADC vRef
@@ -20,76 +20,41 @@
 #define vMon3V3A  27
 #define vMon3V3D  26
 
-#define BUFFER_SIZE 8
-typedef struct {
-   signed int8 in;
-//!   signed int8 out;
-   signed int32 buff[BUFFER_SIZE];
-} buffer;
+#define BUFFER_SIZE 5
 
-buffer sinQ_x;
-buffer cosQ_x;
-buffer sinQ_y;
-buffer cosQ_y;
-
-//!#define incin(buff) ((buff->in==(BUFFER_SIZE-1))?0:buff->in+1)
-//!#define incout(buff) ((buff->out==(BUFFER_SIZE-1))?0:buff->out+1)
-//!#define isempty(buff) (buff->in==buff->out)
-//!#define hasdata(buff) (buff->in!=buff->out)
-//!#define isfull(buff) (incin(buff)==buff->out)
-//!
-//!#define tobuff(bname,c) { bname->buff[bname->in]=c;\
-//!   bname->in=incin(bname);\
-//!   if (bname->in==bname->out) bname->out=incout(bname);\
-//!   }
-//!#define frombuff(bname) (btemp##bname=bname->buff[bname->out],\
-//!   bname->out=incout(bname), \
-//!   btemp##bname)
-//!#define clrbuff(buff) buff->in=buff->out=0
-
-//!#define COMPARE(a,b) (((a) > (b)) - ((a) < (b)))
+signed int32 sQ_x[BUFFER_SIZE];
+signed int32 cQ_x[BUFFER_SIZE];
+signed int32 sQ_y[BUFFER_SIZE];
+signed int32 cQ_y[BUFFER_SIZE];
+int sIn_x=0;
+int cIn_x=0;
+int sIn_y=0;
+int cIn_y=0;
 
 struct sensorMonitorData
 {
    boolean dataReady;
    boolean adcBusy;
-   buffer* sinQ;
-   buffer* cosQ;
    signed int32 avgSin;
    signed int32 avgCos;
 } smData[2] = 
 {
-   {false, false, &sinQ_x, &cosQ_x, 0, 0},
-   {false, false, &sinQ_y, &cosQ_y, 0, 0}
+   {false, false, 0, 0},
+   {false, false, 0, 0}
 };
 
-signed int compar(void *a, void *b) {
-    signed int32 a_t = (signed int32)a;
-    signed int32 b_t = (signed int32)b;
-
-    signed int32 a_p = (*(signed int32)a);
-    signed int32 b_p = (*(signed int32)b);
-    
-    if ( a_p < b_p ) return -1;
-    else if ( a_p == b_p ) return 0;
-    else return 1;
-//!    return COMPARE(a,b);
-}
-
-void push(buffer* q, signed int32 newData) {
-   q->buff[q->in]=newData;
-   q->in=(q->in+1) % BUFFER_SIZE;
+void push(signed int32* buff, int* idx, signed int32 newData) {
+   buff[*idx]=newData;
+   *idx=(*idx+1) % BUFFER_SIZE;
 }
 
 /*****************************************************************************/
 /* INTERNAL MONITOR task - gets voltages                                     */
 /* gets one value each time the task is run                                  */
 /*****************************************************************************/
-void internal_monitor_task()
-{
+void internal_monitor_task(){
    static int8 state = 0;
-   if (adc_done())
-   {
+   if (adc_done()){
       switch (state)
       {
          case 0:     // vMonN15
@@ -152,8 +117,7 @@ void internal_monitor_task()
 /*****************************************************************************/
 /* PROCESS ADC SENSOR DATA                                                   */
 /*****************************************************************************/
-void sensor_process_data(int8 ch)//, signed int32 sinRawCounts, signed int32 cosRawCounts)
-{
+void sensor_process_data(int8 ch){
    adcVals[ch].sinLast = adcVals[ch].sinCounts;
    adcVals[ch].cosLast = adcVals[ch].cosCounts;
    
@@ -187,12 +151,10 @@ void sensor_process_data(int8 ch)//, signed int32 sinRawCounts, signed int32 cos
 /* SENSOR MONITOR INTERRUPT TASK                                             */
 /* starts conversion of the other two ADCs                                   */
 /*****************************************************************************/
-void sensor_monitor_interrupt_task()
-{
+void sensor_monitor_interrupt_task(){
    static int8 ch = 0;
    
-   if (!smData[ch].adcBusy)
-   {
+   if (!smData[ch].adcBusy){
       smData[ch].adcBusy = true;
       
       ads_start_conv_block(ch);
@@ -207,32 +169,57 @@ void sensor_monitor_interrupt_task()
 /* Interquartile Mean Ring Buffer                                            */
 /* Filters the ADC data to remove spurious readings                          */
 /*****************************************************************************/
-void iqm_ring_buffer(int8 ch, signed int32 sinCnts, signed int32 cosCnts)
-{
-   signed int32 iqmBufSin[BUFFER_SIZE];
-   signed int32 iqmBufCos[BUFFER_SIZE];
+void iqm_ring_buffer(int8 ch, signed int32 sinCnts, signed int32 cosCnts){
+   signed int32* sQ_ch;
+   signed int32* cQ_ch;
+   int* sIn_ch;
+   int* cIn_ch;
+
    signed int32 sumSin=0;
    signed int32 sumCos=0;
    
-//!   tobuff(smData[ch].sinQ, sinCnts); // push new data into queues
-//!   tobuff(smData[ch].cosQ, cosCnts);
+   signed int32 sinMax=0;
+   signed int32 sinMin=0;
+   signed int32 cosMax=0;
+   signed int32 cosMin=0;
    
-   push(smData[ch].sinQ, sinCnts); // push new data into queues
-   push(smData[ch].cosQ, cosCnts);
+   if (ch==0){
+      sQ_ch = sQ_x;
+      cQ_ch = cQ_x;
+      sIn_ch = &sIn_x;
+      cIn_ch = &cIn_x;
+   }
+   else if (ch==1){
+      sQ_ch = sQ_y;
+      cQ_ch = cQ_y;
+      sIn_ch = &sIn_y;
+      cIn_ch = &cIn_y;
+   }
+
+   push(sQ_ch, sIn_ch, sinCnts); // push new data into queues
+   push(cQ_ch, cIn_ch, cosCnts);
    
-   // copy queue contents out to buffer for qsorting
-   for (int j=0; j<BUFFER_SIZE; j++){
-      iqmBufSin[j] = smData[ch].sinQ->buff[j];
-      iqmBufCos[j] = smData[ch].cosQ->buff[j];
+   // MAX and MIN of the rolling buffer initial vals
+   sinMax=sQ_ch[0];
+   sinMin=sQ_ch[0];
+   cosMax=cQ_ch[0];
+   cosMin=cQ_ch[0];
+   
+   // step thru buffer, adding up all vals and finding MAX and MIN
+   for (int i=1; i<BUFFER_SIZE; i++){
+      (sinMax < sQ_ch[i]) ? (sinMax=sQ_ch[i]) : (0);
+      (sinMin > sQ_ch[i]) ? (sinMin=sQ_ch[i]) : (0);
+      (cosMax < cQ_ch[i]) ? (cosMax=cQ_ch[i]) : (0);
+      (cosMin > cQ_ch[i]) ? (cosMin=cQ_ch[i]) : (0);
+      sumSin+=sQ_ch[i];
+      sumCos+=cQ_ch[i];
    }
    
-   qsort(iqmBufSin, BUFFER_SIZE, sizeof(*iqmBufSin), compar);
-   qsort(iqmBufCos, BUFFER_SIZE, sizeof(*iqmBufCos), compar);
+   // subtract MAX and MIN from sum
+   sumSin-=(sinMax+sinMin);
+   sumCos-=(cosMax+cosMin);
    
-   for (int k=1; k<(BUFFER_SIZE-1); k++){
-      sumSin+=iqmBufSin[k];
-      sumCos+=iqmBufCos[k];
-   }
+   // calc AVG
    smData[ch].avgSin = sumSin / (BUFFER_SIZE-2);
    smData[ch].avgCos = sumCos / (BUFFER_SIZE-2);
 }
@@ -241,8 +228,7 @@ void iqm_ring_buffer(int8 ch, signed int32 sinCnts, signed int32 cosCnts)
 /* SENSOR MONITOR task - gets magnetoresistive sensor counts                 */
 /* gets two values each time the task is run                                 */
 /*****************************************************************************/
-void sensor_monitor_task()
-{
+void sensor_monitor_task(){
    static int8 ch = 0;
    signed int32 sinNew = 0;
    signed int32 cosNew = 0;
@@ -253,9 +239,13 @@ void sensor_monitor_task()
       sinNew = ads_read_data(ch*2);
       cosNew = ads_read_data(ch*2+1);      
       
-//!      iqm_ring_buffer(ch, sinNew, cosNew);
-      smData[ch].avgSin = sinNew;
-      smData[ch].avgCos = cosNew;
+      if (adcFilter){
+         iqm_ring_buffer(ch, sinNew, cosNew);
+      }
+      else{
+         smData[ch].avgSin = sinNew;
+         smData[ch].avgCos = cosNew;
+      }
       
       sensor_process_data(ch);
       ch = !ch;
@@ -267,8 +257,7 @@ void sensor_monitor_task()
 /*****************************************************************************/
 /* INITIALIZE ADC's                                                          */
 /*****************************************************************************/
-void setup_external_ADCs()
-{
+void setup_external_ADCs(){
    unsigned int8 rc0=0;
    unsigned int8 rc1=0;
    unsigned int8 rc2=0;
@@ -284,15 +273,14 @@ void setup_external_ADCs()
       delay_ms(100);
    }
    
-   for (int i = 0; i < BUFFER_SIZE; i++){
-      ads_start_conv_all();
-      delay_ms(600);
-      for (int b = 0; b < 2; b++){
-         smData[b].sinQ->in = 0;
-         smData[b].cosQ->in = 0;
-     
-         push(smData[b].sinQ, ads_read_data(b*2));
-         push(smData[b].cosQ, ads_read_data(b*2+1));      
+   if (adcFilter){
+      for (int i = 0; i < BUFFER_SIZE; i++){
+         ads_start_conv_all();
+         delay_ms(50);
+         push(sQ_x, &sIn_x, ads_read_data(0));
+         push(cQ_x, &cIn_x, ads_read_data(1));      
+         push(sQ_y, &sIn_y, ads_read_data(2));
+         push(cQ_y, &cIn_y, ads_read_data(3));      
       }
    }
 }
@@ -300,8 +288,7 @@ void setup_external_ADCs()
 /*****************************************************************************/
 /* INITIALIZE MONITOR -- sets up ADC channels                                */
 /*****************************************************************************/
-void monitor_init()
-{
+void monitor_init(){
    setup_adc_ports(sAN6 | sAN16 | sAN17 | sAN24 | sAN25 | sAN26 | sAN27, NO_ANALOGS_P2, VSS_VDD);
    setup_adc(ADC_CLOCK_INTERNAL | ADC_TAD_MUL_255 | ADC_LEGACY_MODE | ADC_THRESHOLD_INT_DISABLED);
    output_high(EN_EXC);

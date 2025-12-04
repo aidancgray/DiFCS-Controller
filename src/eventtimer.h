@@ -30,7 +30,7 @@ void event_timer_init()
    timeoutReg0 = 0;  // clear all the timers
    timeoutReg1 = 0;
    timeoutReg2 = 0;
-   intTimeoutReg = 50;
+//!   intTimeoutReg = 50;
    enable_interrupts(INT_TIMER1);
 }
 

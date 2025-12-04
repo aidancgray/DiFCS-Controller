@@ -67,6 +67,9 @@ int8 getIPdata(unsigned int8);             // gIPdata,  {1|2}, {raw|calib|p0|pol
 int8 getManOPvals(unsigned int8);          // gManOP,   {1|2}  
 int8 setManOPvals(unsigned int8);          // sManOP,   {1|2}, <float>  
 
+int8 setFilterOn(unsigned int8);           // sFiltOn
+int8 setFilterOff(unsigned int8);          // sFiltOff
+
 int8 invalidCmd(unsigned int8);
 
 struct command {

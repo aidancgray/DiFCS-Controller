@@ -26,6 +26,8 @@ struct command cmd_list[] = {
    {"gIPdata",  &getIPdata},
    {"gManOP",   &getManOPvals},
    {"sManOP",   &setManOPvals},
+   {"sFiltOn",  &setFilterOn},
+   {"sFiltOff", &setFilterOff},
    {"\0", &invalidCmd}
 };
 
@@ -494,6 +496,16 @@ int8 setManOPvals(unsigned int8 rec){
    else if (arg2 < op_lower_bound) manualOutputValues[arg1-1] = op_lower_bound;  
    else manualOutputValues[arg1-1] = arg2;
    
+   return SUCCESS;
+}
+
+int8 setFilterOn(unsigned int8 rec){
+   adcFilter = TRUE;
+   return SUCCESS;
+}
+
+int8 setFilterOff(unsigned int8 rec){
+   adcFilter = FALSE;
    return SUCCESS;
 }
 

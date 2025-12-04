@@ -151,13 +151,6 @@ struct monCalParams
 };
 
 /*****************************************************************************/
-/* MANUAL OUTPUT CTRL                                                        */
-/*****************************************************************************/
-#define man_op_vals_ee_addr 304
-#define man_op_vals_length 8
-float manualOutputValues[2] = {0,0};
-
-/*****************************************************************************/
 /* PARAMS Valid                                                              */
 /*****************************************************************************/
 #define invalidate 0xFF
@@ -200,6 +193,8 @@ struct adcV
    {0,0,0,0,0,0,0,0,0}
 };
 
+BOOLEAN adcFilter = TRUE;
+
 struct dacV
 {
    unsigned int16 val;
@@ -209,6 +204,8 @@ struct dacV
    {0,FALSE},
    {0,FALSE}
 };
+
+float manualOutputValues[2] = {0,0};
 
 // used with timeouts
 unsigned int32 timeoutReg0 = 0; //All timers are defined in milliseconds, 
