@@ -70,6 +70,23 @@ void set_nanoDAC_outputs(channelMap ch){
 }
 
 /*****************************************************************************/
+/*  zero a stage axis by finding the midpoint                                */ 
+/*****************************************************************************/
+void zero_stage(channelMap ch){
+   float maxSP = 0;
+   float minSP = 0;
+   
+   chMode[ch] = MANUAL;          // set channel to manual
+   manualOutputValues[ch] = 0;   // set channel output to 0%
+   set_nanoDAC_outputs(ch);
+   
+   for (int i=0; i<3; i++){
+      manualOutputValues[ch] = op_upper_bound;
+      set_nanoDAC_outputs(ch);
+   }
+}
+
+/*****************************************************************************/
 /*  control task sets up the outputs channels                                */ 
 /*****************************************************************************/
 void control_task(){

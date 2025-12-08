@@ -189,10 +189,13 @@ struct adcV
    float p0;               // mid-pole position in microns
    signed int8  npoles;    // number of poles passed
    float pReal;            // real position in microns
+   float pHome;            // Home position in microns
+   float pMax;             // Max setpoint in microns
+   float pMin;             // Min setpoint in microns
 }adcVals[2] = 
 {
-   {0,0,0,0,0,0,0,0,0},
-   {0,0,0,0,0,0,0,0,0}
+   {0,0,0,0,0,0,0,0,0,0,0,0},
+   {0,0,0,0,0,0,0,0,0,0,0,0}
 };
 
 BOOLEAN adcFilter = TRUE;
