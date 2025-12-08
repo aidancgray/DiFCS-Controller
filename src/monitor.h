@@ -156,10 +156,10 @@ void sensor_monitor_interrupt_task(){
    
    if (!smData[ch].adcBusy){
       smData[ch].adcBusy = true;
-      
+         
       ads_start_conv_block(ch);
       ch = !ch;
-      
+         
       smData[!ch].dataReady = true;
       smData[!ch].adcBusy = false;
    }

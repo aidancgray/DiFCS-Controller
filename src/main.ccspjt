@@ -3,7 +3,7 @@ Target=main.hex
 Processor_Text=PIC18F46Q10
 CCSVerions=5.117
 Compiler=PCH
-CCSVersion=5.109
+CCSVersion=5.117
 [Target Data]
 FileList=main.c
 [Directories]
@@ -17,7 +17,7 @@ Type=4
 forcecoff=0
 
 [ProjectLog]
-Days=83
+Days=84
 D1=11-03-2025
 D1_L=2
 D1_L1=[76140]Project Opened.
@@ -27,8 +27,8 @@ D2_L=4
 D2_L1=[61297]Project Opened.
 D2_L2=[72340]Started Editing.
 D2_L3=[72431]Stopped Editing.
-TotalEdit=2742
-TotalDebug=5597
+TotalEdit=2820
+TotalDebug=5599
 D2_E=2
 D2_D=0
 D2_L4=[72435]Project Closed.
@@ -1289,7 +1289,7 @@ D82_E=1
 D82_D=0
 D82_L4=[63820]Project Closed.
 D83=04-12-2025
-D83_L=14
+D83_L=23
 D83_L1=[40456]Project Opened.
 D83_L2=[40591]Started Editing.
 D83_L3=[40955]Stopped Editing.
@@ -1306,29 +1306,45 @@ D83_L13=[54511]Stopped Editing.
 D83_E=65
 D83_D=0
 D83_L14=[54511]Project Closed.
+D83_L15=[61711]Project Opened.
+D83_L16=[62705]Started Editing.
+D83_L17=[63577]Stopped Editing.
+D83_L18=[64103]Started Editing.
+D83_L19=[64901]Stopped Editing.
+D83_L20=[65151]Started Editing.
+D83_L21=[67186]Stopped Editing.
+D83_L22=[67226]Started Editing.
+D83_L23=[69383]Stopped Editing.
+D84=05-12-2025
+D84_L=3
+D84_L1=[52694]Started Debugging.
+D84_L2=[53406]Stopped Debugging.
+D84_E=78
+D84_D=2
+D84_L3=[80223]Project Closed.
 
 [Opened Files]
-1=main.h
+1=main.c
 t1=1
-2=serialport.h
-t2=1
-3=cmdBuffer.h
+2=parameters.h
+t2=55
+3=ADS1220.h
 t3=5
-Count=13
-4=commandHandler.h
-t4=55
-5=commandhandler.c
-t5=480
-6=eventTimer.h
-t6=23
-7=io.h
-t7=5
-8=pid.h
-t8=1
-9=control.h
+Count=10
+4=monitor.h
+t4=216
+5=eventTimer.h
+t5=22
+6=main.h
+t6=1
+7=control.h
+t7=1
+8=..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\stdlib.h
+t8=1287
+9=commandHandler.c
 t9=1
-10=ADS1220.h
-t10=267
+10=pid.h
+t10=1
 11=parameters.h
 t11=186
 12=monitor.h
@@ -1345,7 +1361,7 @@ t16=11
 Type=4
 
 [defines]
-buildcount=443
+buildcount=469
 
 [Documentation]
 1=P:\MIRMOS\electrical\Detector Dither Electronics\DitherCtrl\Firmware\difics v2\main.ccspjt
@@ -1376,7 +1392,7 @@ Count=0
 selected=Analog to Digital Converter
 
 [debugbreak]
-count=1
+count=0
 f1=C:\Users\Aidan\Documents\GitHub\DiFCS-Controller\src\monitor.h
 l1=236
 a.1=7366
@@ -1389,12 +1405,13 @@ a.3=9100
 
 [debugwatch]
 e1=k
-count=6
+count=7
 e2=sumSin
 e3=iqmBufSin
 e4=iqmBufCos
 e5=a_p
 e6=b_p
+e7=dacVals
 
 [debugexpr]
 expr=
