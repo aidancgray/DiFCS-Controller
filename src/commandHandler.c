@@ -588,11 +588,14 @@ int8 command_parser(unsigned int8 rec){
 void command_handler_task(){
    while (getNextSERReadIndex())
    {
-      int8 return_code = command_parser(SRI);
+      int8 return_code;
       //echo_cmd(SRI);
-      sprintf(retData + strlen(retData), "%s", resp_list[return_code].msg);
-      fprintf(SERIAL, "$%s,%s\n", SERcmd[SRI].p[0], retData);
+      sprintf(retData + strlen(retData), "$%s,", SERcmd[SRI].p[0]);
       
+      return_code = command_parser(SRI);
+      
+      sprintf(retData + strlen(retData), "%s", resp_list[return_code].msg);
+      serial_out(retData);
       resetSERcmd(SRI);
    }
 }

@@ -8,13 +8,15 @@
 #include <eventTimer.h>
 #include <commandHandler.c>
 
-//!#define DEBUG_1
+#define DEBUG_1
 
 void main()
 {
    int16 loopDelay = 100;
    int16 controlCounter = 0;
    int16 debugCounter = 0;
+   
+   char pBuff[100];
    
    IO_init();                    // set up IO 
    params_init();                // load parameters
@@ -27,6 +29,7 @@ void main()
    
    while(TRUE)
    {
+      pBuff[0] = '\0';
 //!      restart_wdt();
       internal_monitor_task();   //Update monitored voltage and currents etc
       sensor_monitor_task();     //get magnetoresistive sensor data
@@ -37,17 +40,18 @@ void main()
       }else controlCounter++;
       
       serial_task();             //serial port
-      
+
       #ifdef DEBUG_1
       if (debugCounter >= 0){
          static int8 ch = 0;
-         fprintf(SERIAL, "#D0,CNT,%u,%.0f,%.0f\n", ch+1, adcVals[ch].sinCounts, adcVals[ch].cosCounts);
-         fprintf(SERIAL, "#D0,POS,%u,%3.3f\n", ch+1, adcVals[ch].pReal);
-         if ( dacVals[ch].invV ) fprintf(SERIAL, "#D0,OUT,%u,-,%Lu\n", ch+1, dacVals[ch].val);
-         else                    fprintf(SERIAL, "#D0,OUT,%u,+,%Lu\n", ch+1, dacVals[ch].val);
+         sprintf(pBuff+strlen(pBuff), "#D0,CNT,%u,%.0f,%.0f\n", ch+1, adcVals[ch].sinCounts, adcVals[ch].cosCounts);
+         sprintf(pBuff+strlen(pBuff), "#D0,POS,%u,%3.3f\n", ch+1, adcVals[ch].pReal);
+         if ( dacVals[ch].invV ) sprintf(pBuff+strlen(pBuff), "#D0,OUT,%u,-,%Lu\n", ch+1, dacVals[ch].val);
+         else                    sprintf(pBuff+strlen(pBuff), "#D0,OUT,%u,+,%Lu\n", ch+1, dacVals[ch].val);
          ch = !ch;
          debugCounter = 0;
       } else debugCounter++;
+      serial_out(pBuff);
       #endif
       
       command_handler_task();    //execute commands

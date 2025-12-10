@@ -81,8 +81,14 @@ struct pidParams
 #define channel_map_length 2  // length in bytes
 channelMap chMap[2] = {chX, chY};
 
-#define op_upper_bound 63
-#define op_lower_bound -63
+//!#define op_upper_bound 63  // CRYO
+//!#define op_lower_bound -63 // CRYO
+#define op_upper_bound 63  // AMBIENT 
+#define op_lower_bound -12 // AMBIENT
+
+//!#define op_upper_bound 100  // FULL 
+//!#define op_lower_bound -100 // FULL
+
 
 /*****************************************************************************/
 /* Input Channel Mode                                                        */
@@ -198,7 +204,7 @@ struct adcV
    {0,0,0,0,0,0,0,0,0,0,0,0}
 };
 
-BOOLEAN adcFilter = TRUE;
+BOOLEAN adcFilter = FALSE;
 
 struct dacV
 {

@@ -20,7 +20,7 @@ unsigned int8 UART_RD_PTR = 0;
 boolean BYTES_AVAILABLE= FALSE;
 
 #ifdef use_RS485
-#use rs232(baud=baudRate, xmit=TX_PIN, rcv=RX_PIN, enable=TX_ENABLE, stream=SERIAL, ERRORS)
+#use rs232(baud=baudRate, xmit=TX_PIN, rcv=RX_PIN, stream=SERIAL, ERRORS)
 #else
 #use rs232(baud=baudRate, xmit=TX_PIN, rcv=RX_PIN, stream=SERIAL)
 #endif
@@ -32,6 +32,19 @@ boolean BYTES_AVAILABLE= FALSE;
 /* FUNCTIONS START HERE                                                      */
 /*****************************************************************************/
 /*****************************************************************************/
+
+/*****************************************************************************/
+/* SERIAL PRINTOUT                                                           */
+/*****************************************************************************/
+void serial_out(char* pBuff){
+    output_high(TX_ENABLE);
+    delay_us(500);
+    
+    fprintf(SERIAL, "%s", pBuff);
+    delay_us(500);
+    
+    output_low(TX_ENABLE);
+}
 
 /*****************************************************************************/
 /* SERIAL PORT ISR                                                           */
