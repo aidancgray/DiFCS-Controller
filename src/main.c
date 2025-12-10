@@ -10,6 +10,10 @@
 
 #define DEBUG_1
 
+#ifdef DEBUG_1
+#use rs232(ICD, stream=ICD_STREAM)
+#endif
+
 void main()
 {
    int16 loopDelay = 100;
@@ -51,7 +55,8 @@ void main()
          ch = !ch;
          debugCounter = 0;
       } else debugCounter++;
-      serial_out(pBuff);
+//!      serial_out(pBuff);
+      fprintf(ICD_STREAM, "%s", pBuff);
       #endif
       
       command_handler_task();    //execute commands
