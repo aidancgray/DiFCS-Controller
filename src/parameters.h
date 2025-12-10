@@ -59,20 +59,22 @@ void params_invalidate(void);
 #define pid_params_length 128  // length in bytes
 struct pidParams
 {
-   float kP;     // proportional gain
-   float kI;     // integral gain
-   float kD;     // derivative gain
-   float SP;     // set point-- desired output
-   float PV;     // process variable-- measured output
-   float PVold;  // oldPV value  
-   float CV;     // control variable-- output -- 0 to 100%
-   float I;      // integral value
+    float kP;      // proportional gain
+    float kI;      // integral gain
+    float kD;      // derivative gain
+    float SP;      // set point-- desired output
+    float PV;      // process variable-- measured output
+    float PVold;   // oldPV value  
+    float CV;      // control variable-- output -- 0 to 100%
+    float I;       // integral value
+    float maxSP;   // Max setpoint in microns
+    float minSP;   // Min setpoint in microns
 }PID[2] = {
-  //  P     I     D
-  //0.01    0.3   0.1
-   {0.01,   0.3,  0.1, 0,0,0,0,0}, 
-   {0.01,   0.3,  0.1, 0,0,0,0,0}
-   };
+   //  P     I     D
+   //0.01    0.3   0.1
+    {0.01,   0.3,  0.1, 0,0,0,0,0,0,0}, 
+    {0.01,   0.3,  0.1, 0,0,0,0,0,0,0}
+    };
 
 /*****************************************************************************/
 /* Output Channel Map                                                        */
@@ -83,6 +85,7 @@ channelMap chMap[2] = {chX, chY};
 
 //!#define op_upper_bound 63  // CRYO
 //!#define op_lower_bound -63 // CRYO
+
 #define op_upper_bound 63  // AMBIENT 
 #define op_lower_bound -12 // AMBIENT
 
@@ -196,27 +199,26 @@ struct adcV
    signed int8  npoles;    // number of poles passed
    float pReal;            // real position in microns
    float pHome;            // Home position in microns
-   float pMax;             // Max setpoint in microns
-   float pMin;             // Min setpoint in microns
+   BOOLEAN homeFlag;       // Flag to trigger the homing routine
 }adcVals[2] = 
 {
-   {0,0,0,0,0,0,0,0,0,0,0,0},
-   {0,0,0,0,0,0,0,0,0,0,0,0}
+   {0,0,0,0,0,0,0,0,0,0,FALSE},
+   {0,0,0,0,0,0,0,0,0,0,FALSE}
 };
 
 BOOLEAN adcFilter = FALSE;
 
 struct dacV
 {
-   unsigned int16 val;
-   BOOLEAN invV;
+    BOOLEAN invV;
+    unsigned int16 ipVal;
+    float opPcnt;
+   
 }dacVals[2] = 
 {
-   {0,FALSE},
-   {0,FALSE}
+    {FALSE,0,0},
+    {FALSE,0,0}
 };
-
-float manualOutputValues[2] = {0,0};
 
 // used with timeouts
 unsigned int32 timeoutReg0 = 0; //All timers are defined in milliseconds, 

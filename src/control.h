@@ -30,60 +30,102 @@ void invert_voltage(channelMap ch, BOOLEAN inv_v){
 /*  Nano DAC's have a 16bit serial shift register. Data is sync'ed to output */ 
 /*****************************************************************************/
 void set_nanoDAC_outputs(channelMap ch){
-   unsigned int16 txData = 0;
+    unsigned int16 txData = 0;
    
-   // use manualOutputValues if channel is manual mode
-   // else, use PID control variable
-   if (chMode[ch] == MANUAL){
-      if ( manualOutputValues[ch] < 0) invert_voltage(ch, TRUE); 
-      else                             invert_voltage(ch, FALSE);
+    // use dacVals.opPcnt values if channel is manual mode
+    // else, use PID control variable
+    if (chMode[ch] == MANUAL){
+        if ( dacVals[ch].opPcnt < 0) invert_voltage(ch, TRUE); 
+        else                         invert_voltage(ch, FALSE);
       
-      txData = (unsigned int16)(abs(manualOutputValues[ch]) * DACfullScale);
-   }
-   else {
-      pid_task(ch);
-      if ( PID[(int)ch].CV < 0 ) invert_voltage(ch, TRUE); 
-      else                       invert_voltage(ch, FALSE);
+        txData = (unsigned int16)(abs(dacVals[ch].opPcnt) * DACfullScale);
+    }
+    else {
+        pid_task(ch);
+        if ( PID[(int)ch].CV < 0 ) invert_voltage(ch, TRUE); 
+        else                       invert_voltage(ch, FALSE);
       
-      txData = (unsigned int16)(abs(PID[(int)ch].CV) * DACfullScale);
-   }
+        txData = (unsigned int16)(abs(PID[(int)ch].CV) * DACfullScale);
+    }
    
-   dacVals[ch].val = txData;
+    dacVals[ch].ipVal = txData;
    
-   // use channel map to decide which outputs channels to update
-   // strobe _sync low to push data to the outputs
-   if (chMap[0] == ch) output_high(_SYNC_X);
-   if (chMap[1] == ch) output_high(_SYNC_Y);
+    // use channel map to decide which outputs channels to update
+    // strobe _sync low to push data to the outputs
+    if (chMap[0] == ch) output_high(_SYNC_X);
+    if (chMap[1] == ch) output_high(_SYNC_Y);
    
-   delay_ms(1);
+    delay_ms(1);
    
-   if (chMap[0] == ch) output_low(_SYNC_X);
-   if (chMap[1] == ch) output_low(_SYNC_Y);
-   delay_ms(1);
+    if (chMap[0] == ch) output_low(_SYNC_X);
+    if (chMap[1] == ch) output_low(_SYNC_Y);
+    delay_ms(1);
    
-   // shift 16 bits of data
-   spi_xfer(SPI_ctrl, txData, 24);
-   delay_ms(1);
+    // shift 16 bits of data
+    spi_xfer(SPI_ctrl, txData, 24);
+    delay_ms(1);
    
-   if (chMap[0] == ch) output_high(_SYNC_X);
-   if (chMap[1] == ch) output_high(_SYNC_Y);
+    if (chMap[0] == ch) output_high(_SYNC_X);
+    if (chMap[1] == ch) output_high(_SYNC_Y);
 }
 
 /*****************************************************************************/
-/*  zero a stage axis by finding the midpoint                                */ 
+/*  Axis homing routines and helper functions                                */ 
 /*****************************************************************************/
-void zero_stage(channelMap ch){
-   float maxSP = 0;
-   float minSP = 0;
-   
-   chMode[ch] = MANUAL;          // set channel to manual
-   manualOutputValues[ch] = 0;   // set channel output to 0%
-   set_nanoDAC_outputs(ch);
-   
-   for (int i=0; i<3; i++){
-      manualOutputValues[ch] = op_upper_bound;
-      set_nanoDAC_outputs(ch);
-   }
+void slew_to_upper_bound(channelMap ch){
+    chMode[ch] = MANUAL;        // set channel to manual
+    
+    while (dacVals[ch].opPcnt < op_upper_bound){
+        dacVals[ch].opPcnt += 10;   // increase output by 10%
+        set_nanoDAC_outputs(ch);
+        delay_ms(500);
+    }
+    dacVals[ch].opPcnt = op_upper_bound;    // set output to upper bound
+    set_nanoDAC_outputs(ch);
+    delay_ms(500);
+}
+
+void slew_to_lower_bound(channelMap ch){
+    chMode[ch] = MANUAL;        // set channel to manual
+    
+    while (dacVals[ch].opPcnt > op_lower_bound){
+        dacVals[ch].opPcnt -= 10;   // decrease output by 10%
+        set_nanoDAC_outputs(ch);
+        delay_ms(500);
+    }
+    dacVals[ch].opPcnt = op_lower_bound;    // set output to lower bound
+    set_nanoDAC_outputs(ch);
+    delay_ms(500);
+}
+
+void home_axis(channelMap ch){
+    float maxSP = 0;
+    float minSP = 0;
+    int loops = 3;
+    
+    // Slew up and down a couple times then set output to 0 to settle the piezo
+    slew_to_upper_bound(ch);
+    slew_to_lower_bound(ch);
+    slew_to_upper_bound(ch);
+    slew_to_lower_bound(ch);
+    dacVals[ch].opPcnt = 0;
+    set_nanoDAC_outputs(ch);
+    delay_ms(500);
+    
+    for (int i=0; i<loops; i++){
+        slew_to_upper_bound(ch);
+        sensor_monitor_task();
+        maxSP+=adcVals[ch].pReal;
+        
+        slew_to_lower_bound(ch);
+        sensor_monitor_task();
+        minSP+=adcVals[ch].pReal;
+    }
+    
+    PID[ch].maxSP = maxSP / (float)loops;
+    PID[ch].minSP = minSP / (float)loops;
+    adcVals[ch].pHome = (maxSP+minSP) / ((float)loops*2);
+    adcVals[ch].homeFlag = False;
 }
 
 /*****************************************************************************/

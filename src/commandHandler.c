@@ -4,31 +4,30 @@
 
 /* LIST OF DIAGNOSTIC COMMAND KEYWORDS AND THEIR FUNCTIONS */
 struct command cmd_list[] = {
-   {"gr",       &getRev},
-   {"gs",       &getSN},
-   {"gChMap",   &getOPchMap},
-   {"sChMap",   &setOPchMap},
-   {"gChMode",  &getIPchMode},
-   {"sChMode",  &setIPchMode},
-   {"gPID",     &getPIDvals},
-   {"sPID",     &setPIDvals},
-//!   {"enaPID",   &enablePID},
-//!   {"disPID",   &disablePID},
-   {"gSP",      &getSetPoint},
-   {"sSP",      &setSetPoint},
-   {"gSCals",   &getAllSensorCalParams},
-   {"gSCal",    &getSensorCalParam},
-   {"sSCal",    &setSensorCalParam},
-   {"gMCal",    &getMonitorCalParam},
-   {"sMCal",    &setMonitorCalParam},
-   {"gMon",     &getMonitorValue},
-   {"gPIDdata", &getPIDdata},
-   {"gIPdata",  &getIPdata},
-   {"gManOP",   &getManOPvals},
-   {"sManOP",   &setManOPvals},
-   {"sFiltOn",  &setFilterOn},
-   {"sFiltOff", &setFilterOff},
-   {"\0", &invalidCmd}
+    {"gr",       &getRev},
+    {"gs",       &getSN},
+    {"gChMap",   &getOPchMap},
+    {"sChMap",   &setOPchMap},
+    {"gChMode",  &getIPchMode},
+    {"sChMode",  &setIPchMode},
+    {"gPID",     &getPIDvals},
+    {"sPID",     &setPIDvals},
+    {"gSP",      &getSetPoint},
+    {"sSP",      &setSetPoint},
+    {"gSCals",   &getAllSensorCalParams},
+    {"gSCal",    &getSensorCalParam},
+    {"sSCal",    &setSensorCalParam},
+    {"gMCal",    &getMonitorCalParam},
+    {"sMCal",    &setMonitorCalParam},
+    {"gMon",     &getMonitorValue},
+    {"gPIDdata", &getPIDdata},
+    {"gIPdata",  &getIPdata},
+    {"gManOP",   &getManOPvals},
+    {"sManOP",   &setManOPvals},
+    {"sFiltOn",  &setFilterOn},
+    {"sFiltOff", &setFilterOff},
+    {"sHome",    &setHomeAxis},
+    {"\0", &invalidCmd}
 };
 
 /* LIST OF RESPONSE MESSAGES */
@@ -173,30 +172,6 @@ int8 setPIDvals(unsigned int8 rec){
    return SUCCESS;
 }
 
-//!int8 enablePID(unsigned int8 rec){
-//!   /*** ARG CHECKS ********************/
-//!   int8  arg1;
-//!   
-//!   if (!is_valid_channel(SERcmd[rec].p[2])) return INV_PARAM;
-//!   else arg1 = strtoul(SERcmd[rec].p[2],'\0',10);
-//!   
-//!   PID[arg1-1].enable = TRUE;
-//!   
-//!   return SUCCESS;
-//!}
-//!
-//!int8 disablePID(unsigned int8 rec){
-//!   /*** ARG CHECKS ********************/
-//!   int8  arg1;
-//!   
-//!   if (!is_valid_channel(SERcmd[rec].p[2])) return INV_PARAM;
-//!   else arg1 = strtoul(SERcmd[rec].p[2],'\0',10);
-//!   
-//!   PID[arg1-1].enable = FALSE;
-//!   
-//!   return SUCCESS;
-//!}
-
 int8 getSetPoint(unsigned int8 rec){
    /*** ARG CHECKS ********************/
    int8  arg1;
@@ -331,22 +306,12 @@ int8 getMonitorCalParam(unsigned int8 rec){
    else if (0 == strcmp(s_3V3D, arg1)) {
       sprintf(retData+strlen(retData), "%f,%f,", monCal.v3V3D[0],monCal.v3V3D[1]);
    }
-//!   else if (0 == strcmp(s_all, arg1)) {
-//!      sprintf(retData+strlen(retData), "%f,%f,", monCal.vN15[0],monCal.vN15[1]);
-//!      sprintf(retData+strlen(retData), "%f,%f,", monCal.v200[0],monCal.v200[1]);
-//!      sprintf(retData+strlen(retData), "%f,%f,", monCal.v5V6[0],monCal.v5V6[1]);
-//!      sprintf(retData+strlen(retData), "%f,%f,", monCal.v5VA[0],monCal.v5VA[1]);
-//!      sprintf(retData+strlen(retData), "%f,%f,", monCal.v3V6X[0],monCal.v3V6X[1]);
-//!      sprintf(retData+strlen(retData), "%f,%f,", monCal.v3V3A[0],monCal.v3V3A[1]);
-//!      sprintf(retData+strlen(retData), "%f,%f,", monCal.v3V3D[0],monCal.v3V3D[1]);
-//!   }
    else return INV_PARAM;
    
    return SUCCESS;
 }
 
 int8 setMonitorCalParam(unsigned int8 rec){
-
    return SUCCESS;
 }
 
@@ -475,7 +440,7 @@ int8 getManOPvals(unsigned int8 rec){
    else arg1 = strtoul(SERcmd[rec].p[2],'\0',10);
    
    /*** GET MANUAL OUTPUT VALUE ***************/ 
-   sprintf(retData+strlen(retData), "%d,%f,", arg1, manualOutputValues[arg1-1]);
+   sprintf(retData+strlen(retData), "%d,%f,", arg1, dacVals[arg1-1].opPcnt);
    
    return SUCCESS;
 }
@@ -492,9 +457,9 @@ int8 setManOPvals(unsigned int8 rec){
    else arg2 = strtod(SERcmd[rec].p[3], '\0');
    
    /*** SET MANUAL OUTPUT VALUE ***************/
-   if (arg2 > op_upper_bound) manualOutputValues[arg1-1] = op_upper_bound;
-   else if (arg2 < op_lower_bound) manualOutputValues[arg1-1] = op_lower_bound;  
-   else manualOutputValues[arg1-1] = arg2;
+   if (arg2 > op_upper_bound) dacVals[arg1-1].opPcnt = op_upper_bound;
+   else if (arg2 < op_lower_bound) dacVals[arg1-1].opPcnt = op_lower_bound;  
+   else dacVals[arg1-1].opPcnt = arg2;
    
    return SUCCESS;
 }
@@ -507,6 +472,18 @@ int8 setFilterOn(unsigned int8 rec){
 int8 setFilterOff(unsigned int8 rec){
    adcFilter = FALSE;
    return SUCCESS;
+}
+
+int8 setHomeAxis(unsigned int8 rec){
+    /*** ARG CHECKS ********************/
+    int8 arg1;
+    
+    if (!is_valid_channel(SERcmd[rec].p[2])) return INV_PARAM;
+    else arg1 = strtoul(SERcmd[rec].p[2],'\0',10);
+    
+    adcVals[arg1-1].homeFlag = TRUE;
+    
+    return SUCCESS;
 }
 
 int8 invalidCmd(unsigned int8 rec){
