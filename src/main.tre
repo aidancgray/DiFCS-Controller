@@ -1,5 +1,5 @@
 ÀÄmain
-   ÃÄMAIN  0/2076  Ram=117
+   ÃÄMAIN  0/2040  Ram=117
    ³  ÃÄ@cinit1  (Inline)  Ram=0
    ³  ³  ÀÄ@delay_ms1  0/42  Ram=1
    ³  ÃÄ@cinit2  (Inline)  Ram=0
@@ -37,7 +37,7 @@
    ³  ³     ³  ÃÄads_write_command  0/22  Ram=2
    ³  ³     ³  ³  ÀÄads_select_ch  0/72  Ram=1
    ³  ³     ³  ³     ÃÄads_deselect_all  0/30  Ram=0
-   ³  ³     ³  ³     ÀÄ@goto20068  0/34  Ram=0
+   ³  ³     ³  ³     ÀÄ@goto53977  0/34  Ram=0
    ³  ³     ³  ÃÄ@delay_us1  0/34  Ram=1
    ³  ³     ³  ÃÄads_write_reg  0/38  Ram=5
    ³  ³     ³  ³  ÃÄads_write_command  0/22  Ram=2
@@ -89,7 +89,7 @@
    ³  ³     ÀÄ@MUL1616  0/34  Ram=5
    ³  ÃÄevent_timer_init  0/52  Ram=0
    ³  ÃÄinternal_monitor_task  0/1366  Ram=4
-   ³  ³  ÃÄ@goto20779  0/40  Ram=0
+   ³  ³  ÃÄ@goto54641  0/40  Ram=0
    ³  ³  ÃÄ@ITOF  0/54  Ram=2
    ³  ³  ÃÄ@MULFF  0/246  Ram=11
    ³  ³  ÃÄ@ADDFF  0/632  Ram=16
@@ -161,7 +161,7 @@
    ³  ³     ³  ÃÄ@FLT  0/122  Ram=10
    ³  ³     ³  ÃÄ@FLT  0/122  Ram=10
    ³  ³     ³  ÃÄ@DIVFF  0/350  Ram=14
-   ³  ³     ³  ÃÄ@goto20635  0/34  Ram=0
+   ³  ³     ³  ÃÄ@goto54505  0/34  Ram=0
    ³  ³     ³  ÃÄatan  0/1322  Ram=21
    ³  ³     ³  ³  ÃÄ@FLT  0/122  Ram=10
    ³  ³     ³  ³  ÃÄ@FLT  0/122  Ram=10
@@ -408,7 +408,6 @@
    ³  ÃÄ@PRINTF_L32D_1678FPFPF  0/424  Ram=13
    ³  ³  ÀÄ*
    ³  ÃÄ@SPRINTF  0/32  Ram=1
-   ³  ÃÄ@SPRINTF  0/32  Ram=1
    ³  ÃÄstrlen  0/56  Ram=5
    ³  ÃÄ@PSTRINGCN_1678  0/40  Ram=3
    ³  ³  ÀÄ*
@@ -417,7 +416,6 @@
    ³  ÃÄ@SPRINTF  0/32  Ram=1
    ³  ÃÄ@PRINTF_L32D_1678FPFPF  0/424  Ram=13
    ³  ³  ÀÄ*
-   ³  ÃÄ@SPRINTF  0/32  Ram=1
    ³  ÃÄ@SPRINTF  0/32  Ram=1
    ³  ÃÄstrlen  0/56  Ram=5
    ³  ÃÄ@PSTRINGCN_1678  0/40  Ram=3
@@ -429,7 +427,6 @@
    ³  ÃÄ@PRINTF_LU_1678  0/198  Ram=9
    ³  ³  ÀÄ@SPRINTF  0/32  Ram=1
    ³  ÃÄ@SPRINTF  0/32  Ram=1
-   ³  ÃÄ@SPRINTF  0/32  Ram=1
    ³  ÃÄstrlen  0/56  Ram=5
    ³  ÃÄ@PSTRINGCN_1678  0/40  Ram=3
    ³  ³  ÀÄ*
@@ -440,9 +437,9 @@
    ³  ÃÄ@PRINTF_LU_1678  0/198  Ram=9
    ³  ³  ÀÄ*
    ³  ÃÄ@SPRINTF  0/32  Ram=1
-   ³  ÃÄ@SPRINTF  0/32  Ram=1
    ³  ÃÄ@PSTRINGR_991  0/38  Ram=2
-   ³  ³  ÀÄ@PUTCHAR_1_  0/82  Ram=1
+   ³  ³  ÀÄ@PUTCHAR_1_  0/80  Ram=1
+   ³  ÃÄ@PUTCHAR_1_  0/80  Ram=1
    ³  ÃÄcommand_handler_task  0/298  Ram=12
    ³  ³  ÃÄgetNextSERReadIndex  0/90  Ram=2
    ³  ³  ³  ÀÄ@MUL1616  0/34  Ram=5

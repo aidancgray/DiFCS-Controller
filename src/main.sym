@@ -765,159 +765,159 @@ ROM Allocation:
 000376  @const1812.call
 000382  @const1815.call
 00038E  @const1983.call
-0003A2  @const1987.call
-0003B2  @const1988.call
-0003C2  @const1991.call
-0003D2  @delay_ms1
-0003FC  IO_init
-000440  ee_load_reg
-0004A2  ee_save_reg
-000516  params_save_to_ee
-0005FA  params_load_from_ee
-000698  params_init
-0006CE  ads_select_ch
-000716  @goto20068
-000738  ads_write_command
-00074E  @delay_us1
-000770  ads_write_reg
-000796  ADS1220init
-000800  ads_select_all
-000820  ads_write_command_all
-000834  ads_start_conv_all
-00084C  ads_read_command
-000864  ads_read_data
-0008BE  @MUL1616
-0008E0  @DIV88
-00090C  push
-000972  setup_external_ADCs
-000AE4  monitor_init
-000B52  @SPI_XFER_2_24
-000B7C  control_init
-000BA2  resetSERcmd
-000D1C  serial_init
-000D3E  event_timer_init
-000D72  @ITOF
-000DA8  @MULFF
-000E9E  @ADDFF
-001116  internal_monitor_task
-00166C  @goto20779
-001694  @DIVS3232
-00177E  iqm_ring_buffer
-001CDA  @SDTOF
-001D34  @FLT
-001DAE  @DIVFF
-001F0C  atan
-002436  atan2
-0026B6  @goto20635
-0026D8  @SITOF
-002728  @SFTOI
-002764  CEIL_FLOOR
-002AD4  ceil
-002AF2  floor
-002B0E  fmod
-002C74  log
-003008  exp
-003416  pow
-003714  sensor_process_data
-004466  sensor_monitor_task
-00461C  @READBITA
-004652  invert_voltage
-0046E4  pid_update
-004C76  pid_task
-004D02  set_nanoDAC_outputs
-004FDE  control_task
-005014  getchFromBuffer
-00504C  setNextSERWriteIndex
-00505E  @PSTRINGR_128000_31862_31863
-005088  serial_task
-0055A0  strlen
-0055D8  @SPRINTF
-0055F8  @PSTRINGCN_1678
-005620  @PRINTF_U_1678
-0056A0  @FTOSD
-0056E2  @DIV3232
-005776  @PRINTF_L32D_1678FPFPF
-00591E  @PRINTF_LU_1678
-0059E4  @PUTCHAR_1_
-005A36  @PSTRINGR_991
-005A5C  getNextSERReadIndex
-005AB6  @PSTRINGR_1678
-005ADA  hex_to_int
-005B14  strcmp
-005B8C  @PSTRINGC_1678
-005BAC  getRev
-005BF0  getSN
-005C34  is_valid_channel
-005C84  memchr
-005CCE  @MULS1616
-005D24  strtoul
-006078  @PRINTF_D_1678
-006140  getOPchMap
-0062EC  @WRITEBITA
-00632E  setOPchMap
-0064DC  getIPchMode
-00666C  setIPchMode
-006886  getPIDvals
-006D48  arg_is_float
-006E0A  strtof
-007064  setPIDvals
-007344  getSetPoint
-0074A6  setSetPoint
-007664  getAllSensorCalParams
-007A1A  getSensorCalParam
-007F76  setSensorCalParam
-00830E  getMonitorCalParam
-00883A  setMonitorCalParam
-008840  getMonitorValue
-008EB4  getPIDdata
-0092FA  @PRINTF_L32D_1678
-009418  getIPdata
-009B3A  getManOPvals
-009C9C  setManOPvals
-009F0E  setFilterOn
-009F1A  setFilterOff
-009F26  setHomeAxis
-00A012  invalidCmd
-00A018  command_parser
-00A19E  serial_out
-00A1EA  command_handler_task
-00A314  @cinit1
-00A314  MAIN
-00A428  @cinit2
-3019  StrtoulGO
+0003A0  @const1987.call
+0003AE  @const1988.call
+0003BC  @const1991.call
+0003CA  @delay_ms1
+0003F4  IO_init
+000438  ee_load_reg
+00049A  ee_save_reg
+00050E  params_save_to_ee
+0005F2  params_load_from_ee
+000690  params_init
+0006C6  ads_select_ch
+00070E  @goto53977
+000730  ads_write_command
+000746  @delay_us1
+000768  ads_write_reg
+00078E  ADS1220init
+0007F8  ads_select_all
+000818  ads_write_command_all
+00082C  ads_start_conv_all
+000844  ads_read_command
+00085C  ads_read_data
+0008B6  @MUL1616
+0008D8  @DIV88
+000904  push
+00096A  setup_external_ADCs
+000ADC  monitor_init
+000B4A  @SPI_XFER_2_24
+000B74  control_init
+000B9A  resetSERcmd
+000D14  serial_init
+000D36  event_timer_init
+000D6A  @ITOF
+000DA0  @MULFF
+000E96  @ADDFF
+00110E  internal_monitor_task
+001664  @goto54641
+00168C  @DIVS3232
+001776  iqm_ring_buffer
+001CD2  @SDTOF
+001D2C  @FLT
+001DA6  @DIVFF
+001F04  atan
+00242E  atan2
+0026AE  @goto54505
+0026D0  @SITOF
+002720  @SFTOI
+00275C  CEIL_FLOOR
+002ACC  ceil
+002AEA  floor
+002B06  fmod
+002C6C  log
+003000  exp
+00340E  pow
+00370C  sensor_process_data
+00445E  sensor_monitor_task
+004614  @READBITA
+00464A  invert_voltage
+0046DC  pid_update
+004C6E  pid_task
+004CFA  set_nanoDAC_outputs
+004FD6  control_task
+00500C  getchFromBuffer
+005044  setNextSERWriteIndex
+005056  @PSTRINGR_128000_31862_31863
+005080  serial_task
+005598  strlen
+0055D0  @SPRINTF
+0055F0  @PSTRINGCN_1678
+005618  @PRINTF_U_1678
+005698  @FTOSD
+0056DA  @DIV3232
+00576E  @PRINTF_L32D_1678FPFPF
+005916  @PRINTF_LU_1678
+0059DC  @PUTCHAR_1_
+005A2C  @PSTRINGR_991
+005A52  getNextSERReadIndex
+005AAC  @PSTRINGR_1678
+005AD0  hex_to_int
+005B0A  strcmp
+005B82  @PSTRINGC_1678
+005BA2  getRev
+005BE6  getSN
+005C2A  is_valid_channel
+005C7A  memchr
+005CC4  @MULS1616
+005D1A  strtoul
+00606E  @PRINTF_D_1678
+006136  getOPchMap
+0062E2  @WRITEBITA
+006324  setOPchMap
+0064D2  getIPchMode
+006662  setIPchMode
+00687C  getPIDvals
+006D3E  arg_is_float
+006E00  strtof
+00705A  setPIDvals
+00733A  getSetPoint
+00749C  setSetPoint
+00765A  getAllSensorCalParams
+007A10  getSensorCalParam
+007F6C  setSensorCalParam
+008304  getMonitorCalParam
+008830  setMonitorCalParam
+008836  getMonitorValue
+008EAA  getPIDdata
+0092F0  @PRINTF_L32D_1678
+00940E  getIPdata
+009B30  getManOPvals
+009C92  setManOPvals
+009F04  setFilterOn
+009F10  setFilterOff
+009F1C  setHomeAxis
+00A008  invalidCmd
+00A00E  command_parser
+00A194  serial_out
+00A1E0  command_handler_task
+00A30A  @cinit1
+00A30A  MAIN
+00A41E  @cinit2
+3014  StrtoulGO
 0135  StrtolGO
 
 Project Directory:
-    C:\Users\Aidan\Documents\GitHub\DiFCS-Controller\src\
+    C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\
 
 Project Files:
-    main.c                                                  [11-Dec-25 15:03  CRC=29CCC708]
-    main.h                                                  [10-Dec-25 16:08  CRC=D64851AD]
-    ..\..\..\..\..\..\Program Files (x86)\PICC\Devices\18F46Q10.h [16-Mar-24 08:17  CRC=40E3698C]
-    io.h                                                    [10-Dec-25 15:56  CRC=D0A06431]
-    parameters.h                                            [10-Dec-25 14:27  CRC=FF0DB516]
+    main.c                                                  [12-Dec-25 13:21  CRC=439DECDC]
+    main.h                                                  [12-Dec-25 11:01  CRC=D64851AD]
+    ..\..\..\..\..\..\Program Files (x86)\PICC\Devices\18F46Q10.h [06-May-22 14:57  CRC=1CCC3674]
+    io.h                                                    [12-Dec-25 11:01  CRC=D0A06431]
+    parameters.h                                            [10-Dec-25 12:20  CRC=FF0DB516]
     ..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\stddef.h [30-Jan-19 11:26  CRC=897CEC6C]
     ..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\stdlib.h [30-Jun-20 13:21  CRC=452E14BB]
     ..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\string.h [06-Apr-20 07:43  CRC=B1605627]
     ..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\ctype.h [03-Jan-08 14:55  CRC=2D1F019F]
-    monitor.h                                               [04-Dec-25 19:11  CRC=0B5C053B]
-    ADS1220.h                                               [04-Dec-25 17:08  CRC=CBB0DF53]
+    monitor.h                                               [08-Dec-25 15:08  CRC=0B5C053B]
+    ADS1220.h                                               [04-Dec-25 12:28  CRC=CBB0DF53]
     ..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\math.h [05-May-20 12:57  CRC=02232397]
-    control.h                                               [10-Dec-25 14:27  CRC=B28B9BFF]
-    pid.h                                                   [07-Nov-25 18:05  CRC=A6FE3E09]
+    control.h                                               [10-Dec-25 12:18  CRC=B28B9BFF]
+    pid.h                                                   [18-Nov-25 11:54  CRC=A6FE3E09]
     ..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\stdbool.h [17-Apr-19 12:48  CRC=969707C0]
-    serialport.h                                            [09-Dec-25 15:21  CRC=1FC17D55]
-    cmdBuffer.h                                             [22-May-25 13:57  CRC=1005025E]
-    eventTimer.h                                            [04-Dec-25 17:08  CRC=30BDBA67]
-    commandHandler.c                                        [10-Dec-25 14:27  CRC=30599BC5]
-    commandHandler.h                                        [10-Dec-25 14:27  CRC=41A8B742]
+    serialport.h                                            [10-Dec-25 09:53  CRC=1FC17D55]
+    cmdBuffer.h                                             [29-May-25 10:36  CRC=1005025E]
+    eventTimer.h                                            [04-Dec-25 14:43  CRC=30BDBA67]
+    commandHandler.c                                        [10-Dec-25 11:56  CRC=30599BC5]
+    commandHandler.h                                        [10-Dec-25 11:20  CRC=41A8B742]
 
-Source signature=9B5122C5
+Source signature=910B1581
 Program memory checksum=0000
-Hex file CRC=C2CB
+Hex file CRC=CFDC
 
 Units:
-    C:\Users\Aidan\Documents\GitHub\DiFCS-Controller\src\main (main)
+    C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\main (main)
 
 Compiler Settings:
     Processor:      PIC18F46Q10

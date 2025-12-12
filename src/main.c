@@ -48,14 +48,14 @@ void main()
         #ifdef DEBUG_1
         if (debugCounter >= 0){
             static int8 ch = 0;
-            sprintf(pBuff+strlen(pBuff), "CNT,%u,%.0f,%.0f\r\n", ch+1, adcVals[ch].sinCounts, adcVals[ch].cosCounts);
-            sprintf(pBuff+strlen(pBuff), "POS,%u,%3.3f\r\n", ch+1, adcVals[ch].pReal);
-            if ( dacVals[ch].invV ) sprintf(pBuff+strlen(pBuff), "OUT,%u,-,%Lu\r\n", ch+1, dacVals[ch].ipVal);
-            else                    sprintf(pBuff+strlen(pBuff), "OUT,%u,+,%Lu\r\n", ch+1, dacVals[ch].ipVal);
+            sprintf(pBuff+strlen(pBuff), "CNT,%u,%.0f,%.0f;", ch+1, adcVals[ch].sinCounts, adcVals[ch].cosCounts);
+            sprintf(pBuff+strlen(pBuff), "POS,%u,%3.3f;", ch+1, adcVals[ch].pReal);
+            if ( dacVals[ch].invV ) sprintf(pBuff+strlen(pBuff), "OUT,%u,-,%Lu;", ch+1, dacVals[ch].ipVal);
+            else                    sprintf(pBuff+strlen(pBuff), "OUT,%u,+,%Lu;", ch+1, dacVals[ch].ipVal);
             ch = !ch;
             debugCounter = 0;
         }else debugCounter++;
-        fprintf(ICD_STREAM, "%s", pBuff);
+        fprintf(ICD_STREAM, "%s\n", pBuff);
         #endif
       
         command_handler_task();    //execute commands

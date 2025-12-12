@@ -1,0 +1,18 @@
+Compiling C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\main on 12-Dec-25 at 13:49
+>>> Warning 240 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\parameters.h" Line 348(17,20): Pointer types do not match
+>>> Warning 240 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\parameters.h" Line 350(17,22): Pointer types do not match
+>>> Warning 240 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\parameters.h" Line 352(17,23): Pointer types do not match
+>>> Warning 240 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\parameters.h" Line 354(17,23): Pointer types do not match
+>>> Warning 240 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\parameters.h" Line 356(17,26): Pointer types do not match
+>>> Warning 240 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\parameters.h" Line 358(17,23): Pointer types do not match
+>>> Warning 240 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\parameters.h" Line 368(17,20): Pointer types do not match
+>>> Warning 240 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\parameters.h" Line 369(17,22): Pointer types do not match
+>>> Warning 240 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\parameters.h" Line 370(17,23): Pointer types do not match
+>>> Warning 240 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\parameters.h" Line 371(17,23): Pointer types do not match
+>>> Warning 240 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\parameters.h" Line 372(17,26): Pointer types do not match
+>>> Warning 240 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\parameters.h" Line 373(17,23): Pointer types do not match
+>>> Warning 203 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\main.c" Line 49(1,1): Condition always TRUE
+>>> Warning 245 "C:\Users\aidan\Documents\GitHub\DiFCS-Controller\src\main.c" Line 65(0,1): File may have mis-matched #if/#endif
+      Memory usage:   ROM=67%      RAM=50% - 53%
+      0 Errors,  14 Warnings.
+Build Successful.
