@@ -2,7 +2,7 @@
 #define IO
 
 #use FIXED_IO( A_outputs=PIN_A5,PIN_A4 )
-#use FIXED_IO( B_outputs=PIN_B5,PIN_B4,PIN_B3,PIN_B1,PIN_B0 )
+#use FIXED_IO( B_outputs=PIN_B7,PIN_B6,PIN_B5,PIN_B4,PIN_B3,PIN_B1,PIN_B0 )
 #use FIXED_IO( C_outputs=PIN_C6,PIN_C5,PIN_C3,PIN_C2 )
 #use FIXED_IO( D_outputs=PIN_D7,PIN_D6,PIN_D5 )
 #use FIXED_IO( E_outputs=PIN_E2,PIN_E1,PIN_E0 )

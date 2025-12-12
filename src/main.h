@@ -9,6 +9,8 @@
 #define baudRate 128000
 #define numChannels 2
 
+#use rs232(ICD, DISABLE_INTS, stream=ICD_STREAM)
+
 #define version  "20251208" // SW Version
 #define serialID "0000"     // Unique Serial ID
 #define magPP 1             // Magnetoresistive Sensor Pole Pitch in mm   
