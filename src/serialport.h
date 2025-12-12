@@ -19,8 +19,12 @@ unsigned int8 UART_WR_PTR = 0;
 unsigned int8 UART_RD_PTR = 0;
 boolean BYTES_AVAILABLE= FALSE;
 
+//!#use rs232(ICD, DISABLE_INTS, stream=ICD_STREAM)
+#use rs232(ICD, stream=ICD_STREAM)
+
 #ifdef use_RS485
-#use rs232(baud=baudRate, xmit=TX_PIN, rcv=RX_PIN, stream=SERIAL, ERRORS)
+#use rs232(baud=baudRate, UART1, stream=SERIAL, ERRORS)
+//!#use rs232(baud=baudRate, xmit=TX_PIN, rcv=RX_PIN, stream=SERIAL, ERRORS)
 #else
 #use rs232(baud=baudRate, xmit=TX_PIN, rcv=RX_PIN, stream=SERIAL)
 #endif
@@ -36,11 +40,11 @@ boolean BYTES_AVAILABLE= FALSE;
 /*****************************************************************************/
 /* SERIAL PRINTOUT                                                           */
 /*****************************************************************************/
-void serial_out(char* pBuff){
+void serial_out(char* printBuffer){
     output_high(TX_ENABLE);
     delay_us(500);
     
-    fprintf(SERIAL, "%s", pBuff);
+    fprintf(SERIAL, "%s", printBuffer);
     delay_us(500);
     
     output_low(TX_ENABLE);
@@ -52,13 +56,17 @@ void serial_out(char* pBuff){
 #INT_RDA
 void RX_isr()
 {
-   while (kbhit())
-   {
-      UART_BUFFER[UART_WR_PTR]=getch();
-      UART_WR_PTR +=1;
-      if (UART_WR_PTR>=UART_BUFFER_SIZE) UART_WR_PTR=0;
-      BYTES_AVAILABLE=TRUE;
-   }
+//!    fprintf(ICD_STREAM, "FOO\n");
+    output_high(TX_ENABLE);
+    delay_us(500);
+    while (kbhit())
+    {
+//!       UART_BUFFER[UART_WR_PTR]=getch();
+       UART_BUFFER[UART_WR_PTR]=fgetc(SERIAL);
+       UART_WR_PTR +=1;
+       if (UART_WR_PTR>=UART_BUFFER_SIZE) UART_WR_PTR=0;
+       BYTES_AVAILABLE=TRUE;
+    }
 }
 
 /*****************************************************************************/

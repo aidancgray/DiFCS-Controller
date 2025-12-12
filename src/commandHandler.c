@@ -48,28 +48,28 @@ resp resp_list[] = {
 /*****************************************************************************/
                           
 int8 getRev(unsigned int8 rec){
-   sprintf(retData+strlen(retData), "%s,", version);
-   return SUCCESS;
+    sprintf(retData+strlen(retData), "%s,", version);
+    return SUCCESS;
 }
 
 int8 getSN(unsigned int8 rec){
-   sprintf(retData+strlen(retData), "%s,", serialID);
-   return SUCCESS;
+    sprintf(retData+strlen(retData), "%s,", serialID);
+    return SUCCESS;
 }
 
 int8 getOPchMap(unsigned int8 rec){
-   /*** ARG CHECKS ********************/
-   int8 arg1;
+    /*** ARG CHECKS ********************/
+    int8 arg1;
    
-   if (!is_valid_channel(SERcmd[rec].p[2])) return INV_PARAM;
-   else arg1 = strtoul(SERcmd[rec].p[2],'\0',10);
+    if (!is_valid_channel(SERcmd[rec].p[2])) return INV_PARAM;
+    else arg1 = strtoul(SERcmd[rec].p[2],'\0',10);
    
-   /*** GET CHANNEL MAP ***************/ 
-   if      (0 == chMap[arg1-1]) sprintf(retData+strlen(retData), "%d,%c,", arg1, 'X');
-   else if (1 == chMap[arg1-1]) sprintf(retData+strlen(retData), "%d,%c,", arg1, 'Y');
-   else return INV_PARAM;
+    /*** GET CHANNEL MAP ***************/ 
+    if      (0 == chMap[arg1-1]) sprintf(retData+strlen(retData), "%d,%c,", arg1, 'X');
+    else if (1 == chMap[arg1-1]) sprintf(retData+strlen(retData), "%d,%c,", arg1, 'Y');
+    else return INV_PARAM;
    
-   return SUCCESS;
+    return SUCCESS;
 }
 
 int8 setOPchMap(unsigned int8 rec){
