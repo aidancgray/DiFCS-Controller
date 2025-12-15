@@ -67,6 +67,7 @@ void RX_isr()
        if (UART_WR_PTR>=UART_BUFFER_SIZE) UART_WR_PTR=0;
        BYTES_AVAILABLE=TRUE;
     }
+    output_low(TX_ENABLE);
 }
 
 /*****************************************************************************/
