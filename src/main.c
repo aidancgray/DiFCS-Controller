@@ -44,7 +44,8 @@ void main()
         }else controlCounter++;
       
         serial_task();             
-      
+        command_handler_task();    //execute commands
+        
         #ifdef DEBUG_1
         if (debugCounter >= 0){
             static int8 ch = 0;
@@ -57,8 +58,6 @@ void main()
         }else debugCounter++;
         fprintf(ICD_STREAM, "%s\n", pBuff);
         #endif
-      
-        command_handler_task();    //execute commands
       
         delay_ms(loopDelay);
     }

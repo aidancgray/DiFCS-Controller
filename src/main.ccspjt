@@ -3,7 +3,7 @@ Target=main.hex
 Processor_Text=PIC18F46Q10
 CCSVerions=5.117
 Compiler=PCH
-CCSVersion=5.109
+CCSVersion=5.117
 [Target Data]
 FileList=main.c
 [Directories]
@@ -1420,7 +1420,7 @@ D89_L11=[58456]Started Editing.
 D89_L12=[58971]Stopped Editing.
 D89_L13=[68118]Project Closed.
 D90=15-12-2025
-D90_L=6
+D90_L=23
 D90_L1=[43021]Project Opened.
 D90_L2=[43022]Project Closed.
 D90_L3=[43025]Project Opened.
@@ -1429,23 +1429,40 @@ D90_L5=[43404]Stopped Editing.
 D90_E=1
 D90_D=0
 D90_L6=[50741]Project Closed.
+D90_L7=[52033]Project Opened.
+D90_L8=[52035]Project Closed.
+D90_L9=[52038]Project Opened.
+D90_L10=[52291]Started Editing.
+D90_L11=[54315]Stopped Editing.
+D90_L12=[54381]Started Editing.
+D90_L13=[54681]Stopped Editing.
+D90_L14=[54696]Started Editing.
+D90_L15=[54996]Stopped Editing.
+D90_L16=[55014]Started Editing.
+D90_L17=[55323]Stopped Editing.
+D90_L18=[55399]Started Editing.
+D90_L19=[55731]Stopped Editing.
+D90_L20=[55751]Started Editing.
+D90_L21=[56417]Stopped Editing.
+D90_L22=[59188]Started Editing.
+D90_L23=[59490]Stopped Editing.
 
 [Opened Files]
 1=main.h
-t1=1
+t1=2
 2=main.c
-t2=9
-3=control.h
-t3=110
-Count=13
-4=parameters.h
-t4=36
-5=serialport.h
-t5=36
-6=cmdBuffer.h
-t6=1
-7=commandHandler.h
-t7=53
+t2=2
+3=serialport.h
+t3=38
+Count=7
+4=commandHandler.c
+t4=527
+5=cmdBuffer.h
+t5=69
+6=io.h
+t6=5
+7=parameters.h
+t7=202
 8=commandhandler.c
 t8=477
 9=eventTimer.h
@@ -1468,7 +1485,7 @@ t16=11
 Type=4
 
 [defines]
-buildcount=538
+buildcount=556
 
 [Documentation]
 1=P:\MIRMOS\electrical\Detector Dither Electronics\DitherCtrl\Firmware\difics v2\main.ccspjt

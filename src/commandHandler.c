@@ -530,6 +530,7 @@ int8 hex_to_int(char ascii){
 /* COMMAND HANDLER/PARSER FUNCS                                              */
 /*****************************************************************************/
 void echo_cmd(unsigned int8 rec){
+   /* NEEDS FIXING
    fprintf(SERIAL, "%c", SERcmd[rec].t);
    while (SERcmd[rec].recReadIndex <= SERcmd[rec].recWriteIndex)
    {
@@ -538,6 +539,7 @@ void echo_cmd(unsigned int8 rec){
       SERcmd[rec].recReadIndex++;
    }
    SERcmd[rec].recReadIndex=0;
+   */
 }
 
 int8 command_parser(unsigned int8 rec){
