@@ -9,6 +9,7 @@
 #include <commandHandler.c>
 
 #define DEBUG_1
+#define DEBUG_ON_ICD
 
 void main()
 {
@@ -56,7 +57,11 @@ void main()
             ch = !ch;
             debugCounter = 0;
         }else debugCounter++;
-        fprintf(ICD_STREAM, "%s\n", pBuff);
+        #ifdef DEBUG_ON_ICD
+        icd_out(pBuff);
+        #else
+        serial_out(pBuff);
+        #endif
         #endif
       
         delay_ms(loopDelay);

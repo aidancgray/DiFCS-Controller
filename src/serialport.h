@@ -19,12 +19,12 @@ unsigned int8 UART_WR_PTR = 0;
 unsigned int8 UART_RD_PTR = 0;
 boolean BYTES_AVAILABLE= FALSE;
 
-#use rs232(ICD, DISABLE_INTS, stream=ICD_STREAM)
-//!#use rs232(ICD, stream=ICD_STREAM)
+//!#use rs232(ICD, DISABLE_INTS, stream=ICD_STREAM)
+#use rs232(ICD, stream=ICD_STREAM)
 
 #ifdef use_RS485
-//!#use rs232(baud=baudRate, UART1, stream=SERIAL, ERRORS)
-#use rs232(baud=baudRate, xmit=TX_PIN, rcv=RX_PIN, stream=SERIAL, ERRORS)
+#use rs232(baud=baudRate, UART1, stream=SERIAL, ERRORS)
+//!#use rs232(baud=baudRate, xmit=TX_PIN, rcv=RX_PIN, stream=SERIAL, ERRORS)
 #else
 #use rs232(baud=baudRate, xmit=TX_PIN, rcv=RX_PIN, stream=SERIAL)
 #endif
@@ -44,25 +44,36 @@ void serial_out(char* printBuffer){
     output_high(TX_ENABLE);
     delay_us(200);
     
-    fprintf(SERIAL, "%s", printBuffer);
+    fprintf(SERIAL, "%s\n", printBuffer);
     delay_us(200);
     
     output_low(TX_ENABLE);
+}
+
+void icd_out(char* printBuffer){
+    fprintf(ICD_STREAM, "%s\n", printBuffer);
 }
 
 /*****************************************************************************/
 /* SERIAL PORT ISR                                                           */
 /*****************************************************************************/
 #INT_RDA
-void RX_isr()
-{   
-    while (kbhit(SERIAL))
-    {
+void RX_isr() {   
+    #ifdef DEBUG_ON_ICD            
+    while (kbhit(SERIAL)) {
         UART_BUFFER[UART_WR_PTR]=fgetc(SERIAL);
         UART_WR_PTR +=1;
         if (UART_WR_PTR>=UART_BUFFER_SIZE) UART_WR_PTR=0;
         BYTES_AVAILABLE=TRUE;
     }
+    #else
+    while (kbhit(ICD_STREAM)) {
+        UART_BUFFER[UART_WR_PTR]=fgetc(ICD_STREAM);
+        UART_WR_PTR +=1;
+        if (UART_WR_PTR>=UART_BUFFER_SIZE) UART_WR_PTR=0;
+        BYTES_AVAILABLE=TRUE;
+    }
+    #endif
 }
 
 /*****************************************************************************/
@@ -119,7 +130,11 @@ void serial_task()
          else
          {
             resetSERcmd(SWI); // exceed number of params... reset capture
+            #ifdef DEBUG_ON_ICD
             serial_out(retData);
+            #else
+            icd_out(retData);
+            #endif
          }
       }
       
@@ -134,7 +149,11 @@ void serial_task()
          else
          {
             resetSERcmd(SWI); // exceed number of characters... reset capture
+            #ifdef DEBUG_ON_ICD
             serial_out(retData);
+            #else
+            icd_out(retData);
+            #endif
          }
       }
    }

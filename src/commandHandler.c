@@ -565,18 +565,23 @@ int8 command_parser(unsigned int8 rec){
 }
 
 void command_handler_task(){
-   while (getNextSERReadIndex())
-   {
-      int8 return_code;
-      //echo_cmd(SRI);
-      sprintf(retData + strlen(retData), "$%s,", SERcmd[SRI].p[0]);
-      
-      return_code = command_parser(SRI);
-      
-      sprintf(retData + strlen(retData), "%s", resp_list[return_code].msg);
-      serial_out(retData);
-      resetSERcmd(SRI);
-   }
+    while (getNextSERReadIndex())
+    {
+        int8 return_code;
+        //echo_cmd(SRI);
+        sprintf(retData + strlen(retData), "$%s,", SERcmd[SRI].p[0]);
+        
+        return_code = command_parser(SRI);
+        
+        sprintf(retData + strlen(retData), "%s", resp_list[return_code].msg);
+        #ifdef DEBUG_ON_ICD
+        serial_out(retData);
+        #else
+        icd_out(retData);
+        #endif
+        
+        resetSERcmd(SRI);
+    }
 }
 
 #endif
