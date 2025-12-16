@@ -71,7 +71,9 @@ int8 setFilterOn(unsigned int8);            // sFiltOn
 int8 setFilterOff(unsigned int8);           // sFiltOff
 
 int8 setHomeAxis(unsigned int8);            // sHome,    {1|2}      
-                                                       
+
+int8 getTelemetry(unsigned int8);           // gTlm
+                                                      
 int8 invalidCmd(unsigned int8);
 
 struct command {

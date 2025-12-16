@@ -27,6 +27,7 @@ struct command cmd_list[] = {
     {"sFiltOn",  &setFilterOn},
     {"sFiltOff", &setFilterOff},
     {"sHome",    &setHomeAxis},
+    {"gTlm",     &getTelemetry},
     {"\0", &invalidCmd}
 };
 
@@ -486,6 +487,16 @@ int8 setHomeAxis(unsigned int8 rec){
     return SUCCESS;
 }
 
+int8 getTelemetry(unsigned int8 rec){
+    for (int ch=0; ch<2; ch++){
+        sprintf(retData+strlen(retData), "CNT,%u,%.0f,%.0f;", ch+1, adcVals[ch].sinCounts, adcVals[ch].cosCounts);
+        sprintf(retData+strlen(retData), "POS,%u,%3.3f;", ch+1, adcVals[ch].pReal);
+        if ( dacVals[ch].invV ) sprintf(retData+strlen(retData), "OUT,%u,-,%Lu;", ch+1, dacVals[ch].ipVal);
+        else                    sprintf(retData+strlen(retData), "OUT,%u,+,%Lu;", ch+1, dacVals[ch].ipVal);
+    }
+    return SUCCESS;
+}
+
 int8 invalidCmd(unsigned int8 rec){
    return INV_CMD;
 }
@@ -574,11 +585,8 @@ void command_handler_task(){
         return_code = command_parser(SRI);
         
         sprintf(retData + strlen(retData), "%s", resp_list[return_code].msg);
-        #ifdef DEBUG_ON_ICD
+        
         serial_out(retData);
-        #else
-        icd_out(retData);
-        #endif
         
         resetSERcmd(SRI);
     }

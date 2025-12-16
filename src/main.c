@@ -8,12 +8,11 @@
 #include <eventTimer.h>
 #include <commandHandler.c>
 
-#define DEBUG_1
-#define DEBUG_ON_ICD
+//!#define DEBUG_1
 
 void main()
 {
-    int16 loopDelay = 1000;
+    int16 loopDelay = 100;
     int16 controlCounter = 0;
     int16 debugCounter = 0;
    
@@ -57,11 +56,8 @@ void main()
             ch = !ch;
             debugCounter = 0;
         }else debugCounter++;
-        #ifdef DEBUG_ON_ICD
-        icd_out(pBuff);
-        #else
+//!        fprintf(ICD_STREAM, "%s\n", pBuff);
         serial_out(pBuff);
-        #endif
         #endif
       
         delay_ms(loopDelay);
