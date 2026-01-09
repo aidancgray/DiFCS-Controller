@@ -61,7 +61,7 @@ Page ROM  %  RAM    Vol Diff  Functions:
 0     54   0    0    149  3.9  params_init
 0     30   0    0     86  1.3  ads_deselect_all
 0     72   0    1    242  3.1  ads_select_ch
-0     34   0    0             @goto61897
+0     34   0    0             @goto30973
 0     54   0    1    190  3.1  ads_select_block
 0     32   0    0     86  1.3  ads_select_all
 0     22   0    2     59  2.0  ads_write_command
@@ -85,11 +85,11 @@ Page ROM  %  RAM    Vol Diff  Functions:
 0    766   1   12    581  7.5  pow
 0   1322   2   21   1082  6.9  atan
 0    640   1   20   1100  9.0  atan2
-0     34   0    0             @goto62461
+0     34   0    0             @goto31546
 0    102   0   12    147  4.5  push
 0     44   0    3             @DIV88
 0   1366   2    4   2174  6.4  internal_monitor_task
-0     40   0    0             @goto62607
+0     40   0    0             @goto31692
 0   3410   4   27   2552 10.2  sensor_process_data
 0     90   0    5             @SDTOF
 0    156   0    4    262  3.7  sensor_monitor_interrupt_task

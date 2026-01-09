@@ -1,4 +1,4 @@
-CCS PCH C Compiler, Version 5.117, 2138               16-Dec-25 17:12
+CCS PCH C Compiler, Version 5.117, 2138               19-Dec-25 17:16
 
                Filename:   C:\Users\Aidan\Documents\GitHub\DiFCS-Controller\src\main.lst
 
@@ -4815,11 +4815,11 @@ CCS PCH C Compiler, Version 5.117, 2138               16-Dec-25 17:12
 .................... #define channel_map_length 2  // length in bytes
 .................... channelMap chMap[2] = {chX, chY};
 .................... 
-.................... //!#define op_upper_bound 63  // CRYO
-.................... //!#define op_lower_bound -63 // CRYO
+.................... #define op_upper_bound 63  // CRYO
+.................... #define op_lower_bound -63 // CRYO
 .................... 
-.................... #define op_upper_bound 63  // AMBIENT 
-.................... #define op_lower_bound -12 // AMBIENT
+.................... //!#define op_upper_bound 63  // AMBIENT 
+.................... //!#define op_lower_bound -12 // AMBIENT
 .................... 
 .................... //!#define op_upper_bound 100  // FULL 
 .................... //!#define op_lower_bound -100 // FULL
@@ -5612,11 +5612,11 @@ CCS PCH C Compiler, Version 5.117, 2138               16-Dec-25 17:12
 .................... #define channel_map_length 2  // length in bytes
 .................... channelMap chMap[2] = {chX, chY};
 .................... 
-.................... //!#define op_upper_bound 63  // CRYO
-.................... //!#define op_lower_bound -63 // CRYO
+.................... #define op_upper_bound 63  // CRYO
+.................... #define op_lower_bound -63 // CRYO
 .................... 
-.................... #define op_upper_bound 63  // AMBIENT 
-.................... #define op_lower_bound -12 // AMBIENT
+.................... //!#define op_upper_bound 63  // AMBIENT 
+.................... //!#define op_lower_bound -12 // AMBIENT
 .................... 
 .................... //!#define op_upper_bound 100  // FULL 
 .................... //!#define op_lower_bound -100 // FULL
@@ -13809,11 +13809,11 @@ CCS PCH C Compiler, Version 5.117, 2138               16-Dec-25 17:12
 .................... #define channel_map_length 2  // length in bytes
 .................... channelMap chMap[2] = {chX, chY};
 .................... 
-.................... //!#define op_upper_bound 63  // CRYO
-.................... //!#define op_lower_bound -63 // CRYO
+.................... #define op_upper_bound 63  // CRYO
+.................... #define op_lower_bound -63 // CRYO
 .................... 
-.................... #define op_upper_bound 63  // AMBIENT 
-.................... #define op_lower_bound -12 // AMBIENT
+.................... //!#define op_upper_bound 63  // AMBIENT 
+.................... //!#define op_lower_bound -12 // AMBIENT
 .................... 
 .................... //!#define op_upper_bound 100  // FULL 
 .................... //!#define op_lower_bound -100 // FULL
@@ -14218,11 +14218,11 @@ CCS PCH C Compiler, Version 5.117, 2138               16-Dec-25 17:12
 .................... #define channel_map_length 2  // length in bytes
 .................... channelMap chMap[2] = {chX, chY};
 .................... 
-.................... //!#define op_upper_bound 63  // CRYO
-.................... //!#define op_lower_bound -63 // CRYO
+.................... #define op_upper_bound 63  // CRYO
+.................... #define op_lower_bound -63 // CRYO
 .................... 
-.................... #define op_upper_bound 63  // AMBIENT 
-.................... #define op_lower_bound -12 // AMBIENT
+.................... //!#define op_upper_bound 63  // AMBIENT 
+.................... //!#define op_lower_bound -12 // AMBIENT
 .................... 
 .................... //!#define op_upper_bound 100  // FULL 
 .................... //!#define op_lower_bound -100 // FULL
@@ -16988,9 +16988,9 @@ CCS PCH C Compiler, Version 5.117, 2138               16-Dec-25 17:12
 0489E:  MOVFF  715,74F
 048A2:  CLRF   x55
 048A4:  CLRF   x54
-048A6:  MOVLW  C0
+048A6:  MOVLW  FC
 048A8:  MOVWF  x53
-048AA:  MOVLW  82
+048AA:  MOVLW  84
 048AC:  MOVWF  x52
 048AE:  MOVLB  0
 048B0:  CALL   1CD8
@@ -17013,9 +17013,9 @@ CCS PCH C Compiler, Version 5.117, 2138               16-Dec-25 17:12
 048D4:  MOVLW  00
 048D6:  ADDWFC 03,W
 048D8:  MOVWF  FEA
-048DA:  MOVLW  82
+048DA:  MOVLW  84
 048DC:  MOVWF  FEF
-048DE:  MOVLW  C0
+048DE:  MOVLW  FC
 048E0:  MOVWF  FEC
 048E2:  CLRF   FEC
 048E4:  CLRF   FEC
@@ -17300,9 +17300,9 @@ CCS PCH C Compiler, Version 5.117, 2138               16-Dec-25 17:12
 04BC2:  MOVFF  715,74F
 04BC6:  CLRF   x55
 04BC8:  CLRF   x54
-04BCA:  MOVLW  C0
+04BCA:  MOVLW  FC
 04BCC:  MOVWF  x53
-04BCE:  MOVLW  82
+04BCE:  MOVLW  84
 04BD0:  MOVWF  x52
 04BD2:  MOVLB  0
 04BD4:  CALL   1CD8
@@ -17325,9 +17325,9 @@ CCS PCH C Compiler, Version 5.117, 2138               16-Dec-25 17:12
 04BF8:  MOVLW  00
 04BFA:  ADDWFC 03,W
 04BFC:  MOVWF  FEA
-04BFE:  MOVLW  82
+04BFE:  MOVLW  84
 04C00:  MOVWF  FEF
-04C02:  MOVLW  C0
+04C02:  MOVLW  FC
 04C04:  MOVWF  FEC
 04C06:  CLRF   FEC
 04C08:  CLRF   FEC
@@ -19448,11 +19448,11 @@ CCS PCH C Compiler, Version 5.117, 2138               16-Dec-25 17:12
 .................... #define channel_map_length 2  // length in bytes
 .................... channelMap chMap[2] = {chX, chY};
 .................... 
-.................... //!#define op_upper_bound 63  // CRYO
-.................... //!#define op_lower_bound -63 // CRYO
+.................... #define op_upper_bound 63  // CRYO
+.................... #define op_lower_bound -63 // CRYO
 .................... 
-.................... #define op_upper_bound 63  // AMBIENT 
-.................... #define op_lower_bound -12 // AMBIENT
+.................... //!#define op_upper_bound 63  // AMBIENT 
+.................... //!#define op_lower_bound -12 // AMBIENT
 .................... 
 .................... //!#define op_upper_bound 100  // FULL 
 .................... //!#define op_lower_bound -100 // FULL
@@ -20043,11 +20043,11 @@ CCS PCH C Compiler, Version 5.117, 2138               16-Dec-25 17:12
 .................... #define channel_map_length 2  // length in bytes
 .................... channelMap chMap[2] = {chX, chY};
 .................... 
-.................... //!#define op_upper_bound 63  // CRYO
-.................... //!#define op_lower_bound -63 // CRYO
+.................... #define op_upper_bound 63  // CRYO
+.................... #define op_lower_bound -63 // CRYO
 .................... 
-.................... #define op_upper_bound 63  // AMBIENT 
-.................... #define op_lower_bound -12 // AMBIENT
+.................... //!#define op_upper_bound 63  // AMBIENT 
+.................... //!#define op_lower_bound -12 // AMBIENT
 .................... 
 .................... //!#define op_upper_bound 100  // FULL 
 .................... //!#define op_lower_bound -100 // FULL
@@ -26831,9 +26831,9 @@ CCS PCH C Compiler, Version 5.117, 2138               16-Dec-25 17:12
 09C66:  MOVLB  7
 09C68:  CLRF   x55
 09C6A:  CLRF   x54
-09C6C:  MOVLW  C0
+09C6C:  MOVLW  FC
 09C6E:  MOVWF  x53
-09C70:  MOVLW  82
+09C70:  MOVLW  84
 09C72:  MOVWF  x52
 09C74:  MOVLB  0
 09C76:  CALL   1CD8
@@ -26857,9 +26857,9 @@ CCS PCH C Compiler, Version 5.117, 2138               16-Dec-25 17:12
 09C9C:  MOVLW  01
 09C9E:  ADDWFC 03,W
 09CA0:  MOVWF  FEA
-09CA2:  MOVLW  82
+09CA2:  MOVLW  84
 09CA4:  MOVWF  FEF
-09CA6:  MOVLW  C0
+09CA6:  MOVLW  FC
 09CA8:  MOVWF  FEC
 09CAA:  CLRF   FEC
 09CAC:  CLRF   FEC

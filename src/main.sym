@@ -773,7 +773,7 @@ ROM Allocation:
 00059E  params_load_from_ee
 00063C  params_init
 000672  ads_select_ch
-0006BA  @goto61897
+0006BA  @goto30973
 0006DC  ads_write_command
 0006F2  @delay_us1
 000716  ads_write_reg
@@ -797,7 +797,7 @@ ROM Allocation:
 000D4C  @MULFF
 000E42  @ADDFF
 0010BA  internal_monitor_task
-001610  @goto62607
+001610  @goto31692
 001638  @DIVS3232
 001722  iqm_ring_buffer
 001C7E  @SDTOF
@@ -805,7 +805,7 @@ ROM Allocation:
 001D52  @DIVFF
 001EB0  atan
 0023DA  atan2
-00265A  @goto62461
+00265A  @goto31546
 00267C  @SITOF
 0026CC  @SFTOI
 002708  CEIL_FLOOR
@@ -891,7 +891,7 @@ Project Files:
     main.h                                                  [12-Dec-25 15:46  CRC=23007ED8]
     ..\..\..\..\..\..\Program Files (x86)\PICC\Devices\18F46Q10.h [16-Mar-24 08:17  CRC=40E3698C]
     io.h                                                    [10-Dec-25 15:56  CRC=D0A06431]
-    parameters.h                                            [10-Dec-25 14:27  CRC=FF0DB516]
+    parameters.h                                            [19-Dec-25 17:15  CRC=780C1EA1]
     ..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\stddef.h [30-Jan-19 11:26  CRC=897CEC6C]
     ..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\stdlib.h [30-Jun-20 13:21  CRC=452E14BB]
     ..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\string.h [06-Apr-20 07:43  CRC=B1605627]
@@ -908,9 +908,9 @@ Project Files:
     commandHandler.c                                        [16-Dec-25 16:28  CRC=A1BF67CC]
     commandHandler.h                                        [16-Dec-25 15:25  CRC=C24C9506]
 
-Source signature=82BE3C0C
+Source signature=FBBCA597
 Program memory checksum=0000
-Hex file CRC=1A97
+Hex file CRC=FE01
 
 Units:
     C:\Users\Aidan\Documents\GitHub\DiFCS-Controller\src\main (main)
