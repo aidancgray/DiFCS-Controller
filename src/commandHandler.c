@@ -6,6 +6,7 @@
 struct command cmd_list[] = {
     {"gr",       &getRev},
     {"gs",       &getSN},
+    {"sPrm",     &saveParams},
     {"gChMap",   &getOPchMap},
     {"sChMap",   &setOPchMap},
     {"gChMode",  &getIPchMode},
@@ -27,6 +28,7 @@ struct command cmd_list[] = {
     {"sFiltOn",  &setFilterOn},
     {"sFiltOff", &setFilterOff},
     {"sHome",    &setHomeAxis},
+    {"gHome",    &getHome},
     {"gTlm",     &getTelemetry},
     {"\0", &invalidCmd}
 };
@@ -55,6 +57,11 @@ int8 getRev(unsigned int8 rec){
 
 int8 getSN(unsigned int8 rec){
     sprintf(retData+strlen(retData), "%s,", serialID);
+    return SUCCESS;
+}
+
+int8 saveParams(unsigned int8 rec){
+    params_save_to_ee();
     return SUCCESS;
 }
 
@@ -211,12 +218,12 @@ int8 getAllSensorCalParams(unsigned int8 rec){
    
    /*** GET ALL SENSOR CAL PARAMS *****/
    sprintf(retData+strlen(retData), "%d,", arg1);
-   sprintf(retData+strlen(retData), "%f,", sensorCal[arg1-1].c0);
-   sprintf(retData+strlen(retData), "%f,", sensorCal[arg1-1].c1);
-   sprintf(retData+strlen(retData), "%f,", sensorCal[arg1-1].c2);
-   sprintf(retData+strlen(retData), "%f,", sensorCal[arg1-1].c3);
-   sprintf(retData+strlen(retData), "%f,", sensorCal[arg1-1].c4);
-   sprintf(retData+strlen(retData), "%f,", sensorCal[arg1-1].c5);
+   sprintf(retData+strlen(retData), "%.5f,", sensorCal[arg1-1].c0);
+   sprintf(retData+strlen(retData), "%.5f,", sensorCal[arg1-1].c1);
+   sprintf(retData+strlen(retData), "%.5f,", sensorCal[arg1-1].c2);
+   sprintf(retData+strlen(retData), "%.5f,", sensorCal[arg1-1].c3);
+   sprintf(retData+strlen(retData), "%.5f,", sensorCal[arg1-1].c4);
+   sprintf(retData+strlen(retData), "%.5f,", sensorCal[arg1-1].c5);
    
    return SUCCESS;
 }
@@ -233,12 +240,12 @@ int8 getSensorCalParam(unsigned int8 rec){
    else arg2 = SERcmd[rec].p[3][0];
    
    /*** GET SENSOR CAL PARAM **********/
-   if      ('0' == arg2) sprintf(retData+strlen(retData), "%d,%f,", arg1, sensorCal[arg1-1].c0);
-   else if ('1' == arg2) sprintf(retData+strlen(retData), "%d,%f,", arg1, sensorCal[arg1-1].c1);
-   else if ('2' == arg2) sprintf(retData+strlen(retData), "%d,%f,", arg1, sensorCal[arg1-1].c2);
-   else if ('3' == arg2) sprintf(retData+strlen(retData), "%d,%f,", arg1, sensorCal[arg1-1].c3);
-   else if ('4' == arg2) sprintf(retData+strlen(retData), "%d,%f,", arg1, sensorCal[arg1-1].c4);
-   else if ('5' == arg2) sprintf(retData+strlen(retData), "%d,%f,", arg1, sensorCal[arg1-1].c5);
+   if      ('0' == arg2) sprintf(retData+strlen(retData), "%d,%.5f,", arg1, sensorCal[arg1-1].c0);
+   else if ('1' == arg2) sprintf(retData+strlen(retData), "%d,%.5f,", arg1, sensorCal[arg1-1].c1);
+   else if ('2' == arg2) sprintf(retData+strlen(retData), "%d,%.5f,", arg1, sensorCal[arg1-1].c2);
+   else if ('3' == arg2) sprintf(retData+strlen(retData), "%d,%.5f,", arg1, sensorCal[arg1-1].c3);
+   else if ('4' == arg2) sprintf(retData+strlen(retData), "%d,%.5f,", arg1, sensorCal[arg1-1].c4);
+   else if ('5' == arg2) sprintf(retData+strlen(retData), "%d,%.5f,", arg1, sensorCal[arg1-1].c5);
    else return INV_PARAM;
    
    return SUCCESS;
@@ -487,10 +494,22 @@ int8 setHomeAxis(unsigned int8 rec){
     return SUCCESS;
 }
 
+int8 getHome(unsigned int8 rec){
+    /*** ARG CHECKS ********************/
+    int8 arg1;
+    
+    if (!is_valid_channel(SERcmd[rec].p[2])) return INV_PARAM;
+    else arg1 = strtoul(SERcmd[rec].p[2],'\0',10);
+    
+    adcVals[arg1-1].pHome;
+    sprintf(retData+strlen(retData), "HOME,%u,%f;", arg1, adcVals[arg1-1].pHome);
+    return SUCCESS;
+}
+
 int8 getTelemetry(unsigned int8 rec){
     for (int ch=0; ch<2; ch++){
         sprintf(retData+strlen(retData), "CNT,%u,%.0f,%.0f;", ch+1, adcVals[ch].sinCounts, adcVals[ch].cosCounts);
-        sprintf(retData+strlen(retData), "POS,%u,%3.3f;", ch+1, adcVals[ch].pReal);
+        sprintf(retData+strlen(retData), "POS,%u,%.3f;", ch+1, adcVals[ch].pReal);
         if ( dacVals[ch].invV ) sprintf(retData+strlen(retData), "OUT,%u,-,%Lu;", ch+1, dacVals[ch].ipVal);
         else                    sprintf(retData+strlen(retData), "OUT,%u,+,%Lu;", ch+1, dacVals[ch].ipVal);
     }

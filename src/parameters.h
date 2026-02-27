@@ -71,7 +71,6 @@ struct pidParams
     float minSP;   // Min setpoint in microns
 }PID[2] = {
    //  P     I     D
-   //0.01    0.3   0.1
     {0.01,   0.3,  0.1, 0,0,0,0,0,0,0}, 
     {0.01,   0.3,  0.1, 0,0,0,0,0,0,0}
     };
@@ -83,6 +82,7 @@ struct pidParams
 #define channel_map_length 2  // length in bytes
 channelMap chMap[2] = {chX, chY};
 
+// @FLAG
 #define op_upper_bound 63  // CRYO
 #define op_lower_bound -63 // CRYO
 
@@ -130,8 +130,8 @@ struct sensorCalParams
    float c4;
    float c5;
 } sensorCal[2] = {
-                    {0,1,0,0,0,0},
-                    {0,1,0,0,0,0}
+                    {0,-0.97687,0,0,0,0},  // @FLAG: Switched Channels
+                    {0,-0.99084,0,0,0,0}
                  };
 
 // fifth order polynomial constants
@@ -202,11 +202,11 @@ struct adcV
    BOOLEAN homeFlag;       // Flag to trigger the homing routine
 }adcVals[2] = 
 {
-   {0,0,0,0,0,0,0,0,0,0,FALSE},
-   {0,0,0,0,0,0,0,0,0,0,FALSE}
+   {0,0,0,0,0,0,0,-1,0,0,FALSE},  // @FLAG: Y-Axis passes -pole during cooldown
+   {0,0,0,0,0,0,0, 0,0,0,FALSE}
 };
 
-BOOLEAN adcFilter = FALSE;
+BOOLEAN adcFilter = TRUE;
 
 struct dacV
 {

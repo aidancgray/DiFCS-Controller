@@ -1,4 +1,4 @@
-Compiling C:\Users\Aidan\Documents\GitHub\DiFCS-Controller\src\main on 19-Dec-25 at 17:16
+Compiling C:\Users\Aidan\Documents\GitHub\DiFCS-Controller\src\main on 27-Feb-26 at 13:05
 >>> Warning 240 "C:\Users\Aidan\Documents\GitHub\DiFCS-Controller\src\parameters.h" Line 348(17,20): Pointer types do not match
 >>> Warning 240 "C:\Users\Aidan\Documents\GitHub\DiFCS-Controller\src\parameters.h" Line 350(17,22): Pointer types do not match
 >>> Warning 240 "C:\Users\Aidan\Documents\GitHub\DiFCS-Controller\src\parameters.h" Line 352(17,23): Pointer types do not match
@@ -11,7 +11,4 @@ Compiling C:\Users\Aidan\Documents\GitHub\DiFCS-Controller\src\main on 19-Dec-25
 >>> Warning 240 "C:\Users\Aidan\Documents\GitHub\DiFCS-Controller\src\parameters.h" Line 371(17,23): Pointer types do not match
 >>> Warning 240 "C:\Users\Aidan\Documents\GitHub\DiFCS-Controller\src\parameters.h" Line 372(17,26): Pointer types do not match
 >>> Warning 240 "C:\Users\Aidan\Documents\GitHub\DiFCS-Controller\src\parameters.h" Line 373(17,23): Pointer types do not match
->>> Warning 202 "C:\Users\Aidan\Documents\GitHub\DiFCS-Controller\src\main.c" Line 17(11,23): Variable never used:   debugCounter
-      Memory usage:   ROM=66%      RAM=50% - 53%
-      0 Errors,  13 Warnings.
-Build Successful.
+*** Error 199 "C:\Program Files (x86)\PICC\Drivers\math.h" Line 1650(20,21): User aborted compilation

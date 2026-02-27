@@ -32,8 +32,8 @@ void main()
 //!        restart_wdt();
         pBuff[0] = '\0';
         
-//!        if (adcVals[chX].homeFlag) home_axis(chX);
-//!        if (adcVals[chY].homeFlag) home_axis(chY);
+        if (adcVals[chX].homeFlag) home_axis(chX);
+        if (adcVals[chY].homeFlag) home_axis(chY);
                 
         internal_monitor_task();   //Update monitored voltage and currents etc
         sensor_monitor_task();     //get magnetoresistive sensor data

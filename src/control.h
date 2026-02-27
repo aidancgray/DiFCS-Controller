@@ -103,14 +103,16 @@ void home_axis(channelMap ch){
     float minSP = 0;
     int loops = 3;
     
+    adcVals[ch].pHome = 0;
+    
     // Slew up and down a couple times then set output to 0 to settle the piezo
     slew_to_upper_bound(ch);
     slew_to_lower_bound(ch);
     slew_to_upper_bound(ch);
     slew_to_lower_bound(ch);
-    dacVals[ch].opPcnt = 0;
-    set_nanoDAC_outputs(ch);
-    delay_ms(500);
+//!    dacVals[ch].opPcnt = 0;
+//!    set_nanoDAC_outputs(ch);
+//!    delay_ms(500);
     
     for (int i=0; i<loops; i++){
         slew_to_upper_bound(ch);
@@ -125,6 +127,9 @@ void home_axis(channelMap ch){
     PID[ch].maxSP = maxSP / (float)loops;
     PID[ch].minSP = minSP / (float)loops;
     adcVals[ch].pHome = (maxSP+minSP) / ((float)loops*2);
+    dacVals[ch].opPcnt = 0;
+    set_nanoDAC_outputs(ch);
+    delay_ms(500);
     adcVals[ch].homeFlag = False;
 }
 

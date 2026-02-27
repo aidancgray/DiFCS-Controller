@@ -37,6 +37,8 @@ typedef struct response {
 int8 getRev(unsigned int8);                 // gr 
 int8 getSN(unsigned int8);                  // gs
 
+int8 saveParams(unsigned int8);             // sParams
+
 int8 getOPchMap(unsigned int8);             // gChMap,   {1|2}
 int8 setOPchMap(unsigned int8);             // sChMap,   {1|2}, {X|Y}
 
@@ -71,6 +73,7 @@ int8 setFilterOn(unsigned int8);            // sFiltOn
 int8 setFilterOff(unsigned int8);           // sFiltOff
 
 int8 setHomeAxis(unsigned int8);            // sHome,    {1|2}      
+int8 getHome(unsigned int8);                // gHome,    {1|2}
 
 int8 getTelemetry(unsigned int8);           // gTlm
                                                       
