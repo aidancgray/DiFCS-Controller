@@ -35,7 +35,7 @@ void main()
         sensor_monitor_task_test();     //get magnetoresistive sensor data
         if (debugCounter >= 0){
             static int8 ch = 0;
-            sprintf(pBuff+strlen(pBuff), "%u,%.0f,%.0f;", ch+1, adcVals[ch].sinCounts, adcVals[ch].cosCounts);
+            sprintf(pBuff+strlen(pBuff), "$,%u,%.0f,%.0f;", ch+1, adcVals[ch].sinCounts, adcVals[ch].cosCounts);
             ch = !ch;
             debugCounter = 0;
         }else debugCounter++;
