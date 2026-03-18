@@ -86,8 +86,8 @@ channelMap chMap[2] = {chX, chY};
 // #define op_upper_bound 63  // CRYO
 // #define op_lower_bound -63 // CRYO
 
-!#define op_upper_bound 63  // AMBIENT 
-!#define op_lower_bound -12 // AMBIENT
+#define op_upper_bound 63  // AMBIENT 
+#define op_lower_bound -12 // AMBIENT
 
 //!#define op_upper_bound 100  // FULL 
 //!#define op_lower_bound -100 // FULL

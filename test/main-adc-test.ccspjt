@@ -1,0 +1,14 @@
+[PROJECT]
+Target=main-adc-test.hex
+Processor_Text=PIC18F46Q10
+CCSVersion=5.109
+Compiler=PCH
+[Target Data]
+FileList=main-adc-test.c
+[main-adc-test.c]
+Type=4
+[mru-list]
+1=main-adc-test.c
+[Units]
+Count=1
+1=main-adc-test (main)

@@ -123,7 +123,7 @@ typedef enum {reg0 = 0x00,reg1 = 0x04 ,reg2 = 0x08, reg3 = 0x0C}adsReg;
 // REGISTER CONGIGURATIONS FOR THIS APP
 #define reg0config IPp1n2|g1|PGAenabled // 0x30//
 #define reg1config DRn20|MDturbo|CMsingle|TSDisable|BCSoff //0x10
-#define reg2config REFinternal|FIRoff|PSWopen|Ioff //0x30
+#define reg2config REFinternal|FIRoff|PSWopen|Ioff //0x80
 #define reg3config I1disabled|I2disabled|drdyPin //0x00
 
 //COMMANDS

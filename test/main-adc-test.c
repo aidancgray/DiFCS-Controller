@@ -1,11 +1,11 @@
-#include <main.h>
+#include <main-adc-test.h>
 #include <io.h>
 #include <parameters.h>
 #include <monitor.h>
 #include <serialport.h>
 #include <eventTimer.h>
 
-!#define DEBUG_1
+#define DEBUG_1
 
 void main()
 {
