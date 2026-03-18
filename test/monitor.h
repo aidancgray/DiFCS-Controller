@@ -230,7 +230,7 @@ void iqm_ring_buffer(int8 ch, signed int32 sinCnts, signed int32 cosCnts){
 /* SENSOR MONITOR task - gets magnetoresistive sensor counts                 */
 /* gets two values each time the task is run                                 */
 /*****************************************************************************/
-void sensor_monitor_task(){
+void sensor_monitor_task_test(){
    static int8 ch = 0;
    signed int32 sinNew = 0;
    signed int32 cosNew = 0;
@@ -256,6 +256,7 @@ void sensor_monitor_task(){
       smData[!ch].adcBusy = false;
    }
 }
+
 /*****************************************************************************/
 /* INITIALIZE ADC's                                                          */
 /*****************************************************************************/

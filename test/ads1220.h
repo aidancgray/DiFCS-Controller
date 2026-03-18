@@ -304,11 +304,11 @@ signed int32 ads_read_data(int8 ch)
    data.dBytes[2] = spi_read2(0);
    data.dBytes[1] = spi_read2(0);
    data.dBytes[0] = spi_read2(0);
+   ads_deselect_all();
    
    //convert 24-bit 2's complement to 32-bit 2's complement
    if (0x80 & data.dBytes[2]) data.dBytes[3] |= 0xFF;
    
-   ads_deselect_all();
    return data.dWord;
 }
 

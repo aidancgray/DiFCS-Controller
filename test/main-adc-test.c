@@ -23,15 +23,16 @@ void main()
     
     while(TRUE)
     {
-        pBuff[0] = '\0';
-        
         // internal_monitor_task();   //Update monitored voltage and currents etc
-        sensor_monitor_task();     //get magnetoresistive sensor data
-      
+        // sensor_monitor_task();     //get magnetoresistive sensor data
         // serial_task();             
         // command_handler_task();    //execute commands
         
+        // #######################################################################################
         #ifdef DEBUG_1
+        
+        pBuff[0] = '\0';
+        sensor_monitor_task_test();     //get magnetoresistive sensor data
         if (debugCounter >= 0){
             static int8 ch = 0;
             sprintf(pBuff+strlen(pBuff), "%u,%.0f,%.0f;", ch+1, adcVals[ch].sinCounts, adcVals[ch].cosCounts);
@@ -39,8 +40,10 @@ void main()
             debugCounter = 0;
         }else debugCounter++;
         serial_out(pBuff);
+        
         #endif
-      
+        // #######################################################################################
+
         delay_ms(loopDelay);
     }
 }
