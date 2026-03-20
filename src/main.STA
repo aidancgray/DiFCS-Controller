@@ -1,19 +1,19 @@
 
-ROM used:   45952/65536 (70%)
-            45952/65536 (70%) including unused fragments
+ROM used:   45626/65536 (70%)
+            45626/65536 (70%) including unused fragments
 
             5.3 Average locations per line
             36.2 Average locations per statement
 
-RAM used:   1826/3615 (51%) at main() level
-            1930/3615 (53%) worst case
+RAM used:   1815/3615 (50%) at main() level
+            1929/3615 (53%) worst case
 
 Stack used: 8 worst case (6 in main + 2 for interrupts)
 Stack size: 31
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-   66    31   2  main.c
+   66    23   2  main.c
    17     0   0  main.h
  2072     0   0  ..\..\..\..\..\..\Program Files (x86)\PICC\Devices\18F46Q10.h
    84     0   0  io.h
@@ -31,10 +31,10 @@ Lines Stmts  %   Files
   161    64   5  serialport.h
   155    23   2  cmdBuffer.h
    59    23   2  eventTimer.h
-  615   335  26  commandHandler.c
+  615   335  27  commandHandler.c
    95     0   0  commandHandler.h
 ----- -----
- 8680  1269 Total
+ 8680  1261 Total
 
 Page ROM  %  RAM    Vol Diff  Functions:
 ---- --- --- ---    --- ----  ----------
@@ -61,7 +61,7 @@ Page ROM  %  RAM    Vol Diff  Functions:
 0     54   0    0    149  3.9  params_init
 0     30   0    0     86  1.3  ads_deselect_all
 0     72   0    1    242  3.1  ads_select_ch
-0     34   0    0             @goto28056
+0     34   0    0             @goto477
 0     54   0    1    190  3.1  ads_select_block
 0     32   0    0     86  1.3  ads_select_all
 0     22   0    2     59  2.0  ads_write_command
@@ -85,17 +85,17 @@ Page ROM  %  RAM    Vol Diff  Functions:
 0    766   1   12    581  7.5  pow
 0   1326   1   21   1082  6.9  atan
 0    652   1   20   1100  9.0  atan2
-0     34   0    0             @goto28617
+0     34   0    0             @goto1044
 0    102   0   12    147  4.5  push
 0     44   0    3             @DIV88
 0   1404   2    4   2174  6.4  internal_monitor_task
-0     40   0    0             @goto28762
+0     40   0    0             @goto1191
 0   3498   4   27   2661 10.7  sensor_process_data
 0     90   0    5             @SDTOF
 0    194   0    4    313  4.2  sensor_monitor_interrupt_task
-0   1372   1   46   2072 13.3  iqm_ring_buffer
+0   1372   2   46   2072 13.3  iqm_ring_buffer
 0    432   0   12    727  6.5  sensor_monitor_task
-0    370   0   10   1042  6.0  setup_external_ADCs
+0    372   0   10   1042  6.0  setup_external_ADCs
 0    110   0    0    291  2.4  monitor_init
 0   1410   2   25   1008  7.0  pid_update
 0    134   0    7    219  4.4  pid_task
@@ -144,7 +144,7 @@ Page ROM  %  RAM    Vol Diff  Functions:
 0    354   0    8    346  6.1  getSetPoint
 0    446   0    8    493  5.9  setSetPoint
 0    950   1   10   1071  6.3  getAllSensorCalParams
-0   1372   1   11   1630  7.4  getSensorCalParam
+0   1372   2   11   1630  7.4  getSensorCalParam
 0    920   1   11   1398  6.9  setSensorCalParam
 0   1324   1   50   2146  6.7  getMonitorCalParam
 0      6   0    1     25  1.6  setMonitorCalParam
@@ -171,21 +171,21 @@ Page ROM  %  RAM    Vol Diff  Functions:
 0     80   0    2    165  4.4  is_valid_channel
 0     58   0    2    189  4.9  hex_to_int
 0    390   0   12    687  8.3  command_parser
-0    296   0    7    309  3.9  command_handler_task
+0    296   0    7    307  4.0  command_handler_task
 0     36   0    2             @PSTRINGR_1674
-0   1538   2  117   1059  6.8  MAIN
+0   1210   1  107    593  5.5  MAIN
  Inline         0             @cinit1
 
 Program metrics:
     Functions               94
-    Statements              1269
-    Comments                1533
-    Volume (V)              111272
-    Difficulty (D)          484.9
-    Effort to implement (E) 53952278
-    Time to implement (T)   832 hours, 36 minutes
-    Est Delivered Bugs (B)  48
-    Cyclomatic Complexity   236
+    Statements              1261
+    Comments                1530
+    Volume (V)              110432
+    Difficulty (D)          483.7
+    Effort to implement (E) 53411305
+    Time to implement (T)   824 hours, 15 minutes
+    Est Delivered Bugs (B)  47
+    Cyclomatic Complexity   235
     Maintainability (MI)    90
 
  Segment     Used  Free
@@ -193,7 +193,7 @@ Program metrics:
 00000-00004     6  0  
 00006-00006     0  2  
 00008-000BA   180  0  
-000BC-0FFFE  45766  19582  
+000BC-0FFFE  45440  19908  
 
 
 

@@ -1,8 +1,8 @@
 F N "*cmd_func" 19 84 ""
 D G "__PCH__" 18 7 ""5.117""
 D G "__DEVICE__" 18 7 "4610"
-D G "__DATE__" 18 7 ""19-Mar-26""
-D G "__TIME__" 18 7 ""20:23:33""
+D G "__DATE__" 18 7 ""20-Mar-26""
+D G "__TIME__" 18 7 ""14:46:17""
 D G "_UNICODE" 18 7 ""?""
 D G "__EVAL" 18 7 ""?"" "Standard Header file for the PIC18F46Q10 device ////////////////"
 c L "set_tris_a" 2 3 25 "FUNCTION"
@@ -2568,10 +2568,10 @@ D G "INT_CRC" 2 2068 "0x00C440"
 D G "INT_SCANNER" 2 2069 "0x00C480"
 D G "baudRate" 1 9 "128000"
 D G "numChannels" 1 10 "2"
-D G "version" 1 12 ""20260209"" "SW Version"
+D G "version" 1 12 ""20260320"" "SW Version"
 D G "serialID" 1 13 ""0000"" "Unique Serial ID"
 D G "magPP" 1 14 "1" "Magnetoresistive Sensor Pole Pitch in mm"
-D G "gainLvl" 1 15 "16" "1, 2, 4, 8, 16, 32, 64, 128"
+D G "gainLvl" 1 15 "1" "1, 2, 4, 8, 16, 32, 64, 128"
 D G "IO" 3 2 ""
 D G "A0" 3 10 "PIN_A0"
 D G "A1" 3 11 "PIN_A1"
@@ -3281,9 +3281,9 @@ D G "I2p0" 10 117 "0x14"
 D G "I2n0" 10 118 "0x18"
 D G "drdyPin" 10 120 "0x00"
 D G "doutPin" 10 121 "0x20"
-D G "reg0config" 10 124 "IPp1n2|g1|PGAenabled" "0x30//"
+D G "reg0config" 10 124 "IPp1n2|g1|PGAenabled" "0x30"
 D G "reg1config" 10 125 "DRn20|MDturbo|CMsingle|TSDisable|BCSoff" "0x10"
-D G "reg2config" 10 126 "REFinternal|FIRoff|PSWopen|Ioff" "0x80"
+D G "reg2config" 10 126 "REFp1n1|FIRoff|PSWopen|Ioff" "0x80"
 D G "reg3config" 10 127 "I1disabled|I2disabled|drdyPin" "0x00"
 D G "ADSreset" 10 130 "0x06"
 D G "ADSstart" 10 131 "0x08"
@@ -3360,7 +3360,7 @@ V L "rc0" 10 319 "int8" `1403
 V L "rc1" 10 319 "int8" `1404 
 V L "rc2" 10 319 "int8" `1405 
 V L "rc3" 10 319 "int8" `1406 
-F G "ADS1220init" 10 320 "void(int8 ch,int8=48 rc0,int8=16 rc1,int8=0 rc2,int8=0 rc3)" `1401 
+F G "ADS1220init" 10 320 "void(int8 ch,int8=48 rc0,int8=16 rc1,int8=128 rc2,int8=0 rc3)" `1401 
 C L "ADS1220init" 10 5 1 "FUNCTION"
 C L "ADS1220init" 10 5 1 "FUNCTION"
 D G "MATH_H" 11 30 ""
@@ -4090,25 +4090,23 @@ C L "command_parser" 18 467 1 "FUNCTION"
 F N "command_handler_task" 18 597 ""
 F G "command_handler_task" 18 597 "void()" `1766 
 V L "return_code" 18 600 "int8" `1985  "echo_cmd(SRI);"
-D G "DEBUG_1" 0 11 ""
+C L "MAIN" 0 11 1 "FUNCTION"
 F N "MAIN" 0 13 ""
 F G "MAIN" 0 14 "void()" `1989 
 V L "loopDelay" 0 15 "int16" `1990 
 V L "controlCounter" 0 16 "int16" `1991 
 V L "debugCounter" 0 17 "int16" `1992 
 V L "pBuff" 0 19 "int8[100]" `1993 
-C L "MAIN" 0 21 1 "FUNCTION"
-C L "MAIN" 0 21 1 "FUNCTION"
-C L "MAIN" 0 21 1 "FUNCTION"
-C L "MAIN" 0 21 1 "FUNCTION"
-C L "MAIN" 0 21 1 "FUNCTION"
-C L "MAIN" 0 21 1 "FUNCTION"
-C L "MAIN" 0 21 1 "FUNCTION"
-C L "MAIN" 0 21 1 "FUNCTION"
-C L "MAIN" 0 21 1 "FUNCTION"
-C L "MAIN" 0 21 1 "FUNCTION"
-V L "ch" 0 51 "int8" `1996 
-C L "MAIN" 0 21 4 "FUNCTION"
+C L "MAIN" 0 11 1 "FUNCTION"
+C L "MAIN" 0 11 1 "FUNCTION"
+C L "MAIN" 0 11 1 "FUNCTION"
+C L "MAIN" 0 11 1 "FUNCTION"
+C L "MAIN" 0 11 1 "FUNCTION"
+C L "MAIN" 0 11 1 "FUNCTION"
+C L "MAIN" 0 11 1 "FUNCTION"
+C L "MAIN" 0 11 1 "FUNCTION"
+C L "MAIN" 0 11 1 "FUNCTION"
+C L "MAIN" 0 11 1 "FUNCTION"
 F B "reset_cpu" 0 0
 F B "abs" 1 0
 F B "sleep" 0 1

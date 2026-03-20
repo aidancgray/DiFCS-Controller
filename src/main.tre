@@ -1,5 +1,5 @@
 ÀÄmain
-   ÃÄMAIN  0/1538  Ram=117
+   ÃÄMAIN  0/1210  Ram=107
    ³  ÃÄ@cinit1  (Inline)  Ram=0
    ³  ÃÄ@cinit2  (Inline)  Ram=0
    ³  ÃÄIO_init  0/68  Ram=0
@@ -31,12 +31,12 @@
    ³  ³     ÀÄee_load_reg  0/82  Ram=11
    ³  ÃÄmonitor_init  0/110  Ram=0
    ³  ³  ÃÄ@delay_ms1  0/42  Ram=1
-   ³  ³  ÀÄsetup_external_ADCs  0/370  Ram=10
+   ³  ³  ÀÄsetup_external_ADCs  0/372  Ram=10
    ³  ³     ÃÄADS1220init  0/106  Ram=6
    ³  ³     ³  ÃÄads_write_command  0/22  Ram=2
    ³  ³     ³  ³  ÀÄads_select_ch  0/72  Ram=1
    ³  ³     ³  ³     ÃÄads_deselect_all  0/30  Ram=0
-   ³  ³     ³  ³     ÀÄ@goto28056  0/34  Ram=0
+   ³  ³     ³  ³     ÀÄ@goto477  0/34  Ram=0
    ³  ³     ³  ÃÄ@delay_us1  0/36  Ram=1
    ³  ³     ³  ÃÄads_write_reg  0/38  Ram=5
    ³  ³     ³  ³  ÃÄads_write_command  0/22  Ram=2
@@ -187,7 +187,7 @@
    ³  ³  ³     ³  ÃÄ@FLT  0/122  Ram=10
    ³  ³  ³     ³  ÃÄ@FLT  0/122  Ram=10
    ³  ³  ³     ³  ÃÄ@DIVFF  0/350  Ram=14
-   ³  ³  ³     ³  ÃÄ@goto28617  0/34  Ram=0
+   ³  ³  ³     ³  ÃÄ@goto1044  0/34  Ram=0
    ³  ³  ³     ³  ÃÄatan  0/1326  Ram=21
    ³  ³  ³     ³  ³  ÃÄ@FLT  0/122  Ram=10
    ³  ³  ³     ³  ³  ÃÄ@FLT  0/122  Ram=10
@@ -362,7 +362,7 @@
    ³  ÃÄhome_axis  0/916  Ram=23
    ³  ³  ÀÄ*
    ³  ÃÄinternal_monitor_task  0/1404  Ram=4
-   ³  ³  ÃÄ@goto28762  0/40  Ram=0
+   ³  ³  ÃÄ@goto1191  0/40  Ram=0
    ³  ³  ÃÄ@ITOF  0/54  Ram=2
    ³  ³  ÃÄ@MULFF  0/246  Ram=11
    ³  ³  ÃÄ@ADDFF  0/632  Ram=16
@@ -1085,20 +1085,6 @@
    ³  ³  ³  ÀÄ*
    ³  ³  ÀÄresetSERcmd  0/378  Ram=6
    ³  ³     ÀÄ*
-   ³  ÃÄstrlen  0/56  Ram=5
-   ³  ÃÄ@SPRINTF  0/32  Ram=1
-   ³  ÃÄ@SPRINTF  0/32  Ram=1
-   ³  ÃÄ@PRINTF_U_1674  0/134  Ram=2
-   ³  ³  ÀÄ*
-   ³  ÃÄ@SPRINTF  0/32  Ram=1
-   ³  ÃÄ@PRINTF_L32D_1674FPFPF  0/432  Ram=13
-   ³  ³  ÀÄ*
-   ³  ÃÄ@SPRINTF  0/32  Ram=1
-   ³  ÃÄ@PRINTF_L32D_1674FPFPF  0/432  Ram=13
-   ³  ³  ÀÄ*
-   ³  ÃÄ@SPRINTF  0/32  Ram=1
-   ³  ÃÄserial_out  0/58  Ram=2
-   ³  ³  ÀÄ*
    ³  ÃÄ@delay_ms1  0/42  Ram=1
    ³  ÀÄ@delay_ms1  0/42  Ram=1
    ÃÄ@GOTOPTR  0/14  Ram=0

@@ -8,7 +8,7 @@
 #include <eventTimer.h>
 #include <commandHandler.c>
 
-#define DEBUG_1
+//!#define DEBUG_1
 
 void main()
 {
