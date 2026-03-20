@@ -1,9 +1,9 @@
-CCS PCH C Compiler, Version 5.109, 62303               18-Mar-26 17:35
+CCS PCH C Compiler, Version 5.117, 2138               19-Mar-26 12:42
 
-               Filename:   C:\Users\aidan\Documents\GitHub\DiFCS-Controller\test\main-adc-test.lst
+               Filename:   C:\Users\Aidan\Documents\GitHub\DiFCS-Controller\test\main-adc-test.lst
 
-               ROM used:   18158 bytes (28%)
-                           Largest free fragment is 47376
+               ROM used:   18172 bytes (28%)
+                           Largest free fragment is 47362
                RAM used:   1500 (41%) at main() level
                            1588 (44%) worst case
                Stack used: 6 locations (4 in main + 2 for interrupts)
@@ -1098,7 +1098,7 @@ CCS PCH C Compiler, Version 5.109, 62303               18-Mar-26 17:35
 040D8:  MOVFF  5DC,5E9
 040DC:  MOVLB  0
 040DE:  RCALL  4042
-040E0:  GOTO   4654 (RETURN)
+040E0:  GOTO   4662 (RETURN)
 040E4:  MOVLB  5
 040E6:  MOVF   xE9,W
 040E8:  SUBLW  B6
@@ -1571,7 +1571,7 @@ CCS PCH C Compiler, Version 5.109, 62303               18-Mar-26 17:35
 0035C:  MOVWF  x21
 0035E:  CLRF   x29
 00360:  MOVLB  0
-00362:  GOTO   459E (RETURN)
+00362:  GOTO   4598 (RETURN)
 .................... }
 .................... 
 .................... #endif
@@ -2369,7 +2369,7 @@ CCS PCH C Compiler, Version 5.109, 62303               18-Mar-26 17:35
 04036:  MOVFF  00,01
 0403A:  MOVWF  02
 0403C:  MOVLB  0
-0403E:  GOTO   45C8 (RETURN)
+0403E:  GOTO   45C2 (RETURN)
 .................... }
 .................... 
 .................... /* standard template: char *strtok(char *s1, const char *s2).
@@ -3678,8 +3678,8 @@ CCS PCH C Compiler, Version 5.109, 62303               18-Mar-26 17:35
 ....................    float c4;
 ....................    float c5;
 .................... } sensorCal[2] = {
-....................                     {0,-0.97687,0,0,0,0},  // @FLAG: Switched Channels
-....................                     {0,-0.99084,0,0,0,0}
+....................                     {0,1,0,0,0,0}, // {0,-0.97687,0,0,0,0},  // @FLAG: Switched Channels
+....................                     {0,1,0,0,0,0}
 ....................                  };
 .................... 
 .................... // fifth order polynomial constants
@@ -4240,7 +4240,7 @@ CCS PCH C Compiler, Version 5.109, 62303               18-Mar-26 17:35
 ....................       params_load_from_ee();
 005FA:  BRA    052C
 ....................    }
-005FC:  GOTO   45A2 (RETURN)
+005FC:  GOTO   459C (RETURN)
 .................... }
 .................... 
 .................... /*****************************************************************************/
@@ -4475,8 +4475,8 @@ CCS PCH C Compiler, Version 5.109, 62303               18-Mar-26 17:35
 ....................    float c4;
 ....................    float c5;
 .................... } sensorCal[2] = {
-....................                     {0,-0.97687,0,0,0,0},  // @FLAG: Switched Channels
-....................                     {0,-0.99084,0,0,0,0}
+....................                     {0,1,0,0,0,0}, // {0,-0.97687,0,0,0,0},  // @FLAG: Switched Channels
+....................                     {0,1,0,0,0,0}
 ....................                  };
 .................... 
 .................... // fifth order polynomial constants
@@ -11901,7 +11901,7 @@ CCS PCH C Compiler, Version 5.109, 62303               18-Mar-26 17:35
 04000:  BCF    FEF.1
 ....................    }
 04002:  MOVLB  0
-04004:  GOTO   45BA (RETURN)
+04004:  GOTO   45B4 (RETURN)
 .................... }
 .................... 
 .................... /*****************************************************************************/
@@ -12148,7 +12148,7 @@ CCS PCH C Compiler, Version 5.109, 62303               18-Mar-26 17:35
 00A7E:  MOVLW  32
 00A80:  MOVWF  x7E
 00A82:  MOVLB  0
-00A84:  GOTO   45A6 (RETURN)
+00A84:  GOTO   45A0 (RETURN)
 .................... }
 .................... 
 .................... #endif
@@ -12664,7 +12664,7 @@ CCS PCH C Compiler, Version 5.109, 62303               18-Mar-26 17:35
 043C4:  MOVLW  93
 043C6:  MOVWF  F89
 043C8:  BCF    F84.5
-043CA:  GOTO   46C8 (RETURN)
+043CA:  GOTO   46D6 (RETURN)
 .................... }
 .................... 
 .................... //!void icd_out(char* printBuffer){
@@ -12820,7 +12820,7 @@ CCS PCH C Compiler, Version 5.109, 62303               18-Mar-26 17:35
 00C2C:  MOVLB  E
 00C2E:  BSF    xC0.5
 00C30:  MOVLB  0
-00C32:  GOTO   45AA (RETURN)
+00C32:  GOTO   45A4 (RETURN)
 .................... }
 .................... 
 .................... 
@@ -12962,8 +12962,8 @@ CCS PCH C Compiler, Version 5.109, 62303               18-Mar-26 17:35
 ....................    float c4;
 ....................    float c5;
 .................... } sensorCal[2] = {
-....................                     {0,-0.97687,0,0,0,0},  // @FLAG: Switched Channels
-....................                     {0,-0.99084,0,0,0,0}
+....................                     {0,1,0,0,0,0}, // {0,-0.97687,0,0,0,0},  // @FLAG: Switched Channels
+....................                     {0,1,0,0,0,0}
 ....................                  };
 .................... 
 .................... // fifth order polynomial constants
@@ -13290,7 +13290,7 @@ CCS PCH C Compiler, Version 5.109, 62303               18-Mar-26 17:35
 00C60:  MOVLB  E
 00C62:  BSF    xC1.0
 00C64:  MOVLB  0
-00C66:  GOTO   45AE (RETURN)
+00C66:  GOTO   45A8 (RETURN)
 .................... }
 .................... 
 .................... /*****************************************************************************/
@@ -13535,7 +13535,7 @@ CCS PCH C Compiler, Version 5.109, 62303               18-Mar-26 17:35
 044A0:  CLRF   x32
 044A2:  CLRF   x33
 044A4:  CLRF   x30
-044A6:  BRA    454E
+044A6:  BRA    4548
 044A8:  DATA 02,00
 044AA:  DATA 1A,00
 044AC:  DATA 00,0C
@@ -13569,91 +13569,88 @@ CCS PCH C Compiler, Version 5.109, 62303               18-Mar-26 17:35
 044E4:  DATA 00,00
 044E6:  DATA 7F,07
 044E8:  DATA C0,00
-044EA:  DATA 04,80
-044EC:  DATA 7E,FA
-044EE:  DATA 14,27
-044F0:  DATA 14,C0
-044F2:  DATA 00,04
-044F4:  DATA 80,7E
-044F6:  DATA FD,A7
-044F8:  DATA B1,14
-044FA:  DATA C0,00
-044FC:  DATA 04,80
-044FE:  DATA 79,B7
-04500:  DATA F3,BD
-04502:  DATA 04,C0
-04504:  DATA 00,04
-04506:  DATA 80,7C
-04508:  DATA 59,DF
-0450A:  DATA 4E,04
-0450C:  DATA C0,00
-0450E:  DATA 04,80
-04510:  DATA 78,0A
-04512:  DATA 28,88
-04514:  DATA 04,C0
-04516:  DATA 00,04
-04518:  DATA 80,78
-0451A:  DATA 05,EA
-0451C:  DATA 16,04
-0451E:  DATA C0,00
-04520:  DATA 04,80
-04522:  DATA 78,1E
-04524:  DATA 33,D7
-04526:  DATA 04,C0
-04528:  DATA 00,04
-0452A:  DATA 80,77
-0452C:  DATA 68,7B
-0452E:  DATA BB,04
-04530:  DATA C0,00
-04532:  DATA 04,80
-04534:  DATA 77,68
-04536:  DATA 0D,C6
-04538:  DATA 68,40
-0453A:  DATA FB,00
-0453C:  DATA 0E,41
-0453E:  DATA 64,00
-04540:  DATA 15,41
-04542:  DATA D4,00
-04544:  DATA 3C,45
-04546:  DATA 23,00
-04548:  DATA 01,05
-0454A:  DATA 68,00
-0454C:  DATA 00,00
-0454E:  MOVLW  00
-04550:  MOVWF  FF8
-04552:  MOVLW  44
-04554:  MOVWF  FF7
-04556:  MOVLW  A8
-04558:  MOVWF  FF6
-0455A:  TBLRD*+
-0455C:  MOVF   FF5,W
-0455E:  MOVWF  00
-04560:  XORLW  00
-04562:  BZ    458A
-04564:  TBLRD*+
-04566:  MOVF   FF5,W
-04568:  MOVWF  01
-0456A:  BTFSC  FE8.7
-0456C:  BRA    4578
-0456E:  ANDLW  3F
-04570:  MOVWF  FEA
-04572:  TBLRD*+
-04574:  MOVFF  FF5,FE9
-04578:  BTFSC  01.6
-0457A:  TBLRD*+
-0457C:  BTFSS  01.6
-0457E:  TBLRD*+
-04580:  MOVFF  FF5,FEE
-04584:  DCFSNZ 00,F
-04586:  BRA    455A
-04588:  BRA    457C
-0458A:  CLRF   FF8
-0458C:  MOVLB  5
-0458E:  CLRF   x6A
-04590:  MOVLW  64
-04592:  MOVWF  x69
-04594:  CLRF   x6C
-04596:  CLRF   x6B
+044EA:  DATA 01,80
+044EC:  DATA 7F,17
+044EE:  DATA C0,00
+044F0:  DATA 01,80
+044F2:  DATA 7F,17
+044F4:  DATA C0,00
+044F6:  DATA 04,80
+044F8:  DATA 79,B7
+044FA:  DATA F3,BD
+044FC:  DATA 04,C0
+044FE:  DATA 00,04
+04500:  DATA 80,7C
+04502:  DATA 59,DF
+04504:  DATA 4E,04
+04506:  DATA C0,00
+04508:  DATA 04,80
+0450A:  DATA 78,0A
+0450C:  DATA 28,88
+0450E:  DATA 04,C0
+04510:  DATA 00,04
+04512:  DATA 80,78
+04514:  DATA 05,EA
+04516:  DATA 16,04
+04518:  DATA C0,00
+0451A:  DATA 04,80
+0451C:  DATA 78,1E
+0451E:  DATA 33,D7
+04520:  DATA 04,C0
+04522:  DATA 00,04
+04524:  DATA 80,77
+04526:  DATA 68,7B
+04528:  DATA BB,04
+0452A:  DATA C0,00
+0452C:  DATA 04,80
+0452E:  DATA 77,68
+04530:  DATA 0D,C6
+04532:  DATA 68,40
+04534:  DATA FB,00
+04536:  DATA 0E,41
+04538:  DATA 64,00
+0453A:  DATA 15,41
+0453C:  DATA D4,00
+0453E:  DATA 3C,45
+04540:  DATA 23,00
+04542:  DATA 01,05
+04544:  DATA 68,00
+04546:  DATA 00,00
+04548:  MOVLW  00
+0454A:  MOVWF  FF8
+0454C:  MOVLW  44
+0454E:  MOVWF  FF7
+04550:  MOVLW  A8
+04552:  MOVWF  FF6
+04554:  TBLRD*+
+04556:  MOVF   FF5,W
+04558:  MOVWF  00
+0455A:  XORLW  00
+0455C:  BZ    4584
+0455E:  TBLRD*+
+04560:  MOVF   FF5,W
+04562:  MOVWF  01
+04564:  BTFSC  FE8.7
+04566:  BRA    4572
+04568:  ANDLW  3F
+0456A:  MOVWF  FEA
+0456C:  TBLRD*+
+0456E:  MOVFF  FF5,FE9
+04572:  BTFSC  01.6
+04574:  TBLRD*+
+04576:  BTFSS  01.6
+04578:  TBLRD*+
+0457A:  MOVFF  FF5,FEE
+0457E:  DCFSNZ 00,F
+04580:  BRA    4554
+04582:  BRA    4576
+04584:  CLRF   FF8
+04586:  MOVLB  5
+04588:  CLRF   x6A
+0458A:  MOVLW  64
+0458C:  MOVWF  x69
+0458E:  CLRF   x6C
+04590:  CLRF   x6B
 .................... {
 ....................     int16 loopDelay = 100;
 ....................     int16 debugCounter = 0;
@@ -13661,19 +13658,19 @@ CCS PCH C Compiler, Version 5.109, 62303               18-Mar-26 17:35
 ....................     char pBuff[100];
 ....................     
 ....................     IO_init();                    // set up IO 
-04598:  MOVLB  0
-0459A:  GOTO   0322
+04592:  MOVLB  0
+04594:  GOTO   0322
 ....................     params_init();                // load parameters
-0459E:  GOTO   05CA
+04598:  GOTO   05CA
 ....................     monitor_init();               // initialize internal ADC for voltage and current telemetry
-045A2:  GOTO   0A1A
+0459C:  GOTO   0A1A
 ....................     serial_init();                // setup the serial port
-045A6:  GOTO   0C14
+045A0:  GOTO   0C14
 ....................     event_timer_init();
-045AA:  GOTO   0C36
+045A4:  GOTO   0C36
 ....................     enable_interrupts(GLOBAL);
-045AE:  MOVLW  C0
-045B0:  IORWF  FF2,F
+045A8:  MOVLW  C0
+045AA:  IORWF  FF2,F
 ....................     
 ....................     while(TRUE)
 ....................     {
@@ -13686,157 +13683,167 @@ CCS PCH C Compiler, Version 5.109, 62303               18-Mar-26 17:35
 ....................         #ifdef DEBUG_1
 ....................         
 ....................         pBuff[0] = '\0';
-045B2:  MOVLB  5
-045B4:  CLRF   x6D
+045AC:  MOVLB  5
+045AE:  CLRF   x6D
 ....................         sensor_monitor_task_test();     //get magnetoresistive sensor data
-045B6:  MOVLB  0
-045B8:  BRA    3E56
+045B0:  MOVLB  0
+045B2:  BRA    3E56
 ....................         if (debugCounter >= 0){
 ....................             static int8 ch = 0;
-....................             sprintf(pBuff+strlen(pBuff), "%u,%.0f,%.0f;", ch+1, adcVals[ch].sinCounts, adcVals[ch].cosCounts);
-045BA:  MOVLW  05
-045BC:  MOVLB  5
-045BE:  MOVWF  xD2
-045C0:  MOVLW  6D
-045C2:  MOVWF  xD1
-045C4:  MOVLB  0
-045C6:  BRA    4008
-045C8:  MOVF   01,W
-045CA:  ADDLW  6D
-045CC:  MOVLB  5
-045CE:  MOVWF  xD1
-045D0:  MOVLW  05
-045D2:  ADDWFC 02,W
-045D4:  MOVWF  xD2
-045D6:  MOVLW  01
-045D8:  ADDWF  x68,W
-045DA:  MOVWF  xD3
-045DC:  MOVF   x68,W
-045DE:  MULLW  26
-045E0:  MOVF   FF3,W
-045E2:  CLRF   xD5
-045E4:  MOVWF  xD4
-045E6:  MOVLW  08
-045E8:  ADDWF  xD4,W
-045EA:  MOVWF  01
-045EC:  MOVLW  00
-045EE:  ADDWFC xD5,W
-045F0:  MOVWF  03
-045F2:  MOVF   01,W
-045F4:  ADDLW  17
-045F6:  MOVWF  FE9
-045F8:  MOVLW  01
-045FA:  ADDWFC 03,W
-045FC:  MOVWF  FEA
-045FE:  MOVFF  FEF,5D4
-04602:  MOVFF  FEC,5D5
-04606:  MOVFF  FEC,5D6
-0460A:  MOVFF  FEC,5D7
-0460E:  MOVF   x68,W
-04610:  MULLW  26
-04612:  MOVF   FF3,W
-04614:  CLRF   xD9
-04616:  MOVWF  xD8
-04618:  MOVLW  0C
-0461A:  ADDWF  xD8,W
-0461C:  MOVWF  01
-0461E:  MOVLW  00
-04620:  ADDWFC xD9,W
-04622:  MOVWF  03
-04624:  MOVF   01,W
-04626:  ADDLW  17
-04628:  MOVWF  FE9
-0462A:  MOVLW  01
-0462C:  ADDWFC 03,W
-0462E:  MOVWF  FEA
-04630:  MOVFF  FEF,5D8
-04634:  MOVFF  FEC,5D9
-04638:  MOVFF  FEC,5DA
-0463C:  MOVFF  FEC,5DB
-04640:  MOVFF  5D2,563
-04644:  MOVFF  5D1,562
-04648:  MOVFF  5D3,5DC
-0464C:  MOVLW  1B
-0464E:  MOVWF  xDD
+....................             sprintf(pBuff+strlen(pBuff), "$,%u,%.0f,%.0f;", ch+1, adcVals[ch].sinCounts, adcVals[ch].cosCounts);
+045B4:  MOVLW  05
+045B6:  MOVLB  5
+045B8:  MOVWF  xD2
+045BA:  MOVLW  6D
+045BC:  MOVWF  xD1
+045BE:  MOVLB  0
+045C0:  BRA    4008
+045C2:  MOVF   01,W
+045C4:  ADDLW  6D
+045C6:  MOVLB  5
+045C8:  MOVWF  xD1
+045CA:  MOVLW  05
+045CC:  ADDWFC 02,W
+045CE:  MOVWF  xD2
+045D0:  MOVLW  01
+045D2:  ADDWF  x68,W
+045D4:  MOVWF  xD3
+045D6:  MOVF   x68,W
+045D8:  MULLW  26
+045DA:  MOVF   FF3,W
+045DC:  CLRF   xD5
+045DE:  MOVWF  xD4
+045E0:  MOVLW  08
+045E2:  ADDWF  xD4,W
+045E4:  MOVWF  01
+045E6:  MOVLW  00
+045E8:  ADDWFC xD5,W
+045EA:  MOVWF  03
+045EC:  MOVF   01,W
+045EE:  ADDLW  17
+045F0:  MOVWF  FE9
+045F2:  MOVLW  01
+045F4:  ADDWFC 03,W
+045F6:  MOVWF  FEA
+045F8:  MOVFF  FEF,5D4
+045FC:  MOVFF  FEC,5D5
+04600:  MOVFF  FEC,5D6
+04604:  MOVFF  FEC,5D7
+04608:  MOVF   x68,W
+0460A:  MULLW  26
+0460C:  MOVF   FF3,W
+0460E:  CLRF   xD9
+04610:  MOVWF  xD8
+04612:  MOVLW  0C
+04614:  ADDWF  xD8,W
+04616:  MOVWF  01
+04618:  MOVLW  00
+0461A:  ADDWFC xD9,W
+0461C:  MOVWF  03
+0461E:  MOVF   01,W
+04620:  ADDLW  17
+04622:  MOVWF  FE9
+04624:  MOVLW  01
+04626:  ADDWFC 03,W
+04628:  MOVWF  FEA
+0462A:  MOVFF  FEF,5D8
+0462E:  MOVFF  FEC,5D9
+04632:  MOVFF  FEC,5DA
+04636:  MOVFF  FEC,5DB
+0463A:  MOVFF  5D2,563
+0463E:  MOVFF  5D1,562
+04642:  MOVLW  24
+04644:  MOVWF  xE9
+04646:  MOVLB  0
+04648:  RCALL  4042
+0464A:  MOVLW  2C
+0464C:  MOVLB  5
+0464E:  MOVWF  xE9
 04650:  MOVLB  0
-04652:  BRA    4062
-04654:  MOVLW  2C
-04656:  MOVLB  5
-04658:  MOVWF  xE9
-0465A:  MOVLB  0
-0465C:  RCALL  4042
-0465E:  MOVLW  89
-04660:  MOVWF  FE9
-04662:  MOVFF  5D7,5DF
-04666:  MOVFF  5D6,5DE
-0466A:  MOVFF  5D5,5DD
-0466E:  MOVFF  5D4,5DC
-04672:  MOVLB  5
-04674:  CLRF   xE0
-04676:  MOVLB  0
-04678:  RCALL  41BC
-0467A:  MOVLW  2C
-0467C:  MOVLB  5
-0467E:  MOVWF  xE9
-04680:  MOVLB  0
-04682:  RCALL  4042
-04684:  MOVLW  89
-04686:  MOVWF  FE9
-04688:  MOVFF  5DB,5DF
-0468C:  MOVFF  5DA,5DE
-04690:  MOVFF  5D9,5DD
-04694:  MOVFF  5D8,5DC
-04698:  MOVLB  5
-0469A:  CLRF   xE0
-0469C:  MOVLB  0
-0469E:  RCALL  41BC
-046A0:  MOVLW  3B
-046A2:  MOVLB  5
-046A4:  MOVWF  xE9
-046A6:  MOVLB  0
-046A8:  RCALL  4042
+04652:  RCALL  4042
+04654:  MOVFF  5D3,5DC
+04658:  MOVLW  1B
+0465A:  MOVLB  5
+0465C:  MOVWF  xDD
+0465E:  MOVLB  0
+04660:  BRA    4062
+04662:  MOVLW  2C
+04664:  MOVLB  5
+04666:  MOVWF  xE9
+04668:  MOVLB  0
+0466A:  RCALL  4042
+0466C:  MOVLW  89
+0466E:  MOVWF  FE9
+04670:  MOVFF  5D7,5DF
+04674:  MOVFF  5D6,5DE
+04678:  MOVFF  5D5,5DD
+0467C:  MOVFF  5D4,5DC
+04680:  MOVLB  5
+04682:  CLRF   xE0
+04684:  MOVLB  0
+04686:  RCALL  41BC
+04688:  MOVLW  2C
+0468A:  MOVLB  5
+0468C:  MOVWF  xE9
+0468E:  MOVLB  0
+04690:  RCALL  4042
+04692:  MOVLW  89
+04694:  MOVWF  FE9
+04696:  MOVFF  5DB,5DF
+0469A:  MOVFF  5DA,5DE
+0469E:  MOVFF  5D9,5DD
+046A2:  MOVFF  5D8,5DC
+046A6:  MOVLB  5
+046A8:  CLRF   xE0
+046AA:  MOVLB  0
+046AC:  RCALL  41BC
+046AE:  MOVLW  3B
+046B0:  MOVLB  5
+046B2:  MOVWF  xE9
+046B4:  MOVLB  0
+046B6:  RCALL  4042
 ....................             ch = !ch;
-046AA:  MOVLB  5
-046AC:  MOVF   x68,F
-046AE:  BZ    46B4
-046B0:  MOVLW  00
-046B2:  BRA    46B6
-046B4:  MOVLW  01
-046B6:  MOVWF  x68
+046B8:  MOVLB  5
+046BA:  MOVF   x68,F
+046BC:  BZ    46C2
+046BE:  MOVLW  00
+046C0:  BRA    46C4
+046C2:  MOVLW  01
+046C4:  MOVWF  x68
 ....................             debugCounter = 0;
-046B8:  CLRF   x6C
-046BA:  CLRF   x6B
+046C6:  CLRF   x6C
+046C8:  CLRF   x6B
 ....................         }else debugCounter++;
 ....................         serial_out(pBuff);
-046BC:  MOVLW  05
-046BE:  MOVWF  xD2
-046C0:  MOVLW  6D
-046C2:  MOVWF  xD1
-046C4:  MOVLB  0
-046C6:  BRA    4392
+046CA:  MOVLW  05
+046CC:  MOVWF  xD2
+046CE:  MOVLW  6D
+046D0:  MOVWF  xD1
+046D2:  MOVLB  0
+046D4:  BRA    4392
 ....................         
 ....................         #endif
 ....................         // #######################################################################################
 .................... 
 ....................         delay_ms(loopDelay);
-046C8:  MOVFF  56A,5D1
-046CC:  MOVLB  5
-046CE:  INCF   xD1,F
-046D0:  DECF   xD1,F
-046D2:  BTFSC  FD8.2
-046D4:  BRA    46E2
-046D6:  SETF   xD7
-046D8:  MOVLB  0
-046DA:  CALL   03B8
-046DE:  MOVLB  5
-046E0:  BRA    46D0
-046E2:  MOVFF  569,5D7
+046D6:  MOVFF  56A,5D1
+046DA:  MOVLB  5
+046DC:  INCF   xD1,F
+046DE:  DECF   xD1,F
+046E0:  BTFSC  FD8.2
+046E2:  BRA    46F0
+046E4:  SETF   xD7
 046E6:  MOVLB  0
 046E8:  CALL   03B8
-046EC:  BRA    45B2
+046EC:  MOVLB  5
+046EE:  BRA    46DE
+046F0:  MOVFF  569,5D7
+046F4:  MOVLB  0
+046F6:  CALL   03B8
+046FA:  BRA    45AC
 ....................     }
 .................... }
-046EE:  SLEEP 
+046FC:  SLEEP 
 
 Configuration Fuses:
    Word  1: FF8C   NOEXTOSC RSTOSC_HFINTRC_64MHZ NOCLKOUT CKS FCMEN
