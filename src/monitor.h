@@ -156,7 +156,7 @@ void sensor_process_data(int8 ch){
 void sensor_monitor_interrupt_task(){
    static int8 ch = 0;
    
-   if (!smData[ch].adcBusy){
+   if (!smData[ch].adcBusy && !smData[!ch].adcBusy){
       smData[ch].adcBusy = true;
          
       ads_start_conv_block(ch);

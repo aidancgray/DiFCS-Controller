@@ -123,7 +123,7 @@ typedef enum {reg0 = 0x00,reg1 = 0x04 ,reg2 = 0x08, reg3 = 0x0C}adsReg;
 // REGISTER CONGIGURATIONS FOR THIS APP
 #define reg0config IPp1n2|g1|PGAenabled // 0x30//
 #define reg1config DRn20|MDturbo|CMsingle|TSDisable|BCSoff //0x10
-#define reg2config REFinternal|FIRoff|PSWopen|Ioff //0x30
+#define reg2config REFinternal|FIRoff|PSWopen|Ioff //0x80
 #define reg3config I1disabled|I2disabled|drdyPin //0x00
 
 //COMMANDS
@@ -304,11 +304,11 @@ signed int32 ads_read_data(int8 ch)
    data.dBytes[2] = spi_read2(0);
    data.dBytes[1] = spi_read2(0);
    data.dBytes[0] = spi_read2(0);
+   ads_deselect_all();
    
    //convert 24-bit 2's complement to 32-bit 2's complement
    if (0x80 & data.dBytes[2]) data.dBytes[3] |= 0xFF;
    
-   ads_deselect_all();
    return data.dWord;
 }
 

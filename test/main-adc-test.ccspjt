@@ -1,7 +1,7 @@
 [PROJECT]
 Target=main-adc-test.hex
 Processor_Text=PIC18F46Q10
-CCSVersion=5.109
+CCSVersion=5.117
 Compiler=PCH
 [Target Data]
 FileList=main-adc-test.c
@@ -9,6 +9,36 @@ FileList=main-adc-test.c
 Type=4
 [mru-list]
 1=main-adc-test.c
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=1
+D1=19-03-2026
+D1_L=4
+D1_L1=[45258]Project Opened.
+D1_L2=[45338]Started Editing.
+D1_L3=[45652]Stopped Editing.
+TotalEdit=1
+TotalDebug=0
+D1_E=1
+D1_D=0
+D1_L4=[72659]Project Closed.
+
+[Opened Files]
+1=main-adc-test.c
+t1=6
+Count=4
+2=parameters.h
+t2=133
+3=ADS1220.h
+t3=1
+4=monitor.h
+t4=1
+
+[defines]
+buildcount=2
 [Units]
 Count=1
 1=main-adc-test (main)

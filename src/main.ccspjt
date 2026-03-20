@@ -17,7 +17,7 @@ Type=4
 forcecoff=0
 
 [ProjectLog]
-Days=106
+Days=107
 D1=11-03-2025
 D1_L=2
 D1_L1=[76140]Project Opened.
@@ -1588,33 +1588,43 @@ D106=27-02-2026
 D106_L=2
 D106_L1=[47110]Started Editing.
 D106_L2=[47648]Stopped Editing.
+D107=19-03-2026
+D107_L=8
+D107_L1=[45180]Project Opened.
+D107_L2=[45184]Project Closed.
+D107_L3=[45187]Project Opened.
+D107_L4=[45258]Project Closed.
+D107_L5=[72659]Project Opened.
+D107_L6=[72677]Started Editing.
+D107_L7=[73231]Stopped Editing.
+D107_L8=[73406]Started Editing.
 
 [Opened Files]
-1=main.h
-t1=1
-2=commandhandler.c
-t2=485
-3=serialport.h
-t3=48
-Count=11
-4=cmdBuffer.h
-t4=53
-5=commandHandler.h
-t5=58
-6=monitor.h
-t6=119
-7=ADS1220.h
-t7=287
-8=control.h
-t8=12
-9=parameters.h
-t9=12
-10=pid.h
-t10=5
-11=main.c
-t11=5
+1=main.c
+t1=11
+2=main.h
+t2=5
+3=commandhandler.c
+t3=1
+Count=12
+4=serialport.h
+t4=1
+5=cmdBuffer.h
+t5=1
+6=commandHandler.h
+t6=1
+7=monitor.h
+t7=159
+8=ADS1220.h
+t8=1
+9=control.h
+t9=1
+10=parameters.h
+t10=1
+11=eventTimer.h
+t11=1
 12=pid.h
-t12=5
+t12=1
 13=monitor.h
 t13=1
 14=..\..\..\..\..\..\Program Files (x86)\PICC\Devices\18F46Q10.h
@@ -1627,7 +1637,7 @@ t16=11
 Type=4
 
 [defines]
-buildcount=590
+buildcount=592
 
 [Documentation]
 1=P:\MIRMOS\electrical\Detector Dither Electronics\DitherCtrl\Firmware\difics v2\main.ccspjt

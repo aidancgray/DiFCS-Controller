@@ -1,8 +1,8 @@
 F N "*cmd_func" 19 84 ""
 D G "__PCH__" 18 7 ""5.117""
 D G "__DEVICE__" 18 7 "4610"
-D G "__DATE__" 18 7 ""25-Feb-26""
-D G "__TIME__" 18 7 ""17:31:59""
+D G "__DATE__" 18 7 ""19-Mar-26""
+D G "__TIME__" 18 7 ""20:23:33""
 D G "_UNICODE" 18 7 ""?""
 D G "__EVAL" 18 7 ""?"" "Standard Header file for the PIC18F46Q10 device ////////////////"
 c L "set_tris_a" 2 3 25 "FUNCTION"
@@ -3123,8 +3123,8 @@ V G "PID" 4 72 "{float kP,float kI,float kD,float SP,float PV,float PVold,float 
 D G "channel_map_ee_addr" 4 81 "128"
 D G "channel_map_length" 4 82 "2" "length in bytes"
 V G "chMap" 4 83 "channelMap[2]" `1295 
-D G "op_upper_bound" 4 86 "63" "CRYO"
-D G "op_lower_bound" 4 87 "-63" "CRYO"
+D G "op_upper_bound" 4 89 "63" "AMBIENT"
+D G "op_lower_bound" 4 90 "-12" "AMBIENT"
 D G "channel_mode_ee_addr" 4 99 "144"
 D G "channel_mode_length" 4 100 "2" "length in bytes"
 V G "chMode" 4 101 "channelMode[2]" `1296 
@@ -3159,7 +3159,6 @@ C L "params_invalidate" 4 23 1 "FUNCTION"
 C L "params_invalidate" 4 23 1 "FUNCTION"
 C L "params_invalidate" 4 23 1 "FUNCTION"
 V G "adcVals" 4 203 "{float sinRaw,float cosRaw,float sinCounts,float cosCounts,float sinLast,float cosLast,float p0,sint8 npoles,float pReal,float pHome,int1 homeFlag}[2]" `1342 
-C L "params_invalidate" 4 23 1 "FUNCTION"
 V G "adcFilter" 4 209 "int1" `1343 
 V G "dacVals" 4 217 "{int1 invV,int16 ipVal,float opPcnt}[2]" `1348 
 C L "params_invalidate" 4 23 1 "FUNCTION"
@@ -3284,7 +3283,7 @@ D G "drdyPin" 10 120 "0x00"
 D G "doutPin" 10 121 "0x20"
 D G "reg0config" 10 124 "IPp1n2|g1|PGAenabled" "0x30//"
 D G "reg1config" 10 125 "DRn20|MDturbo|CMsingle|TSDisable|BCSoff" "0x10"
-D G "reg2config" 10 126 "REFinternal|FIRoff|PSWopen|Ioff" "0x30"
+D G "reg2config" 10 126 "REFinternal|FIRoff|PSWopen|Ioff" "0x80"
 D G "reg3config" 10 127 "I1disabled|I2disabled|drdyPin" "0x00"
 D G "ADSreset" 10 130 "0x06"
 D G "ADSstart" 10 131 "0x08"
@@ -4091,23 +4090,25 @@ C L "command_parser" 18 467 1 "FUNCTION"
 F N "command_handler_task" 18 597 ""
 F G "command_handler_task" 18 597 "void()" `1766 
 V L "return_code" 18 600 "int8" `1985  "echo_cmd(SRI);"
-C L "MAIN" 0 11 1 "FUNCTION"
+D G "DEBUG_1" 0 11 ""
 F N "MAIN" 0 13 ""
 F G "MAIN" 0 14 "void()" `1989 
 V L "loopDelay" 0 15 "int16" `1990 
 V L "controlCounter" 0 16 "int16" `1991 
 V L "debugCounter" 0 17 "int16" `1992 
 V L "pBuff" 0 19 "int8[100]" `1993 
-C L "MAIN" 0 11 1 "FUNCTION"
-C L "MAIN" 0 11 1 "FUNCTION"
-C L "MAIN" 0 11 1 "FUNCTION"
-C L "MAIN" 0 11 1 "FUNCTION"
-C L "MAIN" 0 11 1 "FUNCTION"
-C L "MAIN" 0 11 1 "FUNCTION"
-C L "MAIN" 0 11 1 "FUNCTION"
-C L "MAIN" 0 11 1 "FUNCTION"
-C L "MAIN" 0 11 1 "FUNCTION"
-C L "MAIN" 0 11 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
+V L "ch" 0 51 "int8" `1996 
+C L "MAIN" 0 21 4 "FUNCTION"
 F B "reset_cpu" 0 0
 F B "abs" 1 0
 F B "sleep" 0 1

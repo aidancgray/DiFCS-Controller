@@ -8,7 +8,7 @@
 #include <eventTimer.h>
 #include <commandHandler.c>
 
-//!#define DEBUG_1
+#define DEBUG_1
 
 void main()
 {
@@ -30,7 +30,6 @@ void main()
     while(TRUE)
     {
 //!        restart_wdt();
-        pBuff[0] = '\0';
         
         if (adcVals[chX].homeFlag) home_axis(chX);
         if (adcVals[chY].homeFlag) home_axis(chY);
@@ -47,16 +46,17 @@ void main()
         command_handler_task();    //execute commands
         
         #ifdef DEBUG_1
+        pBuff[0] = '\0';
         if (debugCounter >= 0){
             static int8 ch = 0;
-            sprintf(pBuff+strlen(pBuff), "CNT,%u,%.0f,%.0f;", ch+1, adcVals[ch].sinCounts, adcVals[ch].cosCounts);
-            sprintf(pBuff+strlen(pBuff), "POS,%u,%3.3f;", ch+1, adcVals[ch].pReal);
-            if ( dacVals[ch].invV ) sprintf(pBuff+strlen(pBuff), "OUT,%u,-,%Lu;", ch+1, dacVals[ch].ipVal);
-            else                    sprintf(pBuff+strlen(pBuff), "OUT,%u,+,%Lu;", ch+1, dacVals[ch].ipVal);
+            sprintf(pBuff+strlen(pBuff), "$,%u,%.0f,%.0f;", ch+1, adcVals[ch].sinCounts, adcVals[ch].cosCounts);
+//!            sprintf(pBuff+strlen(pBuff), "CNT,%u,%.0f,%.0f;", ch+1, adcVals[ch].sinCounts, adcVals[ch].cosCounts);
+//!            sprintf(pBuff+strlen(pBuff), "POS,%u,%3.3f;", ch+1, adcVals[ch].pReal);
+//!            if ( dacVals[ch].invV ) sprintf(pBuff+strlen(pBuff), "OUT,%u,-,%Lu;", ch+1, dacVals[ch].ipVal);
+//!            else                    sprintf(pBuff+strlen(pBuff), "OUT,%u,+,%Lu;", ch+1, dacVals[ch].ipVal);
             ch = !ch;
             debugCounter = 0;
         }else debugCounter++;
-//!        fprintf(ICD_STREAM, "%s\n", pBuff);
         serial_out(pBuff);
         #endif
       
