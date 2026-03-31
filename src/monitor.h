@@ -143,7 +143,8 @@ void sensor_process_data(int8 ch){
    
    adcVals[ch].pReal = sc[ch].c5*pow(pTmp,5) + sc[ch].c4*pow(pTmp,4) + sc[ch].c3*pow(pTmp,3) + sc[ch].c2*pow(pTmp,2) + sc[ch].c1*(pTmp) + sc[ch].c0;
    adcVals[ch].pReal -= adcVals[ch].pHome;
-   if (ch == chX) adcVals[ch].pReal *= -1;
+   
+   if (ch == chX) adcVals[ch].pReal *= -1;  // Inner stage magsensor polarity flipped wrt outer stage
    
    PID[ch].PVold = PID[ch].PV;
    PID[ch].PV = adcVals[ch].pReal;

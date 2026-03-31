@@ -73,29 +73,25 @@ void set_nanoDAC_outputs(channelMap ch){
 /*  Axis homing routines and helper functions                                */ 
 /*****************************************************************************/
 void slew_to_upper_bound(channelMap ch){
-    chMode[ch] = MANUAL;        // set channel to manual
-    
     while (dacVals[ch].opPcnt < op_upper_bound){
         dacVals[ch].opPcnt += 10;   // increase output by 10%
         set_nanoDAC_outputs(ch);
-        delay_ms(500);
+        delay_ms(1000);
     }
     dacVals[ch].opPcnt = op_upper_bound;    // set output to upper bound
     set_nanoDAC_outputs(ch);
-    delay_ms(500);
+    delay_ms(1000);
 }
 
 void slew_to_lower_bound(channelMap ch){
-    chMode[ch] = MANUAL;        // set channel to manual
-    
     while (dacVals[ch].opPcnt > op_lower_bound){
         dacVals[ch].opPcnt -= 10;   // decrease output by 10%
         set_nanoDAC_outputs(ch);
-        delay_ms(500);
+        delay_ms(1000);
     }
     dacVals[ch].opPcnt = op_lower_bound;    // set output to lower bound
     set_nanoDAC_outputs(ch);
-    delay_ms(500);
+    delay_ms(1000);
 }
 
 void home_axis(channelMap ch){
@@ -106,13 +102,15 @@ void home_axis(channelMap ch){
     adcVals[ch].pHome = 0;
     
     // Slew up and down a couple times then set output to 0 to settle the piezo
+    dacVals[ch].opPcnt = 0;
+    chMode[ch] = MANUAL;
     slew_to_upper_bound(ch);
     slew_to_lower_bound(ch);
     slew_to_upper_bound(ch);
     slew_to_lower_bound(ch);
-//!    dacVals[ch].opPcnt = 0;
-//!    set_nanoDAC_outputs(ch);
-//!    delay_ms(500);
+    dacVals[ch].opPcnt = 0;
+    set_nanoDAC_outputs(ch);
+    delay_ms(5000);
     
     for (int i=0; i<loops; i++){
         slew_to_upper_bound(ch);
@@ -129,7 +127,7 @@ void home_axis(channelMap ch){
     adcVals[ch].pHome = (maxSP+minSP) / ((float)loops*2);
     dacVals[ch].opPcnt = 0;
     set_nanoDAC_outputs(ch);
-    delay_ms(500);
+    delay_ms(1000);
     adcVals[ch].homeFlag = False;
 }
 

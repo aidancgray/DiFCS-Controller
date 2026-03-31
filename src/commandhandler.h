@@ -32,7 +32,7 @@ typedef struct response {
 //!#define diagnosticMsg "V0:%f\r\nV1:%f\r\nV2:%f\r\nV3:%f\r\nV4:%f\r\nT0:%Lu\r\nT1:%Lu\r\nT2:%Lu\r\nTint:%Lu\r\nTtick:%Lu\r\nInputs:%u\r\nOutputs:%u\r\nStatus:%u"
 
 /*****************************************************************************/
-/* DIAGNOSTIC COMMAND PROTOTYPES                                             */
+/* COMMAND PROTOTYPES                                                        */
 /*****************************************************************************/
 int8 getRev(unsigned int8);                 // gr 
 int8 getSN(unsigned int8);                  // gs
@@ -62,7 +62,7 @@ int8 getMonitorCalParam(unsigned int8);     // gMCal,    {N15|200|5V6|5VA|3V6X|3
 int8 setMonitorCalParam(unsigned int8);     // sMCal,    {N15|200|5V6|5VA|3V6X|3V3A|3V3D}, <float>, <float>
 int8 getMonitorValue(unsigned int8);        // gMon,     {N15|200|5V6|5VA|3V6X|3V3A|3V3D|all}
 
-int8 getPIDdata(unsigned int8);             // gPIDdata, {1|2}, {PV|CV|PVold|I}
+int8 getPIDdata(unsigned int8);             // gPIDdata, {1|2}, {SP|PV|PVold|CV|I|maxSP|minSP}
 
 int8 getIPdata(unsigned int8);              // gIPdata,  {1|2}, {raw|calib|p0|poles|real}
    
@@ -72,8 +72,9 @@ int8 setManOPvals(unsigned int8);           // sManOP,   {1|2}, <float>
 int8 setFilterOn(unsigned int8);            // sFiltOn
 int8 setFilterOff(unsigned int8);           // sFiltOff
 
-int8 setHomeAxis(unsigned int8);            // sHome,    {1|2}      
+int8 setHomeAxis(unsigned int8);            // sHomeAx,  {1|2}      
 int8 getHome(unsigned int8);                // gHome,    {1|2}
+int8 setHome(unsigned int8);                // sHome,    {1|2}, <float>
 
 int8 getTelemetry(unsigned int8);           // gTlm
                                                       

@@ -13,6 +13,8 @@ struct command cmd_list[] = {
     {"sChMode",  &setIPchMode},
     {"gPID",     &getPIDvals},
     {"sPID",     &setPIDvals},
+    {"enaPID",   &enablePID},
+    {"disPID",   &disablePID},
     {"gSP",      &getSetPoint},
     {"sSP",      &setSetPoint},
     {"gSCals",   &getAllSensorCalParams},
@@ -27,8 +29,9 @@ struct command cmd_list[] = {
     {"sManOP",   &setManOPvals},
     {"sFiltOn",  &setFilterOn},
     {"sFiltOff", &setFilterOff},
-    {"sHome",    &setHomeAxis},
+    {"sHomeAx",  &setHomeAxis},
     {"gHome",    &getHome},
+    {"sHome",    &setHome},
     {"gTlm",     &getTelemetry},
     {"\0", &invalidCmd}
 };
@@ -178,6 +181,32 @@ int8 setPIDvals(unsigned int8 rec){
    else return INV_PARAM;
    
    return SUCCESS;
+}
+
+int8 enablePID(unsigned int8 rec){
+   /*** ARG CHECKS ********************/
+   int8  arg1;
+   
+   if (!is_valid_channel(SERcmd[rec].p[2])) return INV_PARAM;
+   else arg1 = strtoul(SERcmd[rec].p[2],'\0',10);
+   
+   // @FLAG: not yet implemented
+   
+   return SUCCESS;
+
+}
+
+int8 disablePID(unsigned int8 rec){
+   /*** ARG CHECKS ********************/
+   int8  arg1;
+   
+   if (!is_valid_channel(SERcmd[rec].p[2])) return INV_PARAM;
+   else arg1 = strtoul(SERcmd[rec].p[2],'\0',10);
+   
+   // @FLAG: not yet implemented
+   
+   return SUCCESS;
+
 }
 
 int8 getSetPoint(unsigned int8 rec){
@@ -377,10 +406,13 @@ int8 getPIDdata(unsigned int8 rec){
   /*** ARG CHECKS ********************/ 
    int8 arg1;
    char *arg2;
+   char *s_SP = "SP";
    char *s_PV = "PV";
-   char *s_CV = "CV";
    char *s_PVold = "PVold";
+   char *s_CV = "CV";
    char *s_I = "I";
+   char *s_maxSP = "maxSP";
+   char *s_minSP = "minSP";
    
    if (!is_valid_channel(SERcmd[rec].p[2])) return INV_PARAM;
    else arg1 = strtoul(SERcmd[rec].p[2],'\0',10);
@@ -388,10 +420,13 @@ int8 getPIDdata(unsigned int8 rec){
    arg2 = SERcmd[rec].p[3];
    
    /*** GET PV, CV, PVold, I, or A(LL) VALUE **********/
-   if      (0 == strcmp(s_PV, arg2))     sprintf(retData+strlen(retData), "%d,%f,", arg1, PID[arg1-1].PV);
-   else if (0 == strcmp(s_CV, arg2))     sprintf(retData+strlen(retData), "%d,%f,", arg1, PID[arg1-1].CV);
+   if      (0 == strcmp(s_SP, arg2))     sprintf(retData+strlen(retData), "%d,%f,", arg1, PID[arg1-1].SP);
+   else if (0 == strcmp(s_PV, arg2))     sprintf(retData+strlen(retData), "%d,%f,", arg1, PID[arg1-1].PV);
    else if (0 == strcmp(s_PVold, arg2))  sprintf(retData+strlen(retData), "%d,%f,", arg1, PID[arg1-1].PVold);
+   else if (0 == strcmp(s_CV, arg2))     sprintf(retData+strlen(retData), "%d,%f,", arg1, PID[arg1-1].CV);
    else if (0 == strcmp(s_I, arg2))      sprintf(retData+strlen(retData), "%d,%f,", arg1, PID[arg1-1].I);
+   else if (0 == strcmp(s_maxSP, arg2))  sprintf(retData+strlen(retData), "%d,%f,", arg1, PID[arg1-1].maxSP);
+   else if (0 == strcmp(s_minSP, arg2))  sprintf(retData+strlen(retData), "%d,%f,", arg1, PID[arg1-1].minSP);
    else return INV_PARAM;
    
    return SUCCESS;
@@ -501,7 +536,23 @@ int8 getHome(unsigned int8 rec){
     if (!is_valid_channel(SERcmd[rec].p[2])) return INV_PARAM;
     else arg1 = strtoul(SERcmd[rec].p[2],'\0',10);
     
-    adcVals[arg1-1].pHome;
+   //  adcVals[arg1-1].pHome; @FLAG
+    sprintf(retData+strlen(retData), "HOME,%u,%f;", arg1, adcVals[arg1-1].pHome);
+    return SUCCESS;
+}
+
+int8 setHome(unsigned int8 rec){
+    /*** ARG CHECKS ********************/
+    int8 arg1;
+    float arg2;
+
+    if (!is_valid_channel(SERcmd[rec].p[2])) return INV_PARAM;
+    else arg1 = strtoul(SERcmd[rec].p[2],'\0',10);
+    
+    if (!arg_is_float(SERcmd[rec].p[3])) return INV_PARAM;
+    else arg2 = strtod(SERcmd[rec].p[3], '\0');
+
+    adcVals[arg1-1].pHome = arg2;
     sprintf(retData+strlen(retData), "HOME,%u,%f;", arg1, adcVals[arg1-1].pHome);
     return SUCCESS;
 }
