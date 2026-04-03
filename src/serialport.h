@@ -58,7 +58,7 @@ void serial_out(char* printBuffer){
 /*****************************************************************************/
 /* SERIAL PORT ISR                                                           */
 /*****************************************************************************/
-#INT_RDA
+#INT_RDA HIGH
 void RX_isr() {           
     while (kbhit(SERIAL)) {
         UART_BUFFER[UART_WR_PTR]=fgetc(SERIAL);

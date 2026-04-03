@@ -130,8 +130,8 @@ struct sensorCalParams
    float c4;
    float c5;
 } sensorCal[2] = {
-                    {0,0.99084,0,0,0,0},
-                    {0,0.97687,0,0,0,0}
+                    {0,0.97687,0,0,0,0},
+                    {0,0.99084,0,0,0,0}
                  };
 
 // fifth order polynomial constants
