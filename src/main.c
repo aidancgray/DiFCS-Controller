@@ -37,11 +37,12 @@ void main()
         internal_monitor_task();   //Update monitored voltage and currents etc
         sensor_monitor_task();     //get magnetoresistive sensor data
       
-        if (controlCounter >= 2){
-            control_task();
-            controlCounter = 0;
-        }else controlCounter++;
-      
+//!        if (controlCounter >= 2){
+//!            control_task();
+//!            controlCounter = 0;
+//!        }else controlCounter++;
+        control_task();
+        
         serial_task();             
         command_handler_task();    //execute commands
         
