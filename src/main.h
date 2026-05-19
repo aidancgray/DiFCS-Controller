@@ -2,15 +2,19 @@
 
 #device ADC=10
 #device HIGH_INTS=TRUE
+
 //!#FUSES WDT                      //Watch Dog Timer
 //!#FUSES WDT4096                  //Watch Dog Timer uses 1:4096 Postscale
 
 #use delay(internal=64000000)
-#define baudRate 128000
+#define version  "20260519" // SW Version
+#define baudRate 115200
 #define numChannels 2
 
-#define version  "20260407" // SW Version
 #define serialID "0000"     // Unique Serial ID
 #define magPP 1             // Magnetoresistive Sensor Pole Pitch in mm   
-#define gainLvl 1           // 1, 2, 4, 8, 16, 32, 64, 128
+//!#define gainLvl 1           // 1, 2, 4, 8, 16, 32, 64, 128
 
+#define timedEventDelay 100 // 100ms b/w interrupts
+
+void timedEventInterrupt();

@@ -54,3 +54,4 @@ dkms.conf
 # User
 __history/
 .output/
+*.err
